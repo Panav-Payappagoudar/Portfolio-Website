@@ -1,0 +1,48 @@
+import { Github, Linkedin, Instagram, BrainCircuit, ShieldCheck, Layers, Globe, TerminalSquare } from 'lucide-react';
+
+export const portfolioData = {
+    personalInfo: {
+        name: "Panav Payappagoudar",
+        title: "Software Developer | AI/ML • Cybersecurity • Web3",
+        greeting: "Hello, I'm",
+        bio: "I build secure, scalable systems at the intersection of AI/ML, Cybersecurity, and Web3. As a Computer Science sophomore (B.Tech ’28), I lead product-focused engineering—delivering end-to-end prototypes that combine LLMs, decentralized storage, and robust backend design to solve real-world problems.",
+        about: "A product-focused engineer specializing in secure, scalable systems that merge AI/ML, Cybersecurity, and Web3. My approach emphasizes rapid, production-minded prototyping from ideation to deployment. I am adept at integrating LLM-powered features with a focus on cost and latency optimization. I am also deeply committed to mentorship, having guided over 50 junior students in DSA, Java, and Python, helping them apply CS fundamentals in practical contexts.",
+        email: "panav.24bce707@vitapstudent.ac.in",
+    },
+    socials: [
+        { name: "GitHub", url: "https://github.com/Panav-Payappagoudar", icon: Github },
+        { name: "LinkedIn", url: "https://linkedin.com/in/panav-payappagoudar", icon: Linkedin },
+        { name: "Instagram", url: "https://www.instagram.com/panav.payappagoudar/", icon: Instagram }
+    ],
+    experience: [
+        { role: "Founder", company: "The Essentialist", date: "Oct 2025 - Present", description: "Designing and distributing a collection of original, concept-driven apparel and merchandise. Responsible for the end-to-end process, from initial design to sale, leveraging a capital-efficient, print-on-demand model." },
+        { role: "GSSoC Open Source Contributor", company: "GirlScript Summer of Code", date: "Sep 2025 - Present", description: "Selected as an Open Source Contributor for GSSoC 2025, a national-level program to contribute to open-source projects under mentorship, improve large-scale codebases, and collaborate with global developers." },
+        { role: "Data Analyst Intern", company: "Vodafone Idea Foundation & Edunet Foundation", date: "Sep 2025 - Oct 2025", description: "Selected via the AICTE portal for a 4-week virtual internship on Conversational Data Analysis with LLMs, a CSR initiative by VOIS and the Vodafone Idea Foundation, featuring project-based learning and expert mentorship." },
+        { role: "AI & Cloud Intern", company: "IBM", date: "Sep 2025 - Oct 2025", description: "Engaged in a virtual internship focusing on Artificial Intelligence and Cloud technologies, gaining structured exposure to enterprise-level applications." },
+        { role: "Undergraduate Robotics Researcher", company: "VIT-AP University", date: "Jul 2025 - Present", description: "Contributed to a semester-long research project on Human-Following Robots (HFRs). Built a functional HFR prototype on Arduino, implementing IR/ultrasonic sensing and differential-drive control." },
+        { role: "Deep Learning & Computer Vision — Associate", company: "The Machine Learning Club VIT-AP", date: "Aug 2025 - Present", description: "Initiated a semester-long research project exploring AI methods to match forensic sketches with face images or reconstruct them into photorealistic identities." },
+        { role: "Mentor & Technical Guide", company: "Self-employed", date: "Sep 2024 - Present", description: "Mentored 50+ peers in DSA, algorithm design, and coding interviews. Delivered mock interviews, designed custom problem sets, and conducted code reviews to improve problem-solving speed and confidence." },
+        { role: "Technical Team — Associate", company: "The Machine Learning Club VIT-AP", date: "Nov 2024 - Aug 2025", description: "Engaged in a research initiative on solar utilization potential mapping using AI/ML on geospatial datasets. Worked with LiDAR, DEM, and LAI data and experimented with U-Net for semantic segmentation of building footprints." }
+    ],
+    education: [
+        { institution: "VIT-AP University", degree: "Bachelor's degree, Computer Science", date: "2024 - 2028", details: "CGPA: 8.82 (Sem 1)" },
+        { institution: "Sri Chaitanya Techno School, Bangalore", degree: "Intermediate, Computer Science", date: "2022 - 2024", details: "Skills: Mathematics, Chemistry, Python, Physics" },
+        { institution: "S.F.S Primary School, Koppal(ICSE)", degree: "Class X, Primary and High School", date: "2022", details: "Grade: 91.6%" }
+    ],
+    projects: [
+        { title: "Human-Following Robot – Embedded Systems Research", description: "Developed a functional HFR prototype on Arduino UNO R3 as part of an undergraduate research project. Integrated IR and ultrasonic sensors for perception and a differential-drive system with DC geared motors for actuation.", imageUrl: "https://placehold.co/600x400/292966/CCCCFF?text=HFR+Robot", liveUrl: "#", repoUrl: "#", tags: ["Robotics", "Arduino", "Embedded Systems", "Sensor Fusion", "C++"], colSpan: "md:col-span-2" },
+        { title: "Clarity AI – Air Quality Prediction System", description: "A hybrid ML pipeline (Random Forest + Linear Regression) to forecast CO levels from the UCI Air Quality dataset. Features a React frontend with Chart.js visualizations and a Flask REST API.", imageUrl: "https://placehold.co/600x400/292966/CCCCFF?text=Clarity+AI", liveUrl: "#", repoUrl: "https://github.com/Panav-Payappagoudar/Clarity-AI", tags: ["React", "Flask", "scikit-learn", "Pandas", "Chart.js", "Python"], colSpan: "md:col-span-1" },
+        { title: "Jet2holidayz – Full-Stack Hotel Booking Platform", description: "A comprehensive hotel booking platform built with Django and DRF. Features real-time booking, role-based authentication, payment integration, and a responsive UI. Built as a template for enterprise-level hospitality platforms.", imageUrl: "https://placehold.co/600x400/292966/CCCCFF?text=Jet2holidayz", liveUrl: "#", repoUrl: "https://github.com/Panav-Payappagoudar/Travel-Booking", tags: ["Django", "Django REST Framework", "PostgreSQL", "Celery", "Bootstrap"], colSpan: "md:col-span-1" },
+        { title: "SecureX - AI + Blockchain Document Management", description: "Next-gen decentralized document dashboard built at Microsoft Triwizardathon (Top 2%). Combines Blockchain (Solidity), IPFS (NFT.Storage), and AI (LangChain) for secure file handling and contextual Q&A.", imageUrl: "https://placehold.co/600x400/292966/CCCCFF?text=SecureX", liveUrl: "https://final-secure-x-ix3r.vercel.app/", repoUrl: "https://github.com/Panav-Payappagoudar/Secure-X", tags: ["React", "Node.js", "IPFS", "Solidity", "LangChain", "MongoDB"], colSpan: "md:col-span-2" },
+        { title: "HealthGuard AI – AI-Powered Health Companion", description: "Cross-platform app from OpenAI Hackathon integrating gpt-oss, Gemini & ChatGPT for AI health consultations, live hospital maps (OSM), and an emergency hub, designed to make healthcare accessible and intelligent.", imageUrl: "https://placehold.co/600x400/292966/CCCCFF?text=HealthGuard+AI", liveUrl: "#", repoUrl: "https://github.com/Panav-Payappagoudar/HealthGuard_AI", tags: ["Flutter", "Dart", "Gemini", "gpt-oss", "OpenStreetMap"], colSpan: "md:col-span-1" },
+        { title: "Geospatial Change Detection & Alert System", description: "An end-to-end platform for proactive environmental monitoring using multi-temporal satellite imagery. Features an automated pipeline (FastAPI, Celery, Rasterio) for detecting changes, masking clouds, and delivering GIS-ready outputs.", imageUrl: "https://placehold.co/600x400/292966/CCCCFF?text=Geo-AI", liveUrl: "#", repoUrl: "https://github.com/Panav-Payappagoudar/ISRO-Hackathon", tags: ["Python", "FastAPI", "PostGIS", "Rasterio", "Celery", "React"], colSpan: "md:col-span-1" },
+        { title: "Guardian Vault – Localized Password Manager", description: "A lightweight, privacy-first password manager built as a hackathon project. It securely stores all user credentials locally on the device, minimizing vulnerabilities and eliminating cloud dependencies.", imageUrl: "https://placehold.co/600x400/292966/CCCCFF?text=Guardian+Vault", liveUrl: "https://lovable.dev/projects/c897d063-0390-4300-a16c-20926b5e8e38", repoUrl: "https://github.com/Hari4507/easy-secure-keep", tags: ["React", "TypeScript", "TailwindCSS", "Vite", "Cybersecurity"], colSpan: "md:col-span-2" }
+    ],
+    skills: [
+        { category: "AI/ML & Robotics", icon: BrainCircuit, items: ["Deep Learning", "Computer Vision", "LLMs", "LangChain", "TensorFlow", "PyTorch", "scikit-learn", "OpenCV", "Robotics", "Sensor Fusion", "R&D", "AI Prompting", "Generative AI", "Quantitative Analytics", "MATLAB", "Autonomous Navigation"] },
+        { category: "Web3 & Security", icon: ShieldCheck, items: ["Solidity", "Smart Contracts", "ipfs", "Cryptography", "Secure System Design", "Blockchain", "JWT", "Blockchain Architecture", "Web Services Security", "Risk Assessment"] },
+        { category: "Full-Stack & Infra", icon: Layers, items: ["Flutter", "Dart", "React", "Node.js", "Express", "Python", "FastAPI", "PostgreSQL", "MongoDB", "Docker", "Git", "Django", "Django REST Framework", "Computer Networking", "Data Structures", "Java", "OOP", "HTML", "CSS"] },
+        { category: "Geospatial", icon: Globe, items: ["Rasterio", "GDAL", "PostGIS", "OpenStreetMap", "Overpass API"] },
+        { category: "Core & Dev Tools", icon: TerminalSquare, items: ["VS Code", "Android Studio", "Xcode", "Postman", "Vercel", "Computer Science", "Mathematics", "Problem Solving", "Data Analysis", "Communication", "Research Skills", "Design Thinking"] }
+    ]
+};

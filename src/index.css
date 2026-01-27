@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #000000;
+    color: #ffffff;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0a0a; }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #555; }
+}
+
+/* Grid Background */
+.grid-bg {
+  background-image: linear-gradient(to right, #262626 1px, transparent 1px),
+  linear-gradient(to bottom, #262626 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Animation Classes */
+.btn-magnetic { transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+.reveal-on-scroll {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.revealed { opacity: 1; transform: translateY(0); }
+
+/* Creative Section Separator */
+.section-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 20%, rgba(59,130,246,0.3) 50%, rgba(255,255,255,0.05) 80%, transparent 100%);
+  margin: 0;
+  position: relative;
+}
+
+/* Smooth Hover Transitions for Devices */
+@media (hover: hover) {
+  .hover-pop:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+  }
+}
