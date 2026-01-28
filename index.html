@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,3 +12,748 @@
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    
+    <!-- SEO & Metadata -->
+    <title>Panav Payappagoudar | Software Developer</title>
+    <meta name="description" content="Portfolio of Panav Payappagoudar – Software Developer specializing in AI/ML, Cybersecurity, and Web3. Discover projects, experience, and skills.">
+    <meta name="keywords" content="Panav Payappagoudar, Portfolio, Software Developer, AI, ML, Cybersecurity, Web3, Full-Stack Developer">
+    <meta name="author" content="Panav Payappagoudar">
+    <link rel="canonical" href="https://panav.xyz/"> <!-- Replace with your actual domain -->
+    
+    <!-- Mobile Responsiveness & PWA hints -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Open Graph (for social sharing) -->
+    <meta property="og:title" content="Panav Payappagoudar | Portfolio">
+    <meta property="og:description" content="Software Developer specializing in AI/ML, Cybersecurity, and Web3.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://panav.xyz/">
+    <meta property="og:image" content="https://panav.xyz/portfolio-preview.png"> <!-- IMPORTANT: Replace with a real link -->
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Panav Payappagoudar | Portfolio">
+    <meta name="twitter:description" content="Software Developer specializing in AI/ML, Cybersecurity, and Web3.">
+    <meta name="twitter:image" content="https://panav.xyz/portfolio-preview.png"> <!-- IMPORTANT: Replace with a real link -->
+        
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="theme-color" content="#10102a">
+    
+    <!-- Performance: Preconnect to CDNs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+        
+    <!-- Font Loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <style>
+        :root {
+            --background: #10102a;
+            --primary-text: #f0f0ff;
+            --secondary-text: #a3a3cc;
+            --accent: #ccccff;
+            --accent-dark: #8282f0;
+            --card-bg: rgba(41, 41, 102, 0.3);
+            --border-color: rgba(204, 204, 255, 0.2);
+            --glow-color: rgba(204, 204, 255, 0.1);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--primary-text);
+            position: relative;
+            overflow-x: hidden;
+            cursor: none; /* Re-enabled to hide default cursor */
+        }
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+        /* --- NEW: High-end Custom Cursor Styles --- */
+        .cursor-dot {
+            position: fixed;
+            width: 8px; height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            left: 0; top: 0; 
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease-out; /* Dot moves fast */
+        }
+        .cursor-outline {
+            position: fixed;
+            width: 40px; height: 40px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            left: 0; top: 0; 
+            pointer-events: none;
+            z-index: 9999;
+            /* Centering offset: (dot_size - outline_size) / 2 */
+            margin-left: -16px; 
+            margin-top: -16px;  
+            opacity: 0.5;
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out; /* Outline lags */
+        }
+        
+        /* --- UPDATED: Cross-browser Hover Styles (replaces :has()) --- */
+        /* This class will be toggled by JavaScript for max compatibility */
+        body.is-hovering .cursor-outline {
+            transform: scale(1.5);
+            opacity: 1;
+        }
+        body.is-hovering .cursor-dot {
+            transform: scale(0.5); /* Optional: shrink dot on hover */
+        }
+        /* --- End Custom Cursor Styles --- */
+
+        .glass-effect {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+        }
+        .glass-effect:hover {
+            box-shadow: 0 0 30px var(--glow-color);
+            border-color: rgba(204, 204, 255, 0.4);
+        }
+        .glass-effect::before {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, -150px); left: var(--mouse-x, -150px);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+            pointer-events: none;
+            opacity: 0;
+        }
+        .glass-effect:hover::before { opacity: 1; }
+        
+        /* --- NEW CSS for Project Cards --- */
+        /* Adds 3D context for the hover transform */
+        #projects-grid .glass-effect {
+            transform-style: preserve-3d;
+        }
+        /* Overrides the default .glass-effect:hover with the 3D tilt */
+        #projects-grid .glass-effect:hover {
+            transform: translateY(-8px) perspective(1000px) rotateX(2deg) rotateY(-4deg);
+            border-color: var(--accent);
+            background-color: rgba(92, 92, 153, 0.2);
+            box-shadow: 0 10px 30px rgba(204, 204, 255, 0.15);
+        }
+        /* --- End of New CSS --- */
+
+        .section-heading {
+            font-size: 2.5rem; font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .section-heading .highlight {
+            background: linear-gradient(to right, var(--accent), var(--accent-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-link {
+            position: relative;
+            color: var(--secondary-text);
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover { color: var(--primary-text); }
+        .nav-link.active { color: var(--accent); font-weight: 600; }
+        .gradient-button {
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(to right, var(--accent), var(--accent-dark));
+            color: var(--background);
+            transition: all 0.3s ease;
+        }
+        .gradient-button:hover {
+            box-shadow: 0 0 25px rgba(204, 204, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        .content-card {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            transform-style: preserve-3d;
+        }
+        .content-card:hover {
+            transform: translateY(-8px) perspective(1000px) rotateX(2deg) rotateY(-4deg);
+            border-color: var(--accent);
+            background-color: rgba(92, 92, 153, 0.2);
+            box-shadow: 0 10px 30px rgba(204, 204, 255, 0.15);
+        }
+        .skill-tag {
+            background-color: rgba(204, 204, 255, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(204, 204, 255, 0.2);
+            transition: all 0.2s ease;
+            cursor: default;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .skill-tag.visible { opacity: 1; transform: translateY(0); }
+        .skill-tag:hover {
+            background-color: var(--accent);
+            color: var(--background);
+            transform: translateY(-2px) scale(1.05);
+        }
+        .blur-in-container span {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(8px);
+            transform: translateY(-20px);
+            transition: opacity 0.4s ease-out, filter 0.4s ease-out, transform 0.4s ease-out;
+            transition-delay: var(--delay);
+        }
+        .blur-in-container.in-view span { opacity: 1; filter: blur(0); transform: translateY(0); }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+        .project-image-container {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3 / 2;
+            background-color: var(--card-bg);
+        }
+        .project-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(92, 92, 153, 0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .group:hover .project-image-container::after { opacity: 1; }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation { to { transform: scale(4); opacity: 0; } }
+        /* Timeline */
+        .timeline { position: relative; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+            transform: translateX(-50%);
+        }
+        .timeline-item { position: relative; padding-left: 3rem; }
+        .timeline-dot {
+            position: absolute;
+            left: 1.25rem; top: 0.5rem;
+            width: 1rem; height: 1rem;
+            background-color: var(--accent-dark);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 3px solid var(--background);
+        }
+    </style>
+     
+     <!-- Google Analytics (replace G-XXXXXXX with your GA ID) -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', 'G-XXXXXXX');
+     </script>
+     
+     <!-- JSON-LD Structured Data for Google SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Panav Payappagoudar",
+      "url": "https://panav.xyz/",
+      "jobTitle": "Software Developer",
+      "alumniOf": "VIT-AP University",
+      "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Cybersecurity", "Web3", "Full-Stack Development"],
+      "sameAs": [
+        "https://github.com/Panav-Payappagoudar",
+        "https://linkedin.com/in/panav-payappagoudar"
+      ]
+    }
+    </script>
+</head>
+<body class="antialiased">
+    <!-- NEW: Custom cursor elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <canvas id="bg-canvas"></canvas>
+    
+    <div id="app" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        
+        <header class="fixed top-0 left-0 right-0 z-50">
+            <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div class="flex items-center justify-between h-16 glass-effect rounded-full px-6">
+                    <a href="#hero" id="header-name" class="text-xl font-bold tracking-wider cursor-pointer hover:text-accent transition-colors" aria-label="Go to homepage"></a>
+                                        
+                    <div id="desktop-nav" class="hidden sm:flex items-center space-x-8">
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#projects" class="nav-link">Projects</a>
+                        <a href="#education" class="nav-link">Education</a>
+                        <a href="#skills" class="nav-link">Skills</a>
+                    </div>
+                                        
+                    <div class="sm:hidden">
+                        <button id="mobile-menu-button" class="text-gray-300 hover:text-white" aria-label="Open main menu">
+                            <i data-lucide="menu"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+                        
+            <div id="mobile-menu" class="hidden sm:hidden mt-2 glass-effect rounded-2xl mx-4">
+                 <a href="#about" class="block text-center py-3 px-4 hover:bg-slate-700/50">About</a>
+                 <a href="#experience" class="block text-center py-3 px-4 hover:bg-slate-700/50">Experience</a>
+                 <a href="#projects" class="block text-center py-3 px-4 hover:bg-slate-700/50">Projects</a>
+                 <a href="#education" class="block text-center py-3 px-4 hover:bg-slate-700/50">Education</a>
+                 <a href="#skills" class="block text-center py-3 px-4 hover:bg-slate-700/50 rounded-b-2xl">Skills</a>
+            </div>
+        </header>
+        
+        <main class="relative">
+            
+            <section id="hero" class="min-h-screen flex items-center fade-in-section is-visible">
+                <div class="w-full text-center md:text-left">
+                    <p class="text-lg text-accent mb-2" id="hero-greeting"></p>
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-4 blur-in-container" id="hero-name"></h1>
+                    <h2 class="text-3xl md:text-5xl font-semibold text-secondary-text mb-6 blur-in-container" id="hero-title"></h2>
+                    <p class="max-w-3xl mx-auto md:mx-0 text-slate-300 mb-8 text-lg" id="hero-bio"></p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                        <a href="#footer-contact" id="contact-button" class="gradient-button font-semibold px-8 py-3 rounded-lg w-full sm:w-auto">Get In Touch</a>
+                        <div class="flex items-center space-x-6 mt-4 sm:mt-0" id="hero-socials"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="about" class="py-24 fade-in-section">
+                <h2 class="section-heading">About <span class="highlight">Me</span></h2>
+                <div class="max-w-3xl mx-auto text-center">
+                    <p class="text-lg text-slate-300 leading-relaxed" id="about-text"></p>
+                </div>
+            </section>
+            
+            <!-- NEW FOUNDER SECTION -->
+            <section id="founder-project" class="py-24 fade-in-section">
+                <h2 class="section-heading">My <span class="highlight">Venture</span></h2>
+                <div class="max-w-4xl mx-auto glass-effect rounded-lg overflow-hidden animate-on-scroll">
+                    <div class="p-8 md:p-12">
+                        <div class="flex flex-col md:flex-row justify-between md:items-center mb-6">
+                            <div>
+                                <h3 class="text-3xl font-bold text-accent">The Essentialist</h3>
+                                <p class="text-lg text-secondary-text mt-1">Modern Form. Timeless Principle.</p>
+                            </div>
+                            <a href="https://the-essentialist-2.creator-spring.com" target="_blank" rel="noopener noreferrer" class="gradient-button font-semibold px-6 py-2 rounded-lg w-full sm:w-auto mt-4 md:mt-0 inline-block text-center">
+                                View Store
+                            </a>
+                        </div>
+                        
+                        <p class="text-slate-300 leading-relaxed mb-8">
+                            An independent design venture focused on creating original, minimalist apparel and goods. We believe in the power of simple, intentional design to communicate ideas and values. Our collection features concept-driven pieces—t-shirts, hoodies, mugs, and more—crafted for a modern, thoughtful aesthetic. We operate a capital-efficient, print-on-demand model, allowing us to focus purely on design quality and concept development.
+                        </p>
+
+                        <h4 class="text-xl font-bold text-primary-text mb-4">My Role as Founder</h4>
+                        <p class="text-slate-300 leading-relaxed mb-6">
+                            I am responsible for the end-to-end process, from initial design to sale, leveraging a capital-efficient, print-on-demand model.
+                        </f>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i data-lucide="palette" class="w-5 h-5 text-accent mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h5 class="font-semibold text-primary-text">Creative Direction & Design</h5>
+                                    <p class="text-secondary-text">Develop all original artwork, typography, and visual concepts for a range of products, including t-shirts, hoodies, and mugs, using Canva.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="shopping-cart" class="w-5 h-5 text-accent mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h5 class="font-semibold text-primary-text">E-commerce & Platform Management</h5>
+                                    <p class="text-secondary-text">Manage all product listings, mockups, and pricing strategy on print-on-demand platforms such as Teespring and Printify.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="target" class="w-5 h-5 text-accent mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h5 class="font-semibold text-primary-text">Direct-to-Consumer (D2C) Sales</h5>
+                                    <p class="text-secondary-text">Built an initial customer base from the ground up through organic marketing and personal networking, successfully monetizing my design portfolio.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- END NEW FOUNDER SECTION -->
+            
+            <section id="experience" class="py-24 fade-in-section">
+                <h2 class="section-heading">Work <span class="highlight">Experience</span></h2>
+                <div id="experience-grid" class="space-y-8 timeline"></div>
+            </section>
+            
+            <section id="projects" class="py-24 fade-in-section">
+                <h2 class="section-heading">My <span class="highlight">Projects</span></h2>
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+            </section>
+            
+            <section id="education" class="py-24 fade-in-section">
+                <h2 class="section-heading"><span class="highlight">Education</span></h2>
+                <div id="education-grid" class="space-y-8 timeline"></div>
+            </section>
+            
+            <section id="skills" class="py-24 fade-in-section">
+                <h2 class="section-heading">Technical <span class="highlight">Skills</span></h2>
+                <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+            </section>
+            
+        </main>
+        
+        <footer id="footer-contact" class="text-center py-16 border-t border-slate-800 mt-16 fade-in-section">
+            <h2 class="text-3xl font-bold mb-4">Get In <span class="highlight">Touch</span></h2>
+            <p class="text-lg text-secondary-text mb-8 max-w-2xl mx-auto">
+                Have a project in mind or just want to connect? Feel free to reach out.
+            </p>
+            <a href="#" id="contact-email-link" class="inline-block mb-8">
+                <div class="content-card flex items-center justify-center gap-3">
+                    <i data-lucide="mail" class="w-6 h-6 text-accent"></i>
+                    <span class="font-semibold" id="contact-email"></span>
+                </div>
+            </a>
+            <div class="flex items-center justify-center space-x-8 mb-12" id="contact-socials">
+            </div>
+            <p id="footer-text" class="text-secondary-text"></p>
+        </footer>
+        
+    </div>
+    
+    <script>
+        const portfolioData = {
+            "personalInfo": {
+                "name": "Panav Payappagoudar",
+                "title": "Software Developer | AI/ML • Cybersecurity • Web3",
+                "greeting": "Hello, I'm",
+                "bio": "I build secure, scalable systems at the intersection of AI/ML, Cybersecurity, and Web3. As a Computer Science sophomore (B.Tech ’28), I lead product-focused engineering—delivering end-to-end prototypes that combine LLMs, decentralized storage, and robust backend design to solve real-world problems.",
+                "about": "A product-focused engineer specializing in secure, scalable systems that merge AI/ML, Cybersecurity, and Web3. My approach emphasizes rapid, production-minded prototyping from ideation to deployment. I am adept at integrating LLM-powered features with a focus on cost and latency optimization. I am also deeply committed to mentorship, having guided over 50 junior students in DSA, Java, and Python, helping them apply CS fundamentals in practical contexts.",
+                "email": "panav.24bce707@vitapstudent.ac.in",
+            },
+            "socials": [
+                { "name": "GitHub", "url": "https://github.com/Panav-Payappagoudar", "icon": "github" },
+                { "name": "LinkedIn", "url": "https://linkedin.com/in/panav-payappagoudar", "icon": "linkedin" },
+                { "name": "Instagram", "url": "https://www.instagram.com/panav.payappagoudar/", "icon": "instagram" }
+            ], 
+            "experience": [
+                { "role": "Founder", "company": "The Essentialist", "date": "Oct 2025 - Present", "description": "Designing and distributing a collection of original, concept-driven apparel and merchandise. Responsible for the end-to-end process, from initial design to sale, leveraging a capital-efficient, print-on-demand model." },
+                { "role": "GSSoC Open Source Contributor", "company": "GirlScript Summer of Code", "date": "Sep 2025 - Present", "description": "Selected as an Open Source Contributor for GSSoC 2025, a national-level program to contribute to open-source projects under mentorship, improve large-scale codebases, and collaborate with global developers." },
+                { "role": "Data Analyst Intern", "company": "Vodafone Idea Foundation & Edunet Foundation", "date": "Sep 2025 - Oct 2025", "description": "Selected via the AICTE portal for a 4-week virtual internship on Conversational Data Analysis with LLMs, a CSR initiative by VOIS and the Vodafone Idea Foundation, featuring project-based learning and expert mentorship." },
+                { "role": "AI & Cloud Intern", "company": "IBM", "date": "Sep 2025 - Oct 2025", "description": "Engaged in a virtual internship focusing on Artificial Intelligence and Cloud technologies, gaining structured exposure to enterprise-level applications." },
+                { "role": "Undergraduate Robotics Researcher", "company": "VIT-AP University", "date": "Jul 2025 - Present", "description": "Contributed to a semester-long research project on Human-Following Robots (HFRs). Built a functional HFR prototype on Arduino, implementing IR/ultrasonic sensing and differential-drive control." },
+                { "role": "Deep Learning & Computer Vision — Associate", "company": "The Machine Learning Club VIT-AP", "date": "Aug 2025 - Present", "description": "Initiated a semester-long research project exploring AI methods to match forensic sketches with face images or reconstruct them into photorealistic identities." },
+                { "role": "Mentor & Technical Guide", "company": "Self-employed", "date": "Sep 2024 - Present", "description": "Mentored 50+ peers in DSA, algorithm design, and coding interviews. Delivered mock interviews, designed custom problem sets, and conducted code reviews to improve problem-solving speed and confidence." },
+                { "role": "Technical Team — Associate", "company": "The Machine Learning Club VIT-AP", "date": "Nov 2024 - Aug 2025", "description": "Engaged in a research initiative on solar utilization potential mapping using AI/ML on geospatial datasets. Worked with LiDAR, DEM, and LAI data and experimented with U-Net for semantic segmentation of building footprints." }
+            ],
+            "education": [ 
+                 { "institution": "VIT-AP University", "degree": "Bachelor's degree, Computer Science", "date": "2024 - 2028", "details": "CGPA: 8.82 (Sem 1)" },
+                 { "institution": "Sri Chaitanya Techno School, Bangalore", "degree": "Intermediate, Computer Science", "date": "2022 - 2024", "details": "Skills: Mathematics, Chemistry, Python, Physics" },
+                 { "institution": "S.F.S Primary School, Koppal(ICSE)", "degree": "Class X, Primary and High School", "date": "2022", "details": "Grade: 91.6%" }
+            ],
+            "projects": [
+                { "title": "Human-Following Robot – Embedded Systems Research", "description": "Developed a functional HFR prototype on Arduino UNO R3 as part of an undergraduate research project. Integrated IR and ultrasonic sensors for perception and a differential-drive system with DC geared motors for actuation.", "imageUrl": "https://placehold.co/600x400/292966/CCCCFF?text=HFR+Robot", "liveUrl": "#", "repoUrl": "#", "tags": ["Robotics", "Arduino", "Embedded Systems", "Sensor Fusion", "C++"] },
+                { "title": "Clarity AI – Air Quality Prediction System", "description": "A hybrid ML pipeline (Random Forest + Linear Regression) to forecast CO levels from the UCI Air Quality dataset. Features a React frontend with Chart.js visualizations and a Flask REST API.", "imageUrl": "https://placehold.co/600x400/292966/CCCCFF?text=Clarity+AI", "liveUrl": "#", "repoUrl": "https://github.com/Panav-Payappagoudar/Clarity-AI", "tags": ["React", "Flask", "scikit-learn", "Pandas", "Chart.js", "Python"] },
+                { "title": "Jet2holidayz – Full-Stack Hotel Booking Platform", "description": "A comprehensive hotel booking platform built with Django and DRF. Features real-time booking, role-based authentication, payment integration, and a responsive UI. Built as a template for enterprise-level hospitality platforms.", "imageUrl": "https://placehold.co/600x400/292966/CCCCFF?text=Jet2holidayz", "liveUrl": "#", "repoUrl": "https://github.com/Panav-Payappagoudar/Travel-Booking", "tags": ["Django", "Django REST Framework", "PostgreSQL", "Celery", "Bootstrap"] },
+                { "title": "SecureX - AI + Blockchain Document Management", "description": "Next-gen decentralized document dashboard built at Microsoft Triwizardathon (Top 2%). Combines Blockchain (Solidity), IPFS (NFT.Storage), and AI (LangChain) for secure file handling and contextual Q&A.", "imageUrl": "https://placehold.co/600x400/292966/CCCCFF?text=SecureX", "liveUrl": "https://final-secure-x-ix3r.vercel.app/", "repoUrl": "https://github.com/Panav-Payappagoudar/Secure-X", "tags": ["React", "Node.js", "IPFS", "Solidity", "LangChain", "MongoDB"] },
+                { "title": "HealthGuard AI – AI-Powered Health Companion", "description": "Cross-platform app from OpenAI Hackathon integrating gpt-oss, Gemini & ChatGPT for AI health consultations, live hospital maps (OSM), and an emergency hub, designed to make healthcare accessible and intelligent.", "imageUrl": "https://placehold.co/600x400/292966/CCCCFF?text=HealthGuard+AI", "liveUrl": "#", "repoUrl": "https://github.com/Panav-Payappagoudar/HealthGuard_AI", "tags": ["Flutter", "Dart", "Gemini", "gpt-oss", "OpenStreetMap"] },
+                { "title": "Geospatial Change Detection & Alert System", "description": "An end-to-end platform for proactive environmental monitoring using multi-temporal satellite imagery. Features an automated pipeline (FastAPI, Celery, Rasterio) for detecting changes, masking clouds, and delivering GIS-ready outputs.", "imageUrl": "https://placehold.co/600x400/292966/CCCCFF?text=Geo-AI", "liveUrl": "#", "repoUrl": "https://github.com/Panav-Payappagoudar/ISRO-Hackathon", "tags": ["Python", "FastAPI", "PostGIS", "Rasterio", "Celery", "React"] },
+                { "title": "Guardian Vault – Localized Password Manager", "description": "A lightweight, privacy-first password manager built as a hackathon project. It securely stores all user credentials locally on the device, minimizing vulnerabilities and eliminating cloud dependencies.", "imageUrl": "https://placehold.co/600x400/292966/CCCCFF?text=Guardian+Vault", "liveUrl": "https://lovable.dev/projects/c897d063-0390-4300-a16c-20926b5e8e38", "repoUrl": "https://github.com/Hari4507/easy-secure-keep", "tags": ["React", "TypeScript", "TailwindCSS", "Vite", "Cybersecurity"] }
+            ],
+            "skills": [
+                { "category": "AI/ML & Robotics", "icon": "brain-circuit", "items": ["Deep Learning", "Computer Vision", "LLMs", "LangChain", "TensorFlow", "PyTorch", "scikit-learn", "OpenCV", "Robotics", "Sensor Fusion", "R&D", "AI Prompting", "Generative AI", "Quantitative Analytics", "MATLAB", "Autonomous Navigation"] },
+                { "category": "Web3 & Security", "icon": "shield-check", "items": ["Solidity", "Smart Contracts", "ipfs", "Cryptography", "Secure System Design", "Blockchain", "JWT", "Blockchain Architecture", "Web Services Security", "Risk Assessment"] },
+                { "category": "Full-Stack & Infra", "icon": "layers", "items": ["Flutter", "Dart", "React", "Node.js", "Express", "Python", "FastAPI", "PostgreSQL", "MongoDB", "Docker", "Git", "Django", "Django REST Framework", "Computer Networking", "Data Structures", "Java", "OOP", "HTML", "CSS"] },
+                { "category": "Geospatial", "icon": "globe", "items": ["Rasterio", "GDAL", "PostGIS", "OpenStreetMap", "Overpass API"] },
+                { "category": "Core & Dev Tools", "icon": "terminal-square", "items": ["VS Code", "Android Studio", "Xcode", "Postman", "Vercel", "Computer Science", "Mathematics", "Problem Solving", "Data Analysis", "Communication", "Research Skills", "Design Thinking"] }
+            ]
+        };
+
+        // --- Core App Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+
+            function setupBlurInAnimation(elementId, text, staggerMs = 100) {
+                const element = document.getElementById(elementId);
+                if (!element) return;
+                                
+                const words = text.split(' ');
+                element.innerHTML = words.map((word, index) => 
+                    `<span style="--delay: ${index * staggerMs}ms">${word === ' ' ? '&nbsp;' : word}</span>`
+                ).join(' ');
+            }
+                        
+            // --- 3D Background ---
+            if (window.THREE) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+
+                const particlesCount = 5000;
+                const positions = new Float32Array(particlesCount * 3);
+                for (let i = 0; i < particlesCount * 3; i++) {
+                    positions[i] = (Math.random() - 0.5) * 10;
+                }
+                const particlesGeometry = new THREE.BufferGeometry();
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                const particlesMaterial = new THREE.PointsMaterial({ size: 0.015, color: 0xccccff });
+                const particleSystem = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particleSystem);
+
+                camera.position.z = 5;
+                const mouse = new THREE.Vector2();
+
+                const onMouseMove = (event) => {
+                    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+                    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+                };
+                window.addEventListener('mousemove', onMouseMove);
+
+                const clock = new THREE.Clock();
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    const elapsedTime = clock.getElapsedTime();
+                    particleSystem.rotation.y = elapsedTime * 0.05;
+                    camera.position.x += (mouse.x * 2 - camera.position.x) * 0.02;
+                    camera.position.y += (mouse.y * 2 - camera.position.y) * 0.02;
+                    camera.lookAt(scene.position);
+                    renderer.render(scene, camera);
+                };
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+                        
+            // --- UI Rendering & Event Handling ---
+            const { personalInfo, socials, projects, skills, experience, education } = portfolioData;
+                            
+            document.getElementById('header-name').textContent = personalInfo.name.split(' ')[0];
+            document.getElementById('hero-greeting').textContent = personalInfo.greeting;
+            document.getElementById('hero-bio').textContent = personalInfo.bio;
+            document.getElementById('about-text').textContent = personalInfo.about;
+            document.getElementById('contact-email-link').href = `mailto:${personalInfo.email}`;
+            document.getElementById('contact-email').textContent = personalInfo.email;
+            document.getElementById('footer-text').textContent = `© ${new Date().getFullYear()} ${personalInfo.name}. All rights reserved.`;
+
+            const heroSocialsContainer = document.getElementById('hero-socials');
+            heroSocialsContainer.innerHTML = socials.map(s => `<a href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.name}" class="text-secondary-text hover:text-accent transition-colors"><i data-lucide="${s.icon}" class="w-6 h-6"></i></a>`).join('');
+                        
+            const contactSocialsContainer = document.getElementById('contact-socials');
+            contactSocialsContainer.innerHTML = socials.map(s => `<a href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.name}" class="text-secondary-text hover:text-accent transition-colors"><i data-lucide="${s.icon}" class="w-8 h-8"></i></a>`).join('');
+
+            // FIX: Defined expGrid before it was used
+            const expGrid = document.getElementById('experience-grid');
+            expGrid.innerHTML = experience
+                .filter(exp => exp.role !== "Founder") // Filter out the Founder role here
+                .map(exp => `<div class="timeline-item"><div class="timeline-dot"></div><div class="content-card animate-on-scroll"><div class="flex flex-col sm:flex-row justify-between sm:items-start mb-1"><div><h3 class="text-xl font-bold text-accent">${exp.role}</h3><p class="font-semibold text-primary-text mb-2">${exp.company}</p></div><time class="text-sm text-secondary-text text-left sm:text-right mt-1 sm:mt-0">${exp.date}</time></div><p class="text-secondary-text leading-relaxed">${exp.description}</p></div></div>`)
+                .join('');
+                        
+            const eduGrid = document.getElementById('education-grid');
+            eduGrid.innerHTML = education.map(edu => `<div class="timeline-item"><div class="timeline-dot"></div><div class="content-card animate-on-scroll"><div class="flex flex-col sm:flex-row justify-between sm:items-start mb-1"><div><h3 class="text-xl font-bold text-accent">${edu.institution}</h3><p class="font-semibold text-primary-text mb-2">${edu.degree}</p></div><time class="text-sm text-secondary-text text-left sm:text-right mt-1 sm:mt-0">${edu.date}</time></div><p class="text-secondary-text">${edu.details}</p></div></div>`).join('');
+                        
+            const projectsGrid = document.getElementById('projects-grid');
+            projectsGrid.innerHTML = projects.map(p => {
+                const liveLink = p.liveUrl && p.liveUrl !== "#" 
+                    ? `<a href="${p.liveUrl}" target="_blank" rel="noopener noreferrer" aria-label="View live demo for ${p.title}" class="text-secondary-text hover:text-accent font-semibold transition-colors inline-flex items-center gap-2">Live <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>`
+                    : `<span class="text-slate-600 font-semibold inline-flex items-center gap-2 cursor-not-allowed" aria-label="No live demo available for ${p.title}">Live <i data-lucide="arrow-up-right" class="w-4 h-4"></i></span>`;
+
+                const repoLink = `<a href="${p.repoUrl}" target="_blank" rel="noopener noreferrer" aria-label="View ${p.title} on GitHub" class="text-secondary-text hover:text-accent transition-colors"><i data-lucide="github"></i></a>`;
+
+                return `
+                <div class="glass-effect rounded-lg overflow-hidden group flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 animate-on-scroll">
+                    <div class="project-image-container">
+                        <img src="${p.imageUrl}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" width="600" height="400" loading="lazy">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-bold mb-2">${p.title}</h3>
+                        <p class="text-secondary-text mb-4 flex-grow">${p.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${p.tags.map(t => `<span class="bg-slate-700/50 text-accent text-xs font-semibold px-2.5 py-1 rounded-full">${t}</span>`).join('')}
+                        </div>
+                        <div class="flex items-center justify-end space-x-4 mt-auto pt-4 border-t border-slate-700">
+                            ${liveLink}
+                            ${repoLink}
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+                        
+            const skillsContainer = document.getElementById('skills-container');
+            skillsContainer.innerHTML = skills.map(sc => `<div class="content-card animate-on-scroll"><div class="flex items-center mb-4"><i data-lucide="${sc.icon}" class="w-7 h-7 text-accent mr-4"></i><h3 class="text-xl font-bold">${sc.category}</h3></div><ul class="flex flex-wrap gap-2.5">${sc.items.map(i => `<li class="skill-tag">${i}</li>`).join('')}</ul></div>`).join('');
+
+            setupBlurInAnimation('hero-name', personalInfo.name, 120);
+            setupBlurInAnimation('hero-title', personalInfo.title, 80);
+            setTimeout(() => {
+                document.getElementById('hero-name').classList.add('in-view');
+                document.getElementById('hero-title').classList.add('in-view');
+            }, 100);
+                        
+            lucide.createIcons();
+                        
+            // --- Event Listeners & Observers ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetEl = document.querySelector(this.getAttribute('href'));
+                    if (targetEl) {
+                        targetEl.scrollIntoView();
+                    }
+                });
+            });
+                        
+            const navLinks = document.querySelectorAll('#desktop-nav a');
+            const sections = document.querySelectorAll('main > section');
+            const observerOptions = { rootMargin: '-50% 0px -50% 0px' };
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+                        });
+                    }
+                });
+            }, observerOptions);
+            sections.forEach(section => sectionObserver.observe(section));
+
+            document.getElementById('mobile-menu-button').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            }); 
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => { 
+                     document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+                        
+            const animationObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        if (entry.target.querySelector('.skill-tag')) {
+                           entry.target.querySelectorAll('.skill-tag').forEach((tag, i) => {
+                               setTimeout(() => tag.classList.add('visible'), i * 50);
+                           });
+                        }
+                        animationObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in-section, .animate-on-scroll').forEach(el => animationObserver.observe(el));
+                         
+             
+            // --- NEW: Custom Cursor Logic ---
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                // Use translate3d for hardware acceleration
+                cursorDot.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+                cursorOutline.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+            });
+
+            // --- NEW: Cross-browser Cursor Hover Effect (replaces :has()) ---
+            // This ensures the hover effect works in Firefox
+            const interactiveElements = document.querySelectorAll(
+                'a, button, .gradient-button, .content-card, .nav-link, #mobile-menu-button'
+            );
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseover', () => {
+                    document.body.classList.add('is-hovering');
+                });
+                el.addEventListener('mouseout', () => {
+                    document.body.classList.remove('is-hovering');
+                });
+            });
+            // --- End Cross-browser Logic ---
+
+
+             // Mouse glare effect (Spotlight)
+             // Simplified to only apply to .glass-effect elements
+            document.querySelectorAll('.glass-effect').forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    el.style.setProperty('--mouse-x', `${x}px`);
+                    el.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // Ripple effect on buttons
+            document.querySelectorAll('.gradient-button').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    const rect = button.getBoundingClientRect();
+                    const ripple = document.createElement('span');
+                    ripple.className = 'ripple';
+                    ripple.style.left = `${e.clientX - rect.left}px`;
+                    ripple.style.top = `${e.clientY - rect.top}px`;
+                    // Check if the button already has a ripple and remove it
+                    const existingRipple = button.querySelector('.ripple');
+                    if (existingRipple) {
+                        existingRipple.remove();
+                    }
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+>>>>>>> origin/main
