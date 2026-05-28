@@ -1,6 +1,6 @@
 # Panav Payappagoudar
 
-> **Software Developer | Founder | AI Researcher**
+> **Software Developer | ML Researcher | Founder**
 >
 > *"Building secure, scalable systems at the intersection of AI/ML, Cybersecurity, and Web3."*
 
@@ -8,60 +8,53 @@
 
 ### **01. The Profile**
 
-I am a Computer Science undergraduate (Class of '28) and a product-driven engineer focused on creating end-to-end prototypes that solve real-world challenges. My work merges **Large Language Models (LLMs)** with **decentralized storage** and **robust backend architectures**.
+I am a Computer Science undergraduate (B.Tech '28) and a product-driven engineer focused on creating robust, production-ready systems. My expertise spans **Deep Learning, RAG pipelines, decentralized identity, and semantic architectures** using Python, Java, Rust, and Solidity.
 
-I don’t just write code; I build brands and systems. I believe in engineering that is not only functional but aesthetically precise and secure by design.
+I don’t just write code; I engineer high-impact prototypes that solve real-world challenges, emphasizing rapid ideation to deployment.
 
-* **Focus:** Autonomous Agents, RAG Pipelines, Decentralized Identity.
-* **Venture:** Founder of [The Essentialist](https://the-essentialist-2.creator-spring.com), a minimalist design label.
-* **Research:** Currently exploring forensic sketch-to-face matching using Deep Learning.
+* **Focus:** Artificial Intelligence, Deep Learning, Computer Vision, RAG Systems, Blockchain, Robotics, Cybersecurity.
+* **Achievements:** 11x Hackathon Finalist, 2x Runner-Up, Microsoft Triwizardathon (Top 2%), Radiothon'26 (Top 10), SimVerse Winner, Cypher Sage CTF Finalist.
+* **Open Source:** Selected GSSoC Contributor for 2025 & 2026.
 
 ---
 
-### **02. Selected Works**
+### **02. Selected Works & Research**
 
-My portfolio consists of high-impact hackathon wins and production-ready prototypes.
-
-| Project | Domain | Status / Achievement |
+| Project/Role | Domain | Details & Achievements |
 | :--- | :--- | :--- |
-| **ClaimAgent** | Healthcare AI | **Radiothon '26 Finalist (Top 10)**. Autonomous claims intelligence fusing RAG with Agentic RPA. |
-| **SecureX** | Web3 / Security | **Microsoft Hackathon Finalist (Top 2%)**. Decentralized document vault using IPFS & Ethereum. |
-| **SimVerse** | Physics Engine | **Winner**. Real-time collaborative gravity simulation engine (React + Three.js). |
-| **HealthGuard** | MedTech | **OpenAI Open Model Hackathon**. Offline-first health companion using Gemini & gpt-oss. |
+| **ML Researcher (CV)** | Deep Learning | Building Sketch-to-Face Forensics via GANs, and LiDAR/DEM-based energy mapping pipelines. |
+| **Robotics Researcher** | Embedded/SLAM | Developing Human-Following Robots using sensor fusion and real-time navigation architectures. |
+| **ClaimAgent** | Healthcare AI | **Radiothon '26 Finalist (Top 10)**. Autonomous claims intelligence fusing RAG with Agentic AI. |
+| **SecureX** | Web3 / Security | **Microsoft Hackathon Finalist (Top 2%)**. Decentralized document vault using IPFS, Ethereum, and LLMs. |
+| **SimVerse** | Physics Engine | **Winner**. Real-time collaborative N-body gravity simulation engine. |
 
 ---
 
 ### **03. Technical Arsenal**
 
-**Core Stack**
-`Python` `C++` `Java` `TypeScript` `Solidity`
-
-**Artificial Intelligence**
-`TensorFlow` `PyTorch` `RAG Pipelines` `LangChain` `Computer Vision`
-
-**Web3 & Security**
-`Ethereum` `IPFS` `Smart Contracts` `Cryptography`
-
-**Infrastructure**
-`Docker` `AWS` `PostgreSQL` `Redis` `Linux`
+* **Languages:** Python, Java, C++, JavaScript, TypeScript, SQL, Solidity, Dart
+* **AI/ML:** TensorFlow, PyTorch, RAG Pipelines, LangChain, OpenCV, Scikit-Learn
+* **Web3 & Security:** Ethereum, IPFS, Smart Contracts, Cryptography, MetaMask
+* **Infrastructure & Tools:** Docker, MongoDB, PostgreSQL, Pinecone, Git, Linux, Postman
 
 ---
 
 ### **04. The Essentialist**
 
-Beyond code, I operate **The Essentialist**, an independent design venture. We operate on a capital-efficient, print-on-demand model to create minimalist apparel and goods for builders and designers.
+Beyond code, I operate **The Essentialist**, an independent design venture. We operate on a capital-efficient, print-on-demand model to create minimalist apparel and goods for modern builders.
 
-> *Design is not just what it looks like and feels like. Design is how it works.*
+> *Developing original visual concepts and typography for modern builders.*
 
 ---
 
 ### **05. Connect**
 
-I am open to collaborations on AI security, decentralized systems, and high-performance web applications.
+I am actively open to collaborations on AI security, decentralized systems, and high-performance engineering challenges.
 
 * [**Portfolio**](https://panav.xyz)
 * [**LinkedIn**](https://linkedin.com/in/panav-payappagoudar)
-* [**Email**](mailto:panav.24bce707@vitapstudent.ac.in)
+* [**GitHub**](https://github.com/Panav-Payappagoudar)
+* [**Email**](mailto:fakedabz69@gmail.com)
 
 <div align="left">
   <img src="https://komarev.com/ghpvc/?username=Panav-Payappagoudar&style=flat-square&color=0a0a0a&label=PROFILE+VIEWS" alt="Profile Views" />
