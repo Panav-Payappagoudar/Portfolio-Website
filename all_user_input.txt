@@ -1,0 +1,279 @@
+<USER_REQUEST>
+clone this repo
+https://github.com/Panav-Payappagoudar/Portfolio-Website
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-29T03:51:16+05:30.
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Gemini 3.1 Pro (High). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>
+---
+<USER_REQUEST>
+so there is this section for email wehre u can just conatact me so i want to make sure that when they enter their details that get sent to my email , how do i do that ?
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-29T03:52:14+05:30.
+</ADDITIONAL_METADATA>
+---
+<USER_REQUEST>
+so i will be switching to vercel
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-29T03:54:02+05:30.
+</ADDITIONAL_METADATA>
+---
+<USER_REQUEST>
+i wnat it to come to my email id "fakedabz69@gmail.com"
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-29T03:55:05+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+</ADDITIONAL_METADATA>
+---
+<USER_REQUEST>
+so i will send some more info about me so i want you to add or edit the exisiting data accoridingly , in same strucutere
+
+so basically any new data or soemthign just add it accorindly without chaging the strucutre 
+Panav Payappagoudar
+fakedabz69@gmail.com — LinkedIn — GitHub — Portfolio
+Education
+VIT-AP University Amaravati, Andhra Pradesh
+B.Tech in Computer Science and Engineering 2024 – 2028
+Sri Chaitanya Techno School India
+MPC + Computer Science 2022 – 2024
+S.F.S Primary School, Koppal India
+Primary and Secondary Education 2010 – 2022
+Experience
+ML Researcher – Deep Learning & CV Team Aug 2025 – Present
+Machine Learning Club, VIT-AP India
+– Built AI/ML systems involving Deep Learning, Computer Vision, semantic segmentation, image translation, and satellite imagery analysis.
+– Developed Sketch-to-Face Forensics using TensorFlow, OpenCV, CNNs, GAN-based image translation, and facial reconstruction pipelines for forensic
+workflows.
+– Worked on LiDAR, DEM, LAI, and U-Net based renewable energy mapping workflows for solar utilization and terrain analysis.
+– Implemented preprocessing, augmentation, model training, inference optimization, and dataset validation pipelines for large-scale CV systems.
+Undergraduate Robotics Researcher Jul 2025 – Present
+VIT-AP University – ECS Department India
+– Developing Human-Following Robots using Arduino UNO R3, IR sensors, ultrasonic sensing, SLAM, and embedded systems.
+– Researching autonomous navigation, robotics control systems, edge/cloud workflows, and privacy-aware architectures under Dr. Y. Narasimha Rao.
+– Built robotics workflows integrating sensor fusion, obstacle detection, embedded control logic, and real-time navigation systems.
+Open Source Contributor – GSSoC 2025 & 2026
+GirlScript Summer of Code Remote
+– Selected contributor for both GSSoC 2025 and GSSoC 2026; contributed to collaborative open-source codebases and developer ecosystems.
+– Worked on debugging, documentation, issue resolut
+<truncated 42153 bytes>
+rce Developer
+
+GirlScript Summer of Code · Full-time
+
+May 2026 - Present · 1 mo
+
+Remote
+
+Thumbnail for Profile 
+Profile 
+
+Thumbnail for Accepted E-mail
+Accepted E-mail
+
+Thumbnail for AI-Agent Track
+AI-Agent Track
+
+Show all 5 media
+GirlScript Summer of Code logo
+GSSOC Open Source Contributer 
+
+GirlScript Summer of Code · Internship
+
+Sep 2025 - Mar 2026 · 7 mos
+
+Remote
+
+Selected as an Open Source Contributor for GSSoC 2025, a national-level program that enables students to contribute to open-source projects under mentorship. Officially part of the contributor cohort, with upcoming work involving improving large-scale codebases, collaborating with global developers, and enhancing technical depth through real-world contributions.
+
+Thumbnail for Badge
+Badge
+
+Thumbnail for Confirmation mail
+Confirmation mail
+
+ Computer Networking, Computer Science and +7 skills
+
+AI Campus Connect with IBM SkillsBuild logo
+AI & Cloud Intern
+
+AI Campus Connect with IBM SkillsBuild · Internship
+
+Sep 2025 - Oct 2025 · 2 mos
+
+Remote
+
+Thumbnail for 1000099070.jpg
+1000099070.jpg
+
+Thumbnail for 1000099071.jpg
+1000099071.jpg
+
+Data Analyst Intern
+
+VOIS and Vodafone Idea Foundation
+
+Sep 2025 - Oct 2025 · 2 mos
+
+Remote
+
+Thumbnail for 1000098823.jpg
+1000098823.jpg
+
+
+just igonre those jpg or images file name that got copy pasted when i copy pasted linkedin experience section , now update them accoringly , 
+
+also make sure thisis optimiised to any device may it be a phone or iphone or any other platform and also make sure when someone  cliks o nsend message it actually gets sent to my email id 
+
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-29T04:03:19+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+</ADDITIONAL_METADATA>
+---
+<USER_REQUEST>
+can u run it locally
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-29T04:08:05+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+</ADDITIONAL_METADATA>
+---
+<USER_REQUEST>
+Unable to parse HTML; parse5 error code invalid-first-character-of-tag-name
+ at C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/index.html:1:2
+1  |  <<<<<<< HEAD
+   |   ^
+2  |  <!doctype html>
+3  |  <html lang="en">
+ at C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/index.html:1:2
+    at handleParseError (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:36202:9)
+    at Parser.onParseError (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:36115:7)
+    at Tokenizer._err (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-CvfTChi5.js:1513:89)
+    at Tokenizer._stateTagOpen (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-CvfTChi5.js:2260:26)
+    at Tokenizer._callState (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-CvfTChi5.js:1837:22)
+    at Tokenizer._runParsingLoop (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-CvfTChi5.js:1537:22)
+    at Tokenizer.write (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-CvfTChi5.js:1562:14)
+    at Parser.parse (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-CvfTChi5.js:5086:26)
+    at parse (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-CvfTChi5.js:8215:19)
+    at traverseHtml (file:///C:/Users/dabbe/Documents/RedoingMyPortfolio/Portfolio-Website/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:36110:15
+Click outside, press Esc key, or fix the code to dismiss.
+You can also disable this overlay by setting server.hmr.overlay to false in vite.config.js.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-29T04:08:57+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+</ADDITIONAL_METADATA>
+---
+<USER_REQUEST>
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- SEO & Metadata -->
+    <title>Panav Payappagoudar | Software Developer</title>
+    <meta name="description" content="Portfolio of Panav Payappagoudar – Software Developer specializing in AI/ML, Cybersecurity, and Web3. Building secure, scalable systems.">
+    <meta name="keywords" content="Panav Payappagoudar, Software Developer, AI, Machine Learning, Cybersecurity, Web3, Full Stack, React, Python, Blockchain">
+    <meta name="author" content="Panav Payappagoudar">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://panav.xyz/">
+    <meta property="og:title" content="Panav Payappagoudar | Software Developer">
+    <meta property="og:description" content="Building secure, scalable systems at the intersection of AI/ML, Cybersecurity, and Web3.">
+    <meta property="og:image" content="https://panav.xyz/og-image.png">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://panav.xyz/">
+    <meta property="twitter:title" content="Panav Payappagoudar | Software Developer">
+    <meta property="twitter:description" content="Building secure, scalable systems at the intersection of AI/ML, Cybersecurity, and Web3.">
+    <meta property="twitter:image" content="https://panav.xyz/og-image.png">
+
+    <link rel="canonical" href="https://panav.xyz/">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Panav Payappagoudar",
+      "url": "https://panav.xyz",
+      "job
+<truncated 45214 bytes>
+kills.forEach((cat, index) => {
+                const categoryBlock = document.createElement('div');
+                categoryBlock.className = "bg-[#050505] p-6 rounded-xl border border-white/5 hover:border-white/10 transition-colors reveal-on-scroll text-left";
+                categoryBlock.style.transitionDelay = `${index * 100}ms`;
+                categoryBlock.innerHTML = `
+                    <div class="flex items-center gap-3 mb-6">
+                        <h4 class="font-mono text-xs text-brand-accent uppercase tracking-widest">${cat.category}</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        ${cat.items.map(skill => 
+                            `<span class="border border-white/10 bg-white/[0.02] hover:bg-brand-accent/10 hover:border-brand-accent/50 hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300 ease-out px-3 py-1.5 text-xs sm:text-sm text-white/70 rounded-md cursor-default inline-block">${skill}</span>`
+                        ).join('')}
+                    </div>
+                `;
+                skillsContainer.appendChild(categoryBlock);
+            });
+
+            // 6. Socials Footer
+            const socialFooter = document.getElementById('socials-footer-container');
+            portfolioData.socials.forEach(s => {
+                socialFooter.innerHTML += `<a href="${s.url}" target="_blank" class="interactable text-white/30 hover:text-white transition-colors hover:scale-110 transform duration-200"><i data-lucide="${s.icon}" class="w-5 h-5"></i></a>`;
+            });
+
+            // Initialize Icons
+            lucide.createIcons();
+            document.getElementById('copyright-year').textContent = `© ${new Date().getFullYear()}. All rights reserved.`;
+            
+            // Re-trigger ob
+<truncated 3574 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.
+---
+<USER_REQUEST>
+okay atleast i got my website back to the latest version , anyway please update the experience , projects and thte email to actually send me , like all he things i said u to change and gave u the data on in our previous conversations 
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-05-29T04:14:30+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\dabbe\Documents\RedoingMyPortfolio\Portfolio-Website\index.html (LANGUAGE_HTML)
+</ADDITIONAL_METADATA>
+---
