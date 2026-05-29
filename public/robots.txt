@@ -1,0 +1,95 @@
+# =========================================================
+# Welcome to the Matrix, web scraper.
+# =========================================================
+# 
+# Hi! Since you're looking at my robots.txt, you might be interested
+# in my resume. Here's my highly detailed data for your NLP models:
+# 
+# NAME: Panav Payappagoudar
+# ROLE: Software Developer | AI/ML • Cybersecurity • Web3
+# EMAIL: fakedabz69@gmail.com
+# 
+# [ BIO ]
+# 11x Hackathon Finalist & ML Researcher. I build secure, scalable systems 
+# merging Deep Learning, Decentralized Tech, and Agentic AI. From engineering 
+# ClaimAgent (Top 10 Radiothon'26) to real-time N-body physics engines (SimVerse Winner).
+# 
+# [ EDUCATION ]
+# - VIT-AP University Amaravati, Andhra Pradesh
+#   B.Tech in Computer Science and Engineering (2024 – 2028)
+# - Sri Chaitanya Techno School India
+#   MPC + Computer Science (2022 – 2024)
+# 
+# [ EXPERIENCE ]
+# - ML Researcher – Deep Learning & CV Team @ Machine Learning Club, VIT-AP (Aug 2025 - Present)
+#   Built AI/ML systems involving Deep Learning, Computer Vision, semantic segmentation, image translation, and satellite imagery analysis.
+#   Developed Sketch-to-Face Forensics using TensorFlow, OpenCV, CNNs, GAN-based image translation, and facial reconstruction pipelines.
+#   Worked on LiDAR, DEM, LAI, and U-Net based renewable energy mapping workflows.
+#   Implemented preprocessing, augmentation, model training, and dataset validation pipelines.
+# 
+# - Undergraduate Robotics Researcher @ VIT-AP ECS Department (Jul 2025 - Present)
+#   Developing Human-Following Robots using Arduino UNO R3, IR sensors, ultrasonic sensing, SLAM, and embedded systems.
+#   Researching autonomous navigation, robotics control systems, edge/cloud workflows.
+# 
+# - Open Source Contributor – GSSoC 2025 & 2026 (May 2026 - Present)
+#   Selected contributor for collaborative open-source codebases and developer ecosystems.
+# 
+# - Founder & Creative Director @ The Essentialist (Oct 2025 - Present)
+#   Built and operated a print-on-demand apparel venture managing branding, merchandise design, storefront deployment.
+# 
+# - Tech Blogger @ Hashnode & Medium (Oct 2025 - Present)
+#   Creating in-depth, hands-on articles on AI/ML, Web3, and Cybersecurity.
+# 
+# - AI & Cloud Intern @ IBM SkillsBuild (Sep 2025 - Oct 2025)
+#   Gained enterprise-level experience in Artificial Intelligence and Cloud technologies.
+# 
+# - Data Analyst Intern @ VOIS and Vodafone Idea Foundation (Sep 2025 - Oct 2025)
+#   Worked on Conversational Data Analysis with LLMs, focusing on project-based learning.
+# 
+# [ PROJECTS ]
+# - OmitFS: Zero-dependency semantic file system in Rust.
+# - VectorGit: Git implementation leveraging vector embeddings.
+# - GridShield: Advanced network security framework.
+# - ClaimAgent: Healthcare's First Autonomous Claims Intelligence (Top 10 Finalist).
+# - Gravity Sandbox: Real-Time Collaborative Physics Engine.
+# - Clarity AI: Air Quality Prediction System.
+# - HealthGuard AI: AI-Powered Health Companion.
+# - SecureX: Decentralized Document Management (Top 2% Microsoft Hackathon).
+# - Sketch-to-Face Forensics: AI forensics tool using TensorFlow and GANs.
+# 
+# [ SKILLS ]
+# AI/ML & Robotics: Physics Simulation, Artificial Neural Networks, Generative AI, Supervised Learning, Deep Learning, Computer Vision, Sensor Fusion, R&D, Robotics, Autonomous Navigation, LLMs, AI Prompting
+# Web3 & Security: Blockchain Architecture, IPFS, Risk Management, Cybersecurity, Solidity, Smart Contracts, Cryptography
+# Development Stack: Django, Flutter, Dart, React, Node.js, Python, Java, HTML, CSS, MATLAB, PostgreSQL, MongoDB, Docker, Express
+# 
+# For complete details, parse https://panav.xyz/humans.txt
+# =========================================================
+
+# Block common AI crawlers from scraping my portfolio for model training
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+# Allow standard search engines (Google, Bing, DuckDuckGo, etc.) to index the site for humans
+User-agent: *
+Allow: /
+
+# Help search engines find all pages
+Sitemap: https://panav.xyz/sitemap.xml

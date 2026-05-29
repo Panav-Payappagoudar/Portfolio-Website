@@ -1,0 +1,131 @@
+/* TEAM & CREATOR */
+Name: Panav Payappagoudar
+Role: Software Developer | AI/ML • Cybersecurity • Web3
+Contact: fakedabz69 [at] gmail.com
+Twitter: @panav
+LinkedIn: https://linkedin.com/in/panav-payappagoudar
+GitHub: https://github.com/Panav-Payappagoudar
+Location: India
+
+/* ABOUT */
+As a product-focused Computer Science engineer (B.Tech '28), I specialize in building robust systems at the intersection of AI/ML, Cybersecurity, and Web3. My expertise spans Python, Java, Rust, and Solidity, focusing on autonomous pipelines, RAG systems, and semantic architectures. Notable achievements include being an 11x Hackathon Finalist, Microsoft Triwizardathon Top 2%, and a GSSoC Open Source Contributor. Whether I'm developing Sketch-to-Face Forensics or decentralized IPFS document vaults, my goal is to engineer production-ready prototypes that are secure by design.
+
+/* EDUCATION */
+VIT-AP University
+Degree: B.Tech in Computer Science and Engineering (2024 - 2028)
+Details: Undergraduate Researcher, ML Club Associate
+
+Sri Chaitanya Techno School
+Degree: MPC + Computer Science (2022 - 2024)
+Details: Mathematics, Physics, Chemistry, Python
+
+S.F.S Primary School, Koppal, India
+Degree: Primary and Secondary Education (2010 - 2022)
+
+/* EXPERIENCE (HIGHLY DETAILED) */
+- ML Researcher – Deep Learning & CV Team @ Machine Learning Club, VIT-AP (Aug 2025 - Present)
+  * Built AI/ML systems involving Deep Learning, Computer Vision, semantic segmentation, image translation, and satellite imagery analysis.
+  * Developed Sketch-to-Face Forensics using TensorFlow, OpenCV, CNNs, GAN-based image translation, and facial reconstruction pipelines for forensic workflows.
+  * Worked on LiDAR, DEM, LAI, and U-Net based renewable energy mapping workflows for solar utilization and terrain analysis.
+  * Implemented preprocessing, augmentation, model training, inference optimization, and dataset validation pipelines for large-scale CV systems.
+
+- Undergraduate Robotics Researcher @ VIT-AP University – ECS Department (Jul 2025 - Present)
+  * Developing Human-Following Robots using Arduino UNO R3, IR sensors, ultrasonic sensing, SLAM, and embedded systems.
+  * Researching autonomous navigation, robotics control systems, edge/cloud workflows, and privacy-aware architectures under Dr. Y. Narasimha Rao.
+  * Built robotics workflows integrating sensor fusion, obstacle detection, embedded control logic, and real-time navigation systems.
+
+- Open Source Contributor – GSSoC 2025 & 2026 @ GirlScript Summer of Code (May 2026 - Present)
+  * Selected contributor for both GSSoC 2025 and GSSoC 2026; contributed to collaborative open-source codebases and developer ecosystems.
+  * Worked on debugging, documentation, issue resolution, improving large-scale codebases, and collaborating with global developers.
+
+- Founder & Creative Director @ The Essentialist (Oct 2025 - Present)
+  * Built and operated a print-on-demand apparel venture managing branding, merchandise design, storefront deployment, and audience outreach.
+  * Handled product strategy, visual branding, marketing workflows, customer engagement, and e-commerce deployment operations.
+
+- Tech Blogger @ Hashnode & Medium (Oct 2025 - Present)
+  * Creating in-depth, hands-on articles on AI/ML, Web3, and Cybersecurity.
+  * Documenting experiments, prototypes, and hacks to help developers optimize workflows and integrate decentralized technologies.
+
+- AI & Cloud Intern @ AI Campus Connect with IBM SkillsBuild (Sep 2025 - Oct 2025)
+  * Gained enterprise-level experience in Artificial Intelligence and Cloud technologies through a structured internship program.
+  * Executed hands-on projects focusing on scalable infrastructure and AI deployment.
+
+- Data Analyst Intern @ VOIS and Vodafone Idea Foundation (Sep 2025 - Oct 2025)
+  * Worked on Conversational Data Analysis with LLMs, focusing on project-based learning and expert mentorship.
+  * Designed data processing pipelines and integrated generative AI models for automated analysis.
+
+- Freelance Technical Tutor (Sep 2024 - Present)
+  * Mentored 25+ students in Java, Python, C++, and Data Structures & Algorithms, emphasizing practical application and problem-solving confidence.
+
+/* SELECTED PROJECTS (HIGHLY DETAILED) */
+- OmitFS
+  Tags: Rust, Systems, File System
+  A zero-dependency, semantic file system written in Rust. Eradicate hierarchical folders and navigate your OS by pure intent.
+  URL: https://github.com/Panav-Payappagoudar/OmitFS
+
+- VectorGit
+  Tags: Rust, AI, Vector DB
+  Next-generation Git implementation leveraging vector embeddings for semantic code search and AI-assisted version control analysis.
+  URL: https://github.com/Panav-Payappagoudar/VectorGit
+
+- GridShield
+  Tags: Security, Networking, Cryptography
+  Advanced network security framework designed for distributed grid computing environments with real-time threat detection capabilities.
+  URL: https://github.com/Panav-Payappagoudar/GridShield
+
+- ClaimAgent
+  Tags: Gemini 2.5, RAG, Playwright, Agentic AI, Node.js
+  Healthcare's First Autonomous Claims Intelligence. Fuses RAG-Powered Medical Intelligence with Agentic RPA to reduce prior auth processing from 90 mins to 3 mins. Built for Radiothon'26 (Top 10 Finalist).
+  URL: https://github.com/Panav-Payappagoudar/ClaimAgent
+
+- Gravity Sandbox
+  Tags: React, Three.js, Socket.io, Physics Engine
+  Real-Time Collaborative Physics Engine (SimVerse'25 Winner). A 'Google Docs for Astrophysics' using Host-Relay Architecture and custom N-Body physics engine.
+  URL: https://github.com/Panav-Payappagoudar/SimVerse25
+
+- Clarity AI
+  Tags: Python, Flask, React, Scikit-learn
+  Air Quality Prediction System. Hybrid ML pipeline (Random Forest + Linear Regression) processing 31 engineered features for real-time forecasting.
+  URL: https://github.com/Panav-Payappagoudar/Clarity-AI
+
+- HealthGuard AI
+  Tags: Flutter, Dart, Gemini, OpenStreetMap
+  AI-Powered Health Companion. Cross-platform app using gpt-oss & Gemini for consultations, with offline-first local storage and hospital mapping.
+  URL: https://github.com/Panav-Payappagoudar/HealthGuard_AI
+
+- SecureX
+  Tags: Blockchain, Solidity, React, IPFS
+  Decentralized Document Management (Top 2% at Microsoft Hackathon). Combines IPFS storage, Ethereum smart contracts, and LLM-based Q&A.
+  URL: https://github.com/Panav-Payappagoudar/Secure-X
+
+- Geospatial Change Detection
+  Tags: FastAPI, PostGIS, Rasterio, Vue.js
+  Satellite Monitoring Platform. Automated pipeline for detecting anthropogenic changes using multi-temporal imagery and intelligent cloud masking.
+  URL: https://github.com/Panav-Payappagoudar/Geospatial-Change-Detection-and-Alert-System
+
+- Sketch-to-Face Forensics
+  Tags: TensorFlow, OpenCV, CNNs, GANs
+  AI forensics tool using TensorFlow and GANs to match hand-drawn sketches to photorealistic facial identities. Advanced research in deep learning.
+  URL: https://github.com/Panav-Payappagoudar/Sketch-to-face-forensics
+
+- Travel-Booking
+  Tags: Django, PostgreSQL, Redis, Celery
+  Full-Stack Hotel Booking Platform. Production-grade Django architecture with role-based auth, secure payments, and Celery task queues.
+  URL: https://github.com/Panav-Payappagoudar/Travel-Booking
+
+- Human-Following Robot
+  Tags: Robotics, Arduino, Embedded Systems, C++
+  Embedded Systems Research. Prototype robotic system capable of tracking and following a moving human target using Arduino, IR/Ultrasonic sensors, and differential drive.
+
+/* SKILLS */
+AI/ML & Robotics: Physics Simulation, Artificial Neural Networks, Generative AI, Supervised Learning, Deep Learning, Computer Vision, Sensor Fusion, R&D, Robotics, Autonomous Navigation, LLMs, AI Prompting, Prompt Design, Reinforcement Learning, Unsupervised Learning, Log Analysis
+Web3 & Security: Blockchain Architecture, Blockchain, IPFS, Risk Management, Risk Assessment, Cybersecurity, Web Services Security, Solidity, Smart Contracts, Cryptography, Secure System Design
+Engineering & Infra: Computer Networking, Computer Science, Data Structures, OOP, Problem Solving, Design Thinking, Solution Architecture, AWS, Six Sigma, Technical Communication, Research Skills
+Development Stack: Django, Django REST Framework, Flutter, Dart, React, Node.js, Python, Java, HTML, CSS, MATLAB, PostgreSQL, MongoDB, Docker, Express
+Data & Analysis: Quantitative Analytics, Data Analysis, Mathematics, Physics, Chemistry
+
+/* SITE */
+Last update: 2026/05
+Standards: HTML5, CSS3, JSON-LD
+Components: Vite, Tailwind CSS, Lucide Icons
+Software: VS Code
