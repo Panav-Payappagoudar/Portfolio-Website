@@ -80,6 +80,24 @@
                     },
                     animation: {
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient-x': 'gradient-x 10s ease infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            },
+                        }
                     },
                 }
             }
@@ -170,6 +188,12 @@
             background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 20%, rgba(59,130,246,0.3) 50%, rgba(255,255,255,0.05) 80%, transparent 100%);
             margin: 0;
             position: relative;
+            animation: separatorPulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite alternate;
+            will-change: opacity, box-shadow;
+        }
+        @keyframes separatorPulse {
+            0% { opacity: 0.5; box-shadow: 0 0 0px rgba(59,130,246,0); }
+            100% { opacity: 1; box-shadow: 0 0 15px rgba(59,130,246,0.5); }
         }
         
         /* Smooth Hover Transitions for Devices */
@@ -252,7 +276,7 @@
                 </div>
                 
                 <h1 class="reveal-on-scroll text-5xl md:text-7xl lg:text-9xl font-medium tracking-tighter mb-8 text-balance translate-y-4" style="transition-delay: 100ms;">
-                    Secure Systems.<br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-brand-accent animate-gradient-x inline-block">Secure Systems.</span><br>
                     <span class="text-white/30">Scalable AI.</span>
                 </h1>
                 
@@ -457,7 +481,7 @@
             <div class="max-w-3xl mx-auto px-6 text-center">
                 <div class="reveal-on-scroll relative w-20 h-20 mx-auto mb-8 group interactable">
                      <div class="absolute inset-0 bg-brand-accent/20 rounded-full blur-xl group-hover:bg-brand-accent/40 transition-all duration-500"></div>
-                     <div class="relative w-full h-full bg-white/5 border border-white/10 rounded-full flex items-center justify-center backdrop-blur-md">
+                     <div class="relative w-full h-full bg-white/5 border border-white/10 rounded-full flex items-center justify-center backdrop-blur-md animate-float">
                          <i data-lucide="user" class="w-8 h-8 text-white/50"></i>
                      </div>
                 </div>
