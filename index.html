@@ -215,17 +215,21 @@
         </div>
         
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col justify-center items-center space-y-5 xl:hidden will-change-transform">
-            <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white interactable p-4 focus:outline-none z-[70]" aria-label="Close Menu">
-                <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
-            <a href="#about" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">About</a>
-            <a href="#venture" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Venture</a>
-            <a href="#experience" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Experience</a>
-            <a href="#achievements" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Achievements</a>
-            <a href="#projects" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Projects</a>
-            <a href="#skills" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Skills</a>
-            <a href="#contact" class="text-lg font-mono border border-white/20 px-8 py-3 rounded-full mobile-link mt-4 bg-white text-black font-semibold shrink-0">GET IN TOUCH</a>
+        <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col justify-start items-center xl:hidden overflow-y-auto w-full h-[100dvh]">
+            <div class="w-full flex justify-end p-6 shrink-0">
+                <button id="close-menu" class="text-white/60 hover:text-white interactable focus:outline-none p-2" aria-label="Close Menu">
+                    <i data-lucide="x" class="w-8 h-8"></i>
+                </button>
+            </div>
+            <div class="flex flex-col items-center space-y-6 pb-20 w-full mt-4 shrink-0">
+                <a href="#about" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">About</a>
+                <a href="#venture" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Venture</a>
+                <a href="#experience" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Experience</a>
+                <a href="#achievements" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Achievements</a>
+                <a href="#projects" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Projects</a>
+                <a href="#skills" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Skills</a>
+                <a href="#contact" class="text-lg font-mono border border-white/20 px-8 py-3 rounded-full mobile-link mt-6 bg-white text-black font-semibold">GET IN TOUCH</a>
+            </div>
         </div>
     </nav>
 
