@@ -391,6 +391,22 @@
 
         <div class="section-separator"></div>
 
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-32 bg-[#020202] relative">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="mb-20 text-center md:text-left">
+                    <h2 class="reveal-on-scroll font-mono text-[10px] text-brand-accent tracking-[0.2em] mb-4 uppercase opacity-80">Honors & Awards</h2>
+                    <h3 class="reveal-on-scroll text-4xl font-medium tracking-tight" style="transition-delay: 100ms;">Selected Achievements</h3>
+                </div>
+                
+                <div id="achievements-container" class="space-y-0">
+                    <!-- JS will inject achievements here -->
+                </div>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
         <!-- Education Section -->
         <section id="education" class="py-32 bg-gradient-to-b from-black to-[#050505] min-h-[50vh] flex flex-col justify-center">
             <div class="max-w-4xl mx-auto px-6 w-full">
@@ -503,8 +519,8 @@
                 "name": "Panav Payappagoudar",
                 "title": "Software Developer | AI/ML • Cybersecurity • Web3",
                 "greeting": "Hello, I'm",
-                "bio": "11x Hackathon Finalist & ML Researcher. I build secure, scalable systems merging Deep Learning, Decentralized Tech, and Agentic AI. From engineering ClaimAgent (Top 10 Radiothon'26) to real-time N-body physics engines (SimVerse Winner).",
-                "about": "As a product-focused Computer Science engineer (B.Tech ’28), I specialize in building robust systems at the intersection of AI/ML, Cybersecurity, and Web3. My expertise spans Python, Java, Rust, and Solidity, focusing on autonomous pipelines, RAG systems, and semantic architectures. Notable achievements include being an 11x Hackathon Finalist, Microsoft Triwizardathon Top 2%, and a GSSoC Open Source Contributor. Whether I'm developing Sketch-to-Face Forensics or decentralized IPFS document vaults, my goal is to engineer production-ready prototypes that are secure by design.",
+                "bio": "Founder @ TheEssentialist | Amazon ML Scholar ’26 | Undergrad Researcher @ VIT-AP | DL & CV Associate @ MLC | GSSOC’25’26 | IIT-B & Microsoft Hackathon Finalist (Top 2%) | 1x Winner, 2x Runner up , 11x Finalist",
+                "about": "I build secure, scalable systems at the intersection of AI/ML, Cybersecurity, and Web3.<br><br>As a Computer Science sophomore (B.Tech ’28), I focus on product-driven engineering — creating end-to-end prototypes that merge LLMs, decentralized architecture, and robust backends to solve real-world challenges.<br><br><span class=\"text-brand-accent\">What I Deliver:</span><br>• Production-ready prototypes that are secure, scalable, and deployable.<br>• LLM-powered systems optimized for cost and latency (local-first + cloud fallback).<br>• Cross-domain builds uniting AI, Web3, and system design.",
                 "email": "fakedabz69@gmail.com",
             },
             "socials": [
@@ -545,11 +561,19 @@
                 { "title": "Human-Following Robot", "description": "Embedded Systems Research. Prototype robotic system capable of tracking and following a moving human target using Arduino, IR/Ultrasonic sensors, and differential drive.", "liveUrl": "#", "repoUrl": "#", "tags": ["Robotics", "Arduino", "Embedded Systems", "C++"] }
             ],
             "skills": [
-                { "category": "AI/ML & Robotics", "items": ["Physics Simulation", "Artificial Neural Networks", "Generative AI", "Supervised Learning", "Deep Learning", "Computer Vision", "Sensor Fusion", "R&D", "Robotics", "Autonomous Navigation", "LLMs", "AI Prompting", "Prompt Design", "Reinforcement Learning", "Unsupervised Learning", "Log Analysis"] },
-                { "category": "Web3 & Security", "items": ["Blockchain Architecture", "Blockchain", "IPFS", "Risk Management", "Risk Assessment", "Cybersecurity", "Web Services Security", "Solidity", "Smart Contracts", "Cryptography", "Secure System Design"] },
-                { "category": "Engineering & Infra", "items": ["Computer Networking", "Computer Science", "Data Structures", "OOP", "Problem Solving", "Design Thinking", "Solution Architecture", "AWS", "Six Sigma", "Technical Communication", "Research Skills"] },
-                { "category": "Development Stack", "items": ["Django", "Django REST Framework", "Flutter", "Dart", "React", "Node.js", "Python", "Java", "HTML", "CSS", "MATLAB", "PostgreSQL", "MongoDB", "Docker", "Express"] },
-                { "category": "Data & Analysis", "items": ["Quantitative Analytics", "Data Analysis", "Mathematics", "Physics", "Chemistry"] }
+                { "category": "AI/ML & Data", "items": ["Deep Learning", "Computer Vision", "Neural Networks", "LLMs", "RAG Pipelines", "Fine-tuning", "TensorFlow", "PyTorch", "scikit-learn", "OpenCV"] },
+                { "category": "Web3 & Security", "items": ["Solidity", "Smart Contracts", "IPFS", "Cryptography", "Secure System Design", "DNS-over-TLS", "Threat Modeling"] },
+                { "category": "Full-Stack & Infra", "items": ["Flutter", "React", "TypeScript", "Node.js", "Django REST", "PostgreSQL", "MongoDB", "Redis", "Docker", "CI/CD", "AWS"] },
+                { "category": "Dev Tools & OS", "items": ["Linux (Fedora/Server)", "VS Code", "Android Studio", "Xcode", "Git"] }
+            ],
+            "achievements": [
+                { "title": "Amazon ML Summer Scholar '26", "organization": "Amazon", "date": "Jul 2026", "description": "Selected from 135,000+ applicants (~2.2% acceptance rate) for advanced, direct training from global Amazon Machine Learning Scientists." },
+                { "title": "Hackathon Milestones", "organization": "Major Tech Competitions", "date": "2024 - 2026", "description": "1x Hackathon Winner | 11x Finalist | 2x Runner up across major tech competitions." },
+                { "title": "Double Finalist (Aarohan & AWS ImpactX)", "organization": "IIT Bombay Techfest", "date": "2025 - 2026", "description": "Competed among top engineering talent to architect scalable cloud solutions." },
+                { "title": "Top 2% (23/1290 teams)", "organization": "Microsoft Triwizardathon", "date": "2025", "description": "Led SecureX — a decentralized document system using IPFS, Ethereum, and LLM-based Q&A." },
+                { "title": "SimVerse '25 Winner", "organization": "SimVerse Hackathon", "date": "2025", "description": "Showcased rapid prototyping and end-to-end product deployment." },
+                { "title": "Top 10 Finalist", "organization": "Matrix Hackathon & Radiothon '26", "date": "2025 - 2026", "description": "Secured Top 10 in Matrix and Top 5 in Radiothon '26, delivering optimized software solutions under strict deadlines." },
+                { "title": "Six Sigma White Belt Certified", "organization": "Six Sigma", "date": "2025", "description": "Trained in foundational process improvement and quality control methodologies." }
             ]
         };
 
@@ -557,7 +581,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Populate Text
             document.getElementById('hero-bio-display').textContent = portfolioData.personalInfo.bio;
-            document.getElementById('about-text-display').textContent = portfolioData.personalInfo.about;
+            document.getElementById('about-text-display').innerHTML = portfolioData.personalInfo.about;
             document.getElementById('email-link').innerHTML = `<i data-lucide="mail" class="w-6 h-6 shrink-0"></i>${portfolioData.personalInfo.email}`;
             document.getElementById('email-link').href = `mailto:${portfolioData.personalInfo.email}`;
 
@@ -636,7 +660,30 @@
                 projContainer.appendChild(card);
             });
 
-            // 4. Populate Education (Vertical Timeline Style + Animation)
+            // 4. Populate Achievements (Clean List Layout)
+            const achContainer = document.getElementById('achievements-container');
+            if (portfolioData.achievements) {
+                portfolioData.achievements.forEach((ach, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'group grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4 md:gap-10 py-8 border-b border-white/5 last:border-0 hover:bg-white/[0.05] hover:scale-[1.01] transition-all duration-300 px-4 -mx-4 rounded-xl interactable reveal-on-scroll text-left';
+                    item.style.transitionDelay = `${index * 100}ms`;
+                    item.innerHTML = `
+                        <div class="flex-shrink-0">
+                             <span class="font-mono text-xs text-brand-accent transition-colors">${ach.date}</span>
+                        </div>
+                        <div class="overflow-hidden">
+                            <div class="flex flex-col mb-2">
+                                 <h4 class="text-lg font-medium text-white">${ach.title}</h4>
+                                 <span class="text-sm font-light text-white/50">${ach.organization}</span>
+                            </div>
+                            <p class="text-white/60 leading-relaxed text-sm font-light break-words w-full">${ach.description}</p>
+                        </div>
+                    `;
+                    achContainer.appendChild(item);
+                });
+            }
+
+            // 5. Populate Education (Vertical Timeline Style + Animation)
             const eduContainer = document.getElementById('education-container');
             portfolioData.education.forEach((edu, index) => {
                 const item = document.createElement('div');
