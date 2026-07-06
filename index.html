@@ -215,7 +215,7 @@
         </div>
         
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center space-y-6 xl:hidden overflow-y-auto pt-20 pb-10">
+        <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col justify-center items-center space-y-6 xl:hidden overflow-y-auto overscroll-contain pt-20 pb-10 will-change-transform touch-pan-y">
             <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white interactable p-4 focus:outline-none" aria-label="Close Menu">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
@@ -766,10 +766,12 @@
         if (menuBtn && closeMenu && mobileMenu) {
             menuBtn.addEventListener('click', () => {
                 mobileMenu.style.transform = 'translateX(0)';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling glitch on Android
             });
 
             const closeMobileMenu = () => {
                 mobileMenu.style.transform = 'translateX(100%)';
+                document.body.style.overflow = '';
             };
 
             closeMenu.addEventListener('click', closeMobileMenu);
