@@ -18,6 +18,27 @@ export default {
           accent: '#3b82f6' 
         }
       },
+      animation: {
+          'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          'float': 'float 6s ease-in-out infinite',
+          'gradient-x': 'gradient-x 10s ease infinite',
+      },
+      keyframes: {
+          float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-15px)' },
+          },
+          'gradient-x': {
+              '0%, 100%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'left center'
+              },
+              '50%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'right center'
+              },
+          }
+      },
     },
   },
   plugins: [],

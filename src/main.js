@@ -1,4 +1,5 @@
 import { portfolioData } from './data/portfolio.js';
+import './index.css';
 
 // --- RENDER LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const linksHtml = `
             <div class="flex gap-4 mt-auto pt-6 border-t border-white/5 group-hover:border-white/10 transition-colors z-20">
-                ${proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">LIVE <i data-lucide="arrow-up-right" class="w-3 h-3"></i></a>` : ''}
-                ${proj.repoUrl !== '#' ? `<a href="${proj.repoUrl}" target="_blank" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">CODE <i data-lucide="github" class="w-3 h-3"></i></a>` : ''}
+                ${proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">LIVE <i data-lucide="arrow-up-right" class="w-3 h-3"></i></a>` : ''}
+                ${proj.repoUrl !== '#' ? `<a href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">CODE <i data-lucide="github" class="w-3 h-3"></i></a>` : ''}
             </div>
         `;
 
