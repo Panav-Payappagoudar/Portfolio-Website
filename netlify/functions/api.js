@@ -7,6 +7,8 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import validator from 'validator';
 import { createChallenge, verifySolution } from 'altcha-lib';
+import Filter from 'bad-words';
+import disposableDomains from 'disposable-email-domains';
 
 dotenv.config();
 
@@ -71,6 +73,13 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
     return res.status(400).json({ success: false, message: 'Invalid email address.' });
   }
 
+  // Block Disposable/Burner Emails
+  const emailDomain = email.split('@')[1].toLowerCase();
+  if (disposableDomains.includes(emailDomain)) {
+    console.warn(`[SECURITY] Blocked disposable email domain: ${emailDomain} from IP: ${req.ip}`);
+    return res.status(400).json({ success: false, message: 'Disposable email addresses are not allowed. Please use a permanent email provider.' });
+  }
+
   // Basic sanitization to prevent HTML injection in emails
   name = validator.escape(name);
   message = validator.escape(message);
@@ -93,7 +102,6 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
       }
     });
 
-    // 4. Send Email
     const mailOptions = {
       from: `"${name}" <${email}>`,
       to: process.env.EMAIL_USER, 
@@ -101,6 +109,19 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
       text: `Name: ${validator.unescape(name)}\nEmail: ${email}\n\nMessage:\n${validator.unescape(message)}`, // unescape for text body readability
       replyTo: email
     };
+
+    // 4. Hate Speech & Profanity Filter (Shadow Ban)
+    const filter = new Filter();
+    const unescapedName = validator.unescape(name);
+    const unescapedMessage = validator.unescape(message);
+    
+    if (filter.isProfane(unescapedName) || filter.isProfane(unescapedMessage)) {
+      console.warn(`[SECURITY] SHADOW BAN TRIGGERED for IP: ${req.ip}. Email: ${email}. Content flagged as profane/hate-speech.`);
+      // Return 200 OK to the client so they think it succeeded, but DO NOT send the email.
+      return res.status(200).json({ success: true, message: 'Message sent successfully!' });
+    }
+
+    // 5. Send Email
 
     await transporter.sendMail(mailOptions);
     console.log(`[SUCCESS] Email sent from ${email} (IP: ${req.ip})`);
