@@ -425,17 +425,31 @@
     <script type="module" src="/src/main.js"></script>
     
     <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 md:p-12 rounded-2xl max-w-md w-[90%] text-center transform scale-95 transition-transform duration-300 shadow-2xl relative" id="success-modal-content">
-            <button id="close-modal-btn" aria-label="Close success modal" class="absolute top-4 right-4 text-white/50 hover:text-white transition-colors interactable">
+    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-white/5 backdrop-blur-2xl border border-white/10 p-10 md:p-14 rounded-3xl max-w-md w-[90%] text-center transform scale-95 transition-transform duration-500 shadow-[0_0_80px_rgba(59,130,246,0.15)] relative overflow-hidden group" id="success-modal-content">
+            
+            <!-- Ambient Glow -->
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-accent/30 rounded-full blur-[60px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-brand-accent/20 rounded-full blur-[60px] opacity-50 pointer-events-none"></div>
+            
+            <button id="close-modal-btn" aria-label="Close success modal" class="absolute top-6 right-6 text-white/40 hover:text-white hover:rotate-90 transition-all duration-300 interactable z-10">
                 <i data-lucide="x" class="w-6 h-6" aria-hidden="true"></i>
             </button>
-            <div class="w-16 h-16 bg-brand-accent/20 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-6" aria-hidden="true">
-                <i data-lucide="check" class="w-8 h-8"></i>
+            
+            <div class="relative z-10">
+                <div class="w-20 h-20 border border-brand-accent/30 bg-brand-accent/10 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+                    <i data-lucide="check-circle-2" class="w-10 h-10 stroke-[1.5]"></i>
+                </div>
+                
+                <h3 id="modal-title" class="text-3xl font-medium tracking-tight text-white mb-4">Message Received</h3>
+                <p class="text-white/60 font-light leading-relaxed mb-10 text-sm">
+                    Your transmission has been securely routed to my inbox. I will review it and get back to you shortly.
+                </p>
+                
+                <button id="close-modal-btn-2" class="w-full py-4 border border-white/20 hover:border-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent text-white font-mono tracking-[0.2em] text-xs uppercase transition-all duration-300 rounded-xl interactable">
+                    Return to site
+                </button>
             </div>
-            <h3 id="modal-title" class="text-2xl font-medium text-white mb-2">Message Sent!</h3>
-            <p class="text-white/60 font-light mb-8">Thank you for reaching out. I'll get back to you as soon as possible.</p>
-            <button id="close-modal-btn-2" class="w-full py-3 bg-white text-black font-medium tracking-wide hover:bg-gray-200 transition-colors rounded-lg interactable">CLOSE</button>
         </div>
     </div>
 </body>
