@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | System Breach Detected</title>
+    <meta name="theme-color" content="#000000">
+    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .terminal {
+            width: 100%;
+            max-w-md: 600px;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .line {
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: appear 0.1s forwards;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .error-code {
+            color: #FF5F56;
+            font-weight: bold;
+        }
+
+        .accent {
+            color: #3b82f6; /* Brand Accent Blue */
+        }
+
+        .success {
+            color: #27C93F;
+        }
+
+        .prompt::before {
+            content: "root@panav.xyz:~$ ";
+            color: #27C93F;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: #ffffff;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes appear {
+            to { opacity: 1; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+            text-decoration: none;
+            background: transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            animation: appear 0.1s forwards 2.5s;
+        }
+
+        .btn:hover {
+            background: #3b82f6;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="line prompt" style="animation-delay: 0.2s;"><span>locate requested_resource</span></div>
+        <div class="line" style="animation-delay: 0.8s;">> Scanning sectors...</div>
+        <div class="line" style="animation-delay: 1.2s;">> <span class="error-code">FATAL_ERROR [404]</span>: Index not found in database.</div>
+        <div class="line" style="animation-delay: 1.6s;">> Intrusion protocols initiated... false alarm.</div>
+        <div class="line prompt" style="animation-delay: 2.2s;"><span class="accent">initiate --auto-redirect home</span><span class="cursor"></span></div>
+        <a href="/" class="btn">Force Reroute (Return Home)</a>
+    </div>
+
+    <script>
+        // Auto redirect after 6 seconds
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 6000);
+    </script>
+</body>
+</html>

@@ -67,20 +67,20 @@
 <body class="antialiased selection:bg-brand-accent selection:text-white">
 
     <!-- Interactive Spotlight -->
-    <div id="spotlight" class="fixed inset-0 z-0 pointer-events-none opacity-0 transition-opacity duration-700" style="background: radial-gradient(circle 800px at 50% 50%, rgba(59, 130, 246, 0.08), transparent 40%); mix-blend-mode: screen;"></div>
+    <div id="spotlight" class="fixed inset-0 z-0 pointer-events-none opacity-0 transition-opacity duration-700" style="background: radial-gradient(circle 800px at 50% 50%, rgba(59, 130, 246, 0.08), transparent 40%); mix-blend-mode: screen;" aria-hidden="true"></div>
 
     <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
 
     <!-- Noise Texture Overlay (Global) -->
-    <div class="noise-overlay"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="font-mono text-xs sm:text-sm tracking-[0.05em] sm:tracking-[0.1em] uppercase hover:text-white/70 transition-colors z-50 relative interactable truncate max-w-[200px] sm:max-w-none">
-                PANAV_PAYAPPAGOUDAR<span class="text-brand-accent animate-pulse">_</span>
+            <a href="#" aria-label="Back to top" class="font-mono text-xs sm:text-sm tracking-[0.05em] sm:tracking-[0.1em] uppercase hover:text-white/70 transition-colors z-50 relative interactable truncate max-w-[200px] sm:max-w-none">
+                PANAV_PAYAPPAGOUDAR<span class="text-brand-accent animate-pulse" aria-hidden="true">_</span>
             </a>
 
             <!-- Desktop Menu -->
@@ -154,7 +154,7 @@
                 </div>
             </div>
 
-            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-30" aria-hidden="true">
                 <i data-lucide="arrow-down" class="w-5 h-5"></i>
             </div>
         </header>
@@ -425,15 +425,15 @@
     <script type="module" src="/src/main.js"></script>
     
     <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="bg-[#0a0a0a] border border-white/10 p-8 md:p-12 rounded-2xl max-w-md w-[90%] text-center transform scale-95 transition-transform duration-300 shadow-2xl relative" id="success-modal-content">
-            <button id="close-modal-btn" class="absolute top-4 right-4 text-white/50 hover:text-white transition-colors interactable">
-                <i data-lucide="x" class="w-6 h-6"></i>
+            <button id="close-modal-btn" aria-label="Close success modal" class="absolute top-4 right-4 text-white/50 hover:text-white transition-colors interactable">
+                <i data-lucide="x" class="w-6 h-6" aria-hidden="true"></i>
             </button>
-            <div class="w-16 h-16 bg-brand-accent/20 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-6">
+            <div class="w-16 h-16 bg-brand-accent/20 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-6" aria-hidden="true">
                 <i data-lucide="check" class="w-8 h-8"></i>
             </div>
-            <h3 class="text-2xl font-medium text-white mb-2">Message Sent!</h3>
+            <h3 id="modal-title" class="text-2xl font-medium text-white mb-2">Message Sent!</h3>
             <p class="text-white/60 font-light mb-8">Thank you for reaching out. I'll get back to you as soon as possible.</p>
             <button id="close-modal-btn-2" class="w-full py-3 bg-white text-black font-medium tracking-wide hover:bg-gray-200 transition-colors rounded-lg interactable">CLOSE</button>
         </div>
