@@ -1,0 +1,1 @@
+import { createRequire } from 'module'; const require = createRequire(import.meta.url); const disposableDomains = require('disposable-email-domains'); const Filter = require('bad-words'); const f = new Filter(); console.log('Mailinator blocked:', disposableDomains.includes('mailinator.com')); console.log('Profanity blocked:', f.isProfane('fuck'));

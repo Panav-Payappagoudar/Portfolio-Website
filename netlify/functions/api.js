@@ -7,8 +7,42 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import validator from 'validator';
 import { createChallenge, verifySolution } from 'altcha-lib';
-import Filter from 'bad-words';
-import disposableDomains from 'disposable-email-domains';
+
+// Zero-dependency dynamic blocklist caches (to avoid esbuild / ESM interop issues on Netlify Production)
+let disposableDomainsCache = null;
+let badWordsCache = null;
+
+async function getDisposableDomains() {
+  if (!disposableDomainsCache) {
+    try {
+      const res = await fetch('https://raw.githubusercontent.com/ivolo/disposable-email-domains/master/index.json');
+      disposableDomainsCache = await res.json();
+    } catch (e) {
+      console.error('Failed to fetch disposable domains', e);
+      disposableDomainsCache = [];
+    }
+  }
+  return disposableDomainsCache;
+}
+
+async function getBadWords() {
+  if (!badWordsCache) {
+    try {
+      const res = await fetch('https://raw.githubusercontent.com/web-mech/badwords/master/lib/lang.json');
+      const data = await res.json();
+      badWordsCache = data.words || [];
+    } catch (e) {
+      console.error('Failed to fetch bad words', e);
+      badWordsCache = ['fuck', 'shit', 'bitch', 'asshole', 'cunt', 'slut']; // Minimal fallback
+    }
+  }
+  return badWordsCache;
+}
+
+function isProfane(text, badWordsList) {
+  const words = text.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ');
+  return words.some(word => badWordsList.includes(word));
+}
 
 dotenv.config();
 
@@ -75,6 +109,7 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
 
   // Block Disposable/Burner Emails
   const emailDomain = email.split('@')[1].toLowerCase();
+  const disposableDomains = await getDisposableDomains();
   if (disposableDomains.includes(emailDomain)) {
     console.warn(`[SECURITY] Blocked disposable email domain: ${emailDomain} from IP: ${req.ip}`);
     return res.status(400).json({ success: false, message: 'Disposable email addresses are not allowed. Please use a permanent email provider.' });
@@ -111,11 +146,11 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
     };
 
     // 4. Hate Speech & Profanity Filter (Shadow Ban)
-    const filter = new Filter();
+    const badWordsList = await getBadWords();
     const unescapedName = validator.unescape(name);
     const unescapedMessage = validator.unescape(message);
     
-    if (filter.isProfane(unescapedName) || filter.isProfane(unescapedMessage)) {
+    if (isProfane(unescapedName, badWordsList) || isProfane(unescapedMessage, badWordsList)) {
       console.warn(`[SECURITY] SHADOW BAN TRIGGERED for IP: ${req.ip}. Email: ${email}. Content flagged as profane/hate-speech.`);
       // Return 200 OK to the client so they think it succeeded, but DO NOT send the email.
       return res.status(200).json({ success: true, message: 'Message sent successfully!' });
