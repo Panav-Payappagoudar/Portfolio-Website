@@ -139,7 +139,7 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
 
     const mailOptions = {
       from: `"${name}" <${email}>`,
-      to: process.env.EMAIL_USER, 
+      to: 'panav.p@proton.me', 
       subject: `New Portfolio Message from ${validator.unescape(name)}`, // unescape for subject line readability
       text: `Name: ${validator.unescape(name)}\nEmail: ${email}\n\nMessage:\n${validator.unescape(message)}`, // unescape for text body readability
       replyTo: email

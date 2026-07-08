@@ -5,7 +5,7 @@ export const portfolioData = {
         "greeting": "Hello, I'm",
         "bio": "Founder @ TheEssentialist | Amazon ML Scholar ’26 | Undergrad Researcher @ VIT-AP | DL & CV Associate @ MLC | GSSOC’25’26 | IIT-B & Microsoft Hackathon Finalist (Top 2%) | 1x Winner, 2x Runner up , 11x Finalist",
         "about": "I build secure, scalable systems at the intersection of AI/ML, Cybersecurity, and Web3.<br><br>As a Computer Science sophomore (B.Tech ’28), I focus on product-driven engineering — creating end-to-end prototypes that merge LLMs, decentralized architecture, and robust backends to solve real-world challenges.<br><br><span class=\"text-brand-accent\">What I Deliver:</span><br>• Production-ready prototypes that are secure, scalable, and deployable.<br>• LLM-powered systems optimized for cost and latency (local-first + cloud fallback).<br>• Cross-domain builds uniting AI, Web3, and system design.",
-        "email": "fakedabz69@gmail.com",
+        "email": "panav.p@proton.me",
     },
     "socials": [
         { "name": "GitHub", "url": "https://github.com/Panav-Payappagoudar", "icon": "github" },
