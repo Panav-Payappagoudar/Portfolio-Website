@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     emailLink.addEventListener('click', (e) => {
         e.preventDefault();
         navigator.clipboard.writeText(portfolioData.personalInfo.email).then(() => {
+            if (window.playPop) window.playPop();
             const originalHtml = emailLink.innerHTML;
             emailLink.innerHTML = `<i data-lucide="check" class="w-6 h-6 shrink-0 text-green-400"></i><span class="text-green-400 font-medium">Copied to clipboard!</span>`;
             if (window.lucide) window.lucide.createIcons();
@@ -415,6 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return data;
             })
             .then(() => {
+                if (window.playChime) window.playChime();
                 successModal.classList.remove('opacity-0', 'pointer-events-none');
                 modalContent.classList.remove('scale-95');
                 modalContent.classList.add('scale-100');
@@ -576,4 +578,134 @@ document.addEventListener('DOMContentLoaded', () => {
     paletteOverlay.addEventListener('click', (e) => {
         if (e.target === paletteOverlay) togglePalette(false);
     });
+});
+
+// --- UI SOUND DESIGN ENGINE ---
+document.addEventListener('DOMContentLoaded', () => {
+    const soundToggle = document.getElementById('sound-toggle');
+    const iconOn = document.getElementById('sound-icon-on');
+    const iconOff = document.getElementById('sound-icon-off');
+    
+    if (!soundToggle) return;
+
+    let soundEnabled = localStorage.getItem('soundEnabled') === 'true';
+    let audioCtx = null;
+
+    const initAudio = () => {
+        if (!audioCtx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    };
+
+    const updateToggleUI = () => {
+        if (soundEnabled) {
+            iconOff.classList.add('opacity-0', 'scale-50');
+            iconOn.classList.remove('opacity-0', 'scale-50');
+            soundToggle.classList.add('text-brand-accent');
+            soundToggle.classList.remove('text-white/50');
+        } else {
+            iconOn.classList.add('opacity-0', 'scale-50');
+            iconOff.classList.remove('opacity-0', 'scale-50');
+            soundToggle.classList.remove('text-brand-accent');
+            soundToggle.classList.add('text-white/50');
+        }
+    };
+
+    updateToggleUI();
+
+    soundToggle.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        localStorage.setItem('soundEnabled', soundEnabled.toString());
+        updateToggleUI();
+        if (soundEnabled) {
+            initAudio();
+            playPop(); // Feedback sound
+        }
+    });
+
+    // Synthesizer Functions
+    const playTick = () => {
+        if (!soundEnabled || !audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1200, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05);
+        
+        gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+    };
+
+    const playPop = () => {
+        if (!soundEnabled || !audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+        
+        gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.1);
+    };
+
+    const playChime = () => {
+        if (!soundEnabled || !audioCtx) return;
+        
+        const playTone = (freq, delay) => {
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
+            
+            gainNode.gain.setValueAtTime(0, audioCtx.currentTime + delay);
+            gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + delay + 0.1);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + 1.5);
+            
+            osc.start(audioCtx.currentTime + delay);
+            osc.stop(audioCtx.currentTime + delay + 1.5);
+        };
+
+        playTone(523.25, 0); // C5
+        playTone(659.25, 0.1); // E5
+        playTone(783.99, 0.2); // G5
+        playTone(1046.50, 0.3); // C6
+    };
+
+    // Attach Event Listeners
+    // Use mouseover for event delegation to catch all dynamically created interactables
+    document.body.addEventListener('mouseover', (e) => {
+        if (!soundEnabled) return;
+        // Check if element or parent has interactable class
+        const target = e.target.closest('.interactable, .btn-magnetic, .group, a, button');
+        if (target && !target.dataset.soundHovered) {
+            target.dataset.soundHovered = 'true';
+            playTick();
+            target.addEventListener('mouseleave', () => {
+                target.dataset.soundHovered = '';
+            }, { once: true });
+        }
+    });
+
+    // We can export these globally if needed, or attach them to specific actions
+    window.playPop = playPop;
+    window.playChime = playChime;
 });
