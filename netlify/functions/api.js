@@ -157,10 +157,26 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
       return res.status(200).json({ success: true, message: 'Message sent successfully!' });
     }
 
-    // 5. Send Email
-
+    // 5. Send Email to Site Owner
     await transporter.sendMail(mailOptions);
     console.log(`[SUCCESS] Email sent from ${email} (IP: ${req.ip})`);
+
+    // 6. Send Auto-Responder to User
+    const autoResponderOptions = {
+      from: `"Panav Payappagoudar" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: `Thank you for reaching out!`,
+      text: `Hi ${validator.unescape(name)},\n\nThank you for reaching out! I've received your message and will get back to you as soon as possible.\n\nBest regards,\nPanav Payappagoudar\n\nGitHub: https://github.com/Panav-Payappagoudar\nLinkedIn: https://linkedin.com/in/panav-payappagoudar`
+    };
+
+    try {
+      await transporter.sendMail(autoResponderOptions);
+      console.log(`[SUCCESS] Auto-responder sent to ${email}`);
+    } catch (autoResponderError) {
+      // Don't fail the entire request if the auto-responder fails
+      console.error(`[WARNING] Failed to send auto-responder to ${email}:`, autoResponderError);
+    }
+
     return res.status(200).json({ success: true, message: 'Message sent successfully!' });
 
   } catch (error) {
