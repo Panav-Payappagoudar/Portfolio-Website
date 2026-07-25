@@ -68,12 +68,33 @@
     <script defer src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Base Styles that must load immediately to prevent FOUC before Vite injects the main CSS */
-        body { background-color: #000000; color: #ffffff; }
+        body { background-color: #000000; color: #ffffff; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        /* Prevent layout shift and FOUC for animated elements */
+        .reveal-on-scroll, .opacity-0 { opacity: 0 !important; }
+        
+        /* Ultra-safe body lock */
+        body { opacity: 0; animation: fadeInBody 0.3s ease-in forwards; }
+        @keyframes fadeInBody { to { opacity: 1; } }
+
+        /* Loader Animation */
+        @keyframes loadingBar {
+            0% { left: -30%; }
+            100% { left: 100%; }
+        }
     </style>
-  <script type="module" crossorigin src="/assets/index-D98rorYB.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DUcqArcp.css">
+  <script type="module" crossorigin src="/assets/index-DtYSA6iX.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BKJsKiOe.css">
 </head>
 <body class="antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Global Loader -->
+    <div id="global-loader" class="fixed inset-0 z-[999999] bg-[#000000] flex flex-col items-center justify-center transition-opacity duration-500" style="background: #000000;">
+        <div class="font-mono text-[10px] text-white/50 uppercase tracking-[0.3em] mb-6">Loading panav.xyz</div>
+        <div class="w-48 h-[1px] bg-white/10 relative overflow-hidden">
+            <div class="absolute top-0 left-0 h-full w-[30%] bg-white animate-[loadingBar_1.5s_infinite_ease-in-out]"></div>
+        </div>
+    </div>
 
     <!-- Scroll Progress Indicator -->
     <div id="scroll-progress" class="fixed top-0 left-0 h-[2px] bg-brand-accent z-[100] w-0 transition-all duration-100 ease-out"></div>
@@ -469,29 +490,29 @@
 
     
     <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="bg-white/5 backdrop-blur-2xl border border-white/10 p-10 md:p-14 rounded-3xl max-w-md w-[90%] text-center transform scale-95 transition-transform duration-500 shadow-[0_0_80px_rgba(59,130,246,0.15)] relative overflow-hidden group" id="success-modal-content">
+    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-[#0a0a0a] border border-white/10 p-8 max-w-md w-[90%] text-left transform translate-y-4 transition-transform duration-300 shadow-2xl relative" id="success-modal-content">
             
-            <!-- Ambient Glow -->
-            <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-accent/30 rounded-full blur-[60px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
-            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-brand-accent/20 rounded-full blur-[60px] opacity-50 pointer-events-none"></div>
-            
-            <button id="close-modal-btn" aria-label="Close success modal" class="absolute top-6 right-6 text-white/40 hover:text-white hover:rotate-90 transition-all duration-300 interactable z-10">
-                <i data-lucide="x" class="w-6 h-6" aria-hidden="true"></i>
+            <button id="close-modal-btn" aria-label="Close success modal" class="absolute top-4 right-4 text-white/40 hover:text-white transition-all interactable z-10">
+                <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
             </button>
             
             <div class="relative z-10">
-                <div class="w-20 h-20 border border-brand-accent/30 bg-brand-accent/10 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-                    <i data-lucide="check-circle-2" class="w-10 h-10 stroke-[1.5]"></i>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 border border-white/20 bg-white/5 text-white flex items-center justify-center">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                    </div>
+                    <h3 id="modal-title" class="text-xl font-medium tracking-tight text-white">Transmission Successful</h3>
                 </div>
                 
-                <h3 id="modal-title" class="text-3xl font-medium tracking-tight text-white mb-4">Message Received</h3>
-                <p class="text-white/60 font-light leading-relaxed mb-10 text-sm">
-                    Your transmission has been securely routed to my inbox. I will review it and get back to you shortly.
+                <p class="text-white/50 font-light leading-relaxed mb-8 text-xs font-mono break-words">
+                    > STATUS: 200 OK<br>
+                    > DESTINATION: panav.p@proton.me<br><br>
+                    Your message has been securely routed to my inbox. I will review it and reply shortly.
                 </p>
                 
-                <button id="close-modal-btn-2" class="w-full py-4 border border-white/20 hover:border-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent text-white font-mono tracking-[0.2em] text-xs uppercase transition-all duration-300 rounded-xl interactable">
-                    Return to site
+                <button id="close-modal-btn-2" class="w-full py-3 border border-white/20 bg-transparent text-white font-mono text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-colors interactable">
+                    Acknowledge
                 </button>
             </div>
         </div>
