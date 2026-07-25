@@ -1,132 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 | System Breach Detected</title>
-    <meta name="theme-color" content="#000000">
+    <title>404 - Page Not Found | Panav Payappagoudar</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            accent: '#3b82f6'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'JetBrains Mono', monospace;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Scanline effect */
-        body::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
-
-        .terminal {
-            width: 100%;
-            max-w-md: 600px;
-            padding: 2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .line {
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            animation: appear 0.1s forwards;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .error-code {
-            color: #FF5F56;
-            font-weight: bold;
-        }
-
-        .accent {
-            color: #3b82f6; /* Brand Accent Blue */
-        }
-
-        .success {
-            color: #27C93F;
-        }
-
-        .prompt::before {
-            content: "root@panav.xyz:~$ ";
-            color: #27C93F;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 16px;
-            background-color: #ffffff;
-            animation: blink 1s step-end infinite;
-            vertical-align: middle;
-            margin-left: 5px;
-        }
-
-        @keyframes appear {
-            to { opacity: 1; }
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid #3b82f6;
-            color: #3b82f6;
-            text-decoration: none;
-            background: transparent;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 0.1em;
-            opacity: 0;
-            animation: appear 0.1s forwards 2.5s;
-        }
-
-        .btn:hover {
-            background: #3b82f6;
-            color: #000;
+        body { 
+            background-color: #000000; 
+            color: #ffffff; 
+            -webkit-font-smoothing: antialiased; 
+            background-image: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
         }
     </style>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-    <div class="terminal">
-        <div class="line prompt" style="animation-delay: 0.2s;"><span>locate requested_resource</span></div>
-        <div class="line" style="animation-delay: 0.8s;">> Scanning sectors...</div>
-        <div class="line" style="animation-delay: 1.2s;">> <span class="error-code">FATAL_ERROR [404]</span>: Index not found in database.</div>
-        <div class="line" style="animation-delay: 1.6s;">> Intrusion protocols initiated... false alarm.</div>
-        <div class="line prompt" style="animation-delay: 2.2s;"><span class="accent">initiate --auto-redirect home</span><span class="cursor"></span></div>
-        <a href="/" class="btn">Force Reroute (Return Home)</a>
-    </div>
+<body class="antialiased selection:bg-brand-accent selection:text-white h-screen flex flex-col justify-center items-center relative overflow-hidden">
+    
+    <!-- Subtle Grid Background -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(circle at center, black 30%, transparent 80%); -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);"></div>
+
+    <main class="relative z-10 text-center px-6">
+        <h1 class="text-9xl md:text-[12rem] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/10 mb-4 animate-pulse-slow">
+            404
+        </h1>
+        <div class="font-mono text-sm tracking-widest text-brand-accent uppercase mb-8 opacity-80">
+            // SYSTEM_ERROR: PAGE_NOT_FOUND
+        </div>
+        <p class="text-white/50 font-light text-lg mb-12 max-w-md mx-auto leading-relaxed">
+            The page you are looking for has been deleted, moved, or never existed in the first place.
+        </p>
+        
+        <a href="/" class="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-medium rounded-full overflow-hidden transition-all hover:pr-12">
+            <span class="relative z-10">Return to Base</span>
+            <i data-lucide="arrow-right" class="absolute right-4 w-4 h-4 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+        </a>
+    </main>
 
     <script>
-        // Auto redirect after 6 seconds
-        setTimeout(() => {
-            window.location.href = '/';
-        }, 6000);
+        lucide.createIcons();
     </script>
 </body>
 </html>
