@@ -64,8 +64,8 @@
         /* Base Styles that must load immediately to prevent FOUC before Vite injects the main CSS */
         body { background-color: #000000; color: #ffffff; }
     </style>
-  <script type="module" crossorigin src="/assets/index-CaXuLFfp.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-B5axNAn2.css">
+  <script type="module" crossorigin src="/assets/index-CaUWaCx4.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DZXGM5le.css">
 </head>
 <body class="antialiased selection:bg-brand-accent selection:text-white">
 
@@ -128,6 +128,7 @@
         <!-- Hero Section (Grey + Grid) -->
         <header class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#0a0a0a]" id="hero">
             <div class="absolute inset-0 hero-grid-bg opacity-30 pointer-events-none"></div>
+            <canvas id="network-canvas" class="absolute inset-0 z-0 pointer-events-auto"></canvas>
 
             <div class="container mx-auto px-6 relative z-10 text-center">
                 <div class="reveal-on-scroll inline-block mb-10 cursor-none interactable">
@@ -272,13 +273,17 @@
         <!-- Projects Section -->
         <section id="projects" class="py-32 bg-[#050505]">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="mb-16 flex flex-col md:flex-row justify-between items-center md:items-end gap-6 text-center md:text-left">
+                <div class="mb-12 flex flex-col md:flex-row justify-between items-center md:items-end gap-6 text-center md:text-left">
                     <div>
                         <h2 class="reveal-on-scroll font-mono text-[10px] text-brand-accent tracking-[0.2em] mb-4 uppercase opacity-80">Portfolio</h2>
                         <h3 class="reveal-on-scroll text-4xl font-medium tracking-tight" style="transition-delay: 100ms;">Selected Projects</h3>
                     </div>
-                    <div class="reveal-on-scroll font-mono text-xs text-white/40" style="transition-delay: 200ms;">
-                        // EXPLORE RECENT WORK
+                    <!-- Filters -->
+                    <div class="reveal-on-scroll flex flex-wrap justify-center md:justify-end gap-2" style="transition-delay: 200ms;" id="project-filters">
+                        <button class="filter-btn active px-4 py-2 rounded-full border border-brand-accent/50 bg-brand-accent/10 text-xs font-mono text-brand-accent transition-colors interactable" data-filter="All">All</button>
+                        <button class="filter-btn px-4 py-2 rounded-full border border-white/10 bg-transparent text-xs font-mono text-white/50 hover:text-white hover:border-white/30 transition-colors interactable" data-filter="AI">AI & Data</button>
+                        <button class="filter-btn px-4 py-2 rounded-full border border-white/10 bg-transparent text-xs font-mono text-white/50 hover:text-white hover:border-white/30 transition-colors interactable" data-filter="Web3">Web3 & Security</button>
+                        <button class="filter-btn px-4 py-2 rounded-full border border-white/10 bg-transparent text-xs font-mono text-white/50 hover:text-white hover:border-white/30 transition-colors interactable" data-filter="Systems">Systems & Backend</button>
                     </div>
                 </div>
 

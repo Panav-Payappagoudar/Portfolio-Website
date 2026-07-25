@@ -229,42 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // Custom Cursor Logic
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-    let mouseX = 0, mouseY = 0;
-    let outlineX = 0, outlineY = 0;
 
-    if (cursorDot && cursorOutline && !window.matchMedia("(pointer: coarse)").matches) {
-        document.body.classList.add('cursor-none');
-        
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-            
-            if (e.target.closest('a, button, input, textarea, .interactable')) {
-                cursorOutline.classList.add('hovering');
-                cursorDot.classList.add('hovering');
-            } else {
-                cursorOutline.classList.remove('hovering');
-                cursorDot.classList.remove('hovering');
-            }
-        });
-
-        const animateCursor = () => {
-            let distX = mouseX - outlineX;
-            let distY = mouseY - outlineY;
-            
-            outlineX += distX * 0.15;
-            outlineY += distY * 0.15;
-            
-            cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
-            requestAnimationFrame(animateCursor);
-        };
-        animateCursor();
-    }
 });
 
 // Mobile Menu Logic
@@ -292,8 +257,8 @@ if (menuBtn && closeMenu && mobileMenu) {
 if (window.matchMedia("(pointer: fine)").matches) {
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
-    
     if (cursorDot && cursorOutline) {
+        document.body.classList.add('cursor-none');
         let mouseX = 0, mouseY = 0;
         let outlineX = 0, outlineY = 0;
         const spotlight = document.getElementById('spotlight');
@@ -302,8 +267,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
             mouseX = e.clientX;
             mouseY = e.clientY;
             
-            cursorDot.style.left = `${mouseX}px`;
-            cursorDot.style.top = `${mouseY}px`;
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
 
             if (spotlight) {
                 spotlight.style.opacity = '1';
@@ -318,16 +282,21 @@ if (window.matchMedia("(pointer: fine)").matches) {
             outlineX += dx * 0.15;
             outlineY += dy * 0.15;
             
-            cursorOutline.style.left = `${outlineX}px`;
-            cursorOutline.style.top = `${outlineY}px`;
+            cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
             
             requestAnimationFrame(animateCursor);
         };
         animateCursor();
 
         document.querySelectorAll('.interactable, a, button, input, textarea').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+            el.addEventListener('mouseenter', () => {
+                cursorDot.classList.add('hovering');
+                cursorOutline.classList.add('hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorDot.classList.remove('hovering');
+                cursorOutline.classList.remove('hovering');
+            });
         });
     }
 }
