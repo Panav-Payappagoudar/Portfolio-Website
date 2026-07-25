@@ -2,7 +2,7 @@ const CACHE_NAME = 'panav-portfolio-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/favicon.ico',
+  '/vite.svg',
   '/manifest.json'
 ];
 
