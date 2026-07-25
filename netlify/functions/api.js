@@ -51,9 +51,29 @@ const app = express();
 
 // Basic Security Headers
 app.use(helmet());
-app.use(cors());
+// Strict CORS Configuration
+const allowedOrigins = ['https://www.panav.xyz', 'https://panav.xyz', 'http://localhost:5173', 'http://127.0.0.1:5173'];
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
 app.use(express.json({ limit: '10kb' })); // Limit body size to prevent payload bloat
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
+// Anti-Replay Cache (In-Memory)
+const usedCaptchas = new Set();
+
+// Memory cleanup every hour to prevent memory leaks
+setInterval(() => {
+  usedCaptchas.clear();
+  console.log('[SECURITY] Cleared Anti-Replay cache to prevent memory bloat.');
+}, 60 * 60 * 1000);
 
 // Rate Limiting: Max 5 submissions per hour per IP
 const limiter = rateLimit({
@@ -126,14 +146,22 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
   name = validator.escape(name);
   message = validator.escape(message);
 
-  try {
-    // 2. Verify Altcha payload
+    try {
+    // 2. Verify Altcha payload & Prevent Replay Attacks
+    if (usedCaptchas.has(altcha)) {
+      console.warn(`[SECURITY] REPLAY ATTACK BLOCKED from IP: ${req.ip}. Signature already used.`);
+      return res.status(400).json({ success: false, message: 'CAPTCHA already used. Please refresh the page.' });
+    }
+
     const isValid = await verifySolution(altcha, HMAC_KEY);
     
     if (!isValid) {
       console.warn(`[SECURITY] Invalid CAPTCHA payload from IP: ${req.ip}`);
       return res.status(400).json({ success: false, message: 'CAPTCHA verification failed.' });
     }
+
+    // Mark as used
+    usedCaptchas.add(altcha);
 
     // 3. Setup Nodemailer Transporter
     const transporter = nodemailer.createTransport({
