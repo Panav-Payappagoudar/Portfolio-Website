@@ -126,3 +126,55 @@ altcha-widget {
 altcha-widget:hover {
     --altcha-color-border: rgba(255, 255, 255, 0.4);
 }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Custom Cursor */
+.cursor-none, .cursor-none * {
+  cursor: none !important;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  position: fixed;
+  top: -3px;
+  left: -3px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s, background-color 0.3s;
+}
+.cursor-outline {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  position: fixed;
+  top: -15px;
+  left: -15px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s, border-color 0.3s, background-color 0.3s;
+}
+
+.cursor-dot.hovering {
+  width: 0;
+  height: 0;
+  top: 0;
+  left: 0;
+}
+.cursor-outline.hovering {
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: -20px;
+  border-color: rgba(59, 130, 246, 0.8);
+  background-color: rgba(59, 130, 246, 0.1);
+}

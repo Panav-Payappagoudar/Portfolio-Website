@@ -1,8 +1,11 @@
 import { portfolioData } from './data/portfolio.js';
+import { initNetworkBackground } from './network.js';
 import './index.css';
 
 // --- RENDER LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
+    initNetworkBackground();
+
     // 1. Populate Text
     document.getElementById('hero-bio-display').textContent = portfolioData.personalInfo.bio;
     document.getElementById('about-text-display').innerHTML = portfolioData.personalInfo.about;
@@ -50,54 +53,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Populate Projects (Bento Grid with 4-Column Puzzle Layout + Animation)
     const projContainer = document.getElementById('projects-container');
-    portfolioData.projects.forEach((proj, index) => {
-        const card = document.createElement('div');
-        
-        // --- BENTO LOGIC (4 Column Grid) ---
-        let colSpan = "md:col-span-1";
-        let rowSpan = "md:row-span-1";
-        
-        const patternIndex = index % 6;
-        if (patternIndex === 0) { // Big Feature
-            colSpan = "md:col-span-2";
-            rowSpan = "md:row-span-2";
-        } else if (patternIndex === 3) { // Wide
-            colSpan = "md:col-span-2";
-            rowSpan = "md:row-span-1";
-        } else { // Standard
-            colSpan = "md:col-span-1";
-            rowSpan = "md:row-span-1";
-        }
+    const filterBtns = document.querySelectorAll('.filter-btn');
 
-        card.className = `group bg-[#0A0A0A] border border-white/10 hover:border-brand-accent/40 hover:shadow-2xl hover:shadow-brand-accent/10 hover:scale-[1.02] p-6 rounded-2xl transition-all duration-500 flex flex-col justify-between interactable relative overflow-hidden ${colSpan} ${rowSpan} reveal-on-scroll text-left`;
-        card.style.transitionDelay = `${(index % 4) * 100}ms`;
+    const renderProjects = (filterCategory) => {
+        projContainer.innerHTML = '';
         
-        const linksHtml = `
-            <div class="flex gap-4 mt-auto pt-6 border-t border-white/5 group-hover:border-white/10 transition-colors z-20">
-                ${proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">LIVE <i data-lucide="arrow-up-right" class="w-3 h-3"></i></a>` : ''}
-                ${proj.repoUrl !== '#' ? `<a href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">CODE <i data-lucide="github" class="w-3 h-3"></i></a>` : ''}
-            </div>
-        `;
-
-        card.innerHTML = `
-            <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:translate-x-0 translate-x-2">
-                    <i data-lucide="arrow-up-right" class="w-5 h-5 text-brand-accent"></i>
-            </div>
+        const filteredProjects = portfolioData.projects.filter(proj => {
+            if (filterCategory === 'All') return true;
             
-            <div class="relative z-10 flex flex-col h-full">
-                <div class="mb-4">
-                    <h4 class="text-xl font-medium mb-2 text-white group-hover:text-brand-accent transition-colors">${proj.title}</h4>
-                    <p class="text-white/50 text-xs leading-relaxed font-light line-clamp-3">${proj.description}</p>
+            const tags = proj.tags.map(t => t.toLowerCase());
+            if (filterCategory === 'AI' && tags.some(t => ['ai', 'ml', 'tensorflow', 'pytorch', 'gemini 2.5', 'gemini', 'gans', 'cnns', 'scikit-learn', 'data processing'].includes(t))) return true;
+            if (filterCategory === 'Web3' && tags.some(t => ['blockchain', 'solidity', 'web3', 'security', 'cryptography', 'ipfs'].includes(t))) return true;
+            if (filterCategory === 'Systems' && tags.some(t => ['rust', 'systems', 'backend', 'django', 'fastapi', 'node.js', 'redis', 'postgresql', 'c++', 'embedded systems', 'robotics'].includes(t))) return true;
+            
+            return false;
+        });
+
+        filteredProjects.forEach((proj, index) => {
+            const card = document.createElement('div');
+            
+            // --- BENTO LOGIC (4 Column Grid) ---
+            let colSpan = "md:col-span-1";
+            let rowSpan = "md:row-span-1";
+            
+            const patternIndex = index % 6;
+            if (patternIndex === 0) { // Big Feature
+                colSpan = "md:col-span-2";
+                rowSpan = "md:row-span-2";
+            } else if (patternIndex === 3) { // Wide
+                colSpan = "md:col-span-2";
+                rowSpan = "md:row-span-1";
+            }
+
+            card.className = `group bg-[#0A0A0A] border border-white/10 hover:border-brand-accent/40 hover:shadow-2xl hover:shadow-brand-accent/10 hover:scale-[1.02] p-6 rounded-2xl transition-all duration-500 flex flex-col justify-between interactable relative overflow-hidden ${colSpan} ${rowSpan} text-left opacity-0 animate-fade-in`;
+            card.style.animationDelay = `${(index % 4) * 100}ms`;
+            card.style.animationFillMode = 'forwards';
+            
+            const linksHtml = `
+                <div class="flex gap-4 mt-auto pt-6 border-t border-white/5 group-hover:border-white/10 transition-colors z-20">
+                    ${proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">LIVE <i data-lucide="arrow-up-right" class="w-3 h-3"></i></a>` : ''}
+                    ${proj.repoUrl !== '#' ? `<a href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">CODE <i data-lucide="github" class="w-3 h-3"></i></a>` : ''}
                 </div>
-                <div class="flex flex-wrap gap-2 mt-auto mb-4">
-                    ${proj.tags.slice(0, 4).map(tag => `<span class="px-2.5 py-1 bg-brand-accent/10 border border-brand-accent/30 text-[10px] font-mono text-brand-accent rounded-full">${tag}</span>`).join('')}
+            `;
+
+            card.innerHTML = `
+                <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:translate-x-0 translate-x-2">
+                        <i data-lucide="arrow-up-right" class="w-5 h-5 text-brand-accent"></i>
                 </div>
-                ${linksHtml}
-            </div>
-        `;
-        projContainer.appendChild(card);
-    });
+                
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="mb-4">
+                        <h4 class="text-xl font-medium mb-2 text-white group-hover:text-brand-accent transition-colors">${proj.title}</h4>
+                        <p class="text-white/50 text-xs leading-relaxed font-light line-clamp-3">${proj.description}</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-auto mb-4">
+                        ${proj.tags.slice(0, 4).map(tag => `<span class="px-2.5 py-1 bg-brand-accent/10 border border-brand-accent/30 text-[10px] font-mono text-brand-accent rounded-full">${tag}</span>`).join('')}
+                    </div>
+                    ${linksHtml}
+                </div>
+            `;
+            projContainer.appendChild(card);
+        });
+
+        if (window.lucide) window.lucide.createIcons();
+    };
+
+    renderProjects('All');
+
+    if (filterBtns) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'border-brand-accent/50', 'bg-brand-accent/10', 'text-brand-accent');
+                    b.classList.add('border-white/10', 'bg-transparent', 'text-white/50');
+                });
+                const target = e.target;
+                target.classList.add('active', 'border-brand-accent/50', 'bg-brand-accent/10', 'text-brand-accent');
+                target.classList.remove('border-white/10', 'bg-transparent', 'text-white/50');
+                
+                renderProjects(target.getAttribute('data-filter'));
+            });
+        });
+    }
 
     // 4. Populate Achievements (Clean List Layout)
     const achContainer = document.getElementById('achievements-container');
@@ -190,6 +228,43 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal-on-scroll').forEach(el => {
         observer.observe(el);
     });
+
+    // Custom Cursor Logic
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+    let mouseX = 0, mouseY = 0;
+    let outlineX = 0, outlineY = 0;
+
+    if (cursorDot && cursorOutline && !window.matchMedia("(pointer: coarse)").matches) {
+        document.body.classList.add('cursor-none');
+        
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            
+            if (e.target.closest('a, button, input, textarea, .interactable')) {
+                cursorOutline.classList.add('hovering');
+                cursorDot.classList.add('hovering');
+            } else {
+                cursorOutline.classList.remove('hovering');
+                cursorDot.classList.remove('hovering');
+            }
+        });
+
+        const animateCursor = () => {
+            let distX = mouseX - outlineX;
+            let distY = mouseY - outlineY;
+            
+            outlineX += distX * 0.15;
+            outlineY += distY * 0.15;
+            
+            cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+            requestAnimationFrame(animateCursor);
+        };
+        animateCursor();
+    }
 });
 
 // Mobile Menu Logic
