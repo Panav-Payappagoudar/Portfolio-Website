@@ -85,7 +85,13 @@ app.get(['/api/altcha', '/altcha', '/.netlify/functions/api/altcha'], async (req
 
 // POST endpoint to handle form submission with Rate Limiting
 app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, async (req, res) => {
-  let { name, email, message, altcha } = req.body;
+  let { name, email, message, altcha, _honeypot } = req.body;
+
+  // Honeypot Security Check (Silent Drop)
+  if (_honeypot) {
+    console.warn(`[SECURITY] HONEYPOT TRIGGERED for IP: ${req.ip}. Silently dropping spam.`);
+    return res.status(200).json({ success: true, message: 'Message sent successfully!' });
+  }
 
   if (!altcha) {
     return res.status(400).json({ success: false, message: 'CAPTCHA verification missing.' });

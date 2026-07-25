@@ -10,6 +10,14 @@ const lenis = new Lenis({
   smoothWheel: true
 });
 
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.warn('SW registration failed: ', err);
+        });
+    });
+}
+
 // --- RENDER LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
     initNetworkBackground();
@@ -237,6 +245,35 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
+    // 7. Dynamic Copyright
+    const copyrightYear = document.getElementById('copyright-year');
+    if (copyrightYear) {
+        copyrightYear.textContent = `© 2024–${new Date().getFullYear()}`;
+    }
+
+    // 8. Scroll Progress Indicator
+    const scrollProgress = document.getElementById('scroll-progress');
+    if (scrollProgress && typeof lenis !== 'undefined') {
+        lenis.on('scroll', (e) => {
+            const scrollPercent = (e.scroll / e.limit) * 100;
+            scrollProgress.style.width = `${scrollPercent}%`;
+        });
+    }
+
+    // 9. Cookie Consent Logic
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptCookiesBtn = document.getElementById('accept-cookies');
+    if (cookieBanner && acceptCookiesBtn) {
+        if (!localStorage.getItem('cookieConsent')) {
+            setTimeout(() => {
+                cookieBanner.classList.remove('translate-y-full');
+            }, 1000);
+        }
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'true');
+            cookieBanner.classList.add('translate-y-full');
+        });
+    }
 
 });
 
@@ -306,6 +343,23 @@ if (window.matchMedia("(pointer: fine)").matches) {
                 cursorOutline.classList.remove('hovering');
             });
         });
+        
+        // Magnetic Buttons Logic
+        const magneticBtns = document.querySelectorAll('.btn-magnetic');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const h = rect.width / 2;
+                const v = rect.height / 2;
+                const x = e.clientX - rect.left - h;
+                const y = e.clientY - rect.top - v;
+                
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+            });
+        });
     }
 }
 
@@ -321,8 +375,8 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = 'SENDING...';
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = `<svg class="animate-spin h-5 w-5 mx-auto text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
             submitBtn.disabled = true;
 
             const formData = new FormData(contactForm);
@@ -365,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Something went wrong: ' + error.message);
             })
             .finally(() => {
-                submitBtn.innerText = originalBtnText;
+                submitBtn.innerHTML = originalBtnHtml;
                 submitBtn.disabled = false;
             });
         });
