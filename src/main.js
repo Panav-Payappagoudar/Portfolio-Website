@@ -1,6 +1,14 @@
 import { portfolioData } from './data/portfolio.js';
 import { initNetworkBackground } from './network.js';
+import Lenis from 'lenis';
 import './index.css';
+
+// Initialize Lenis for buttery smooth scrolling
+// eslint-disable-next-line no-unused-vars
+const lenis = new Lenis({
+  autoRaf: true,
+  smoothWheel: true
+});
 
 // --- RENDER LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
