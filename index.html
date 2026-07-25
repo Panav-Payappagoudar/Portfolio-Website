@@ -442,6 +442,23 @@
     </footer>
 
     <!-- Scripts -->
+    <!-- Command Palette Modal -->
+    <div id="cmd-palette-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[99999] opacity-0 pointer-events-none transition-opacity duration-300 flex items-start justify-center pt-[15vh]">
+        <div id="cmd-palette" class="bg-[#111111] border border-white/10 rounded-2xl w-full max-w-xl shadow-2xl transform scale-95 transition-transform duration-300 overflow-hidden flex flex-col">
+            <div class="flex items-center px-4 py-3 border-b border-white/10">
+                <i data-lucide="search" class="w-5 h-5 text-white/50 mr-3 shrink-0"></i>
+                <input type="text" id="cmd-input" class="w-full bg-transparent text-white text-lg focus:outline-none placeholder-white/30" placeholder="Type a command or search..." autocomplete="off">
+                <div class="flex items-center gap-1 text-[10px] font-mono text-white/30 ml-2">
+                    <span class="px-1.5 py-0.5 border border-white/10 rounded">ESC</span>
+                    <span>to close</span>
+                </div>
+            </div>
+            <div id="cmd-results" class="max-h-[300px] overflow-y-auto p-2 scrollbar-hide">
+                <!-- Results injected via JS -->
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="/src/main.js"></script>
     
     <!-- Success Modal -->

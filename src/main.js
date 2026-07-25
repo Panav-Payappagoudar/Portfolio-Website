@@ -112,23 +112,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
+            const videoHtml = proj.videoUrl ? `
+                <video src="${proj.videoUrl}" muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none z-0"></video>
+            ` : '';
+
             card.innerHTML = `
-                <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:translate-x-0 translate-x-2">
+                <div class="absolute inset-0 bg-gradient-to-br from-black/80 via-[#0A0A0A]/90 to-transparent z-10 pointer-events-none"></div>
+                ${videoHtml}
+                <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:translate-x-0 translate-x-2 z-20">
                         <i data-lucide="arrow-up-right" class="w-5 h-5 text-brand-accent"></i>
                 </div>
                 
-                <div class="relative z-10 flex flex-col h-full">
+                <div class="relative z-20 flex flex-col h-full">
                     <div class="mb-4">
-                        <h4 class="text-xl font-medium mb-2 text-white group-hover:text-brand-accent transition-colors">${proj.title}</h4>
-                        <p class="text-white/50 text-xs leading-relaxed font-light line-clamp-3">${proj.description}</p>
+                        <h4 class="text-xl font-medium mb-2 text-white group-hover:text-brand-accent transition-colors drop-shadow-md">${proj.title}</h4>
+                        <p class="text-white/70 text-xs leading-relaxed font-light line-clamp-3 drop-shadow">${proj.description}</p>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-auto mb-4">
-                        ${proj.tags.slice(0, 4).map(tag => `<span class="px-2.5 py-1 bg-brand-accent/10 border border-brand-accent/30 text-[10px] font-mono text-brand-accent rounded-full">${tag}</span>`).join('')}
+                        ${proj.tags.slice(0, 4).map(tag => `<span class="px-2.5 py-1 bg-black/50 backdrop-blur border border-brand-accent/30 text-[10px] font-mono text-brand-accent rounded-full">${tag}</span>`).join('')}
                     </div>
                     ${linksHtml}
                 </div>
             `;
+            
+            if (proj.videoUrl) {
+                const videoEl = card.querySelector('video');
+                card.addEventListener('mouseenter', () => {
+                    if (videoEl) videoEl.play().catch(e => console.warn('Video play blocked:', e));
+                });
+                card.addEventListener('mouseleave', () => {
+                    if (videoEl) {
+                        videoEl.pause();
+                        videoEl.currentTime = 0;
+                    }
+                });
+            }
+
             projContainer.appendChild(card);
         });
 
@@ -432,4 +452,128 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     closeBtns.forEach(btn => btn?.addEventListener('click', closeModal));
+});
+
+// --- COMMAND PALETTE LOGIC ---
+document.addEventListener('DOMContentLoaded', () => {
+    const paletteOverlay = document.getElementById('cmd-palette-overlay');
+    const palette = document.getElementById('cmd-palette');
+    const input = document.getElementById('cmd-input');
+    const resultsContainer = document.getElementById('cmd-results');
+    
+    if (!paletteOverlay || !input) return;
+
+    let isOpen = false;
+    let selectedIndex = 0;
+
+    const commands = [
+        { id: 'home', title: 'Go to Home', icon: 'home', action: () => { if(typeof lenis !== 'undefined') lenis.scrollTo(0); else window.scrollTo(0,0); } },
+        { id: 'projects', title: 'Go to Projects', icon: 'code', action: () => { const el = document.getElementById('projects'); if(el && typeof lenis !== 'undefined') lenis.scrollTo(el); } },
+        { id: 'experience', title: 'Go to Experience', icon: 'briefcase', action: () => { const el = document.getElementById('experience'); if(el && typeof lenis !== 'undefined') lenis.scrollTo(el); } },
+        { id: 'contact', title: 'Go to Contact', icon: 'mail', action: () => { const el = document.getElementById('contact'); if(el && typeof lenis !== 'undefined') lenis.scrollTo(el); } },
+        { id: 'github', title: 'Open GitHub', icon: 'github', action: () => window.open('https://github.com/Panav-Payappagoudar', '_blank') },
+        { id: 'linkedin', title: 'Open LinkedIn', icon: 'linkedin', action: () => window.open('https://linkedin.com/in/panav-payappagoudar', '_blank') },
+        { id: 'email', title: 'Copy Email Address', icon: 'copy', action: () => {
+            navigator.clipboard.writeText('panav.p@proton.me');
+            alert('Email copied to clipboard!');
+        }}
+    ];
+
+    let filteredCommands = [...commands];
+
+    const togglePalette = (force) => {
+        isOpen = force !== undefined ? force : !isOpen;
+        if (isOpen) {
+            paletteOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            palette.classList.remove('scale-95');
+            palette.classList.add('scale-100');
+            input.value = '';
+            filterResults('');
+            setTimeout(() => input.focus(), 100);
+        } else {
+            paletteOverlay.classList.add('opacity-0', 'pointer-events-none');
+            palette.classList.remove('scale-100');
+            palette.classList.add('scale-95');
+            input.blur();
+        }
+    };
+
+    const renderResults = () => {
+        resultsContainer.innerHTML = '';
+        if (filteredCommands.length === 0) {
+            resultsContainer.innerHTML = '<div class="px-4 py-3 text-sm text-white/50 text-center font-mono">No commands found.</div>';
+            return;
+        }
+
+        filteredCommands.forEach((cmd, index) => {
+            const isSelected = index === selectedIndex;
+            const el = document.createElement('div');
+            el.className = `px-4 py-3 flex items-center rounded-lg cursor-pointer transition-colors ${isSelected ? 'bg-brand-accent/20 text-brand-accent' : 'text-white/70 hover:bg-white/5 hover:text-white'}`;
+            el.innerHTML = `
+                <i data-lucide="${cmd.icon}" class="w-4 h-4 mr-3 ${isSelected ? 'text-brand-accent' : 'text-white/50'}"></i>
+                <span class="text-sm font-medium">${cmd.title}</span>
+                ${isSelected ? '<span class="ml-auto text-[10px] font-mono opacity-50">ENTER</span>' : ''}
+            `;
+            
+            el.addEventListener('click', () => {
+                cmd.action();
+                togglePalette(false);
+            });
+            
+            el.addEventListener('mousemove', () => {
+                if (selectedIndex !== index) {
+                    selectedIndex = index;
+                    renderResults();
+                }
+            });
+
+            resultsContainer.appendChild(el);
+        });
+
+        if (window.lucide) window.lucide.createIcons();
+    };
+
+    const filterResults = (query) => {
+        const q = query.toLowerCase();
+        filteredCommands = commands.filter(cmd => cmd.title.toLowerCase().includes(q) || cmd.id.includes(q));
+        selectedIndex = 0;
+        renderResults();
+    };
+
+    input.addEventListener('input', (e) => {
+        filterResults(e.target.value);
+    });
+
+    window.addEventListener('keydown', (e) => {
+        // Cmd+K or Ctrl+K
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            togglePalette();
+        }
+        
+        if (!isOpen) return;
+
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            togglePalette(false);
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            selectedIndex = (selectedIndex + 1) % filteredCommands.length;
+            renderResults();
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            selectedIndex = (selectedIndex - 1 + filteredCommands.length) % filteredCommands.length;
+            renderResults();
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (filteredCommands[selectedIndex]) {
+                filteredCommands[selectedIndex].action();
+                togglePalette(false);
+            }
+        }
+    });
+
+    paletteOverlay.addEventListener('click', (e) => {
+        if (e.target === paletteOverlay) togglePalette(false);
+    });
 });
