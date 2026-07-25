@@ -6,8 +6,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Populate Text
     document.getElementById('hero-bio-display').textContent = portfolioData.personalInfo.bio;
     document.getElementById('about-text-display').innerHTML = portfolioData.personalInfo.about;
-    document.getElementById('email-link').innerHTML = `<i data-lucide="mail" class="w-6 h-6 shrink-0"></i>${portfolioData.personalInfo.email}`;
-    document.getElementById('email-link').href = `mailto:${portfolioData.personalInfo.email}`;
+    const emailLink = document.getElementById('email-link');
+    emailLink.innerHTML = `<i data-lucide="mail" class="w-6 h-6 shrink-0"></i><span>${portfolioData.personalInfo.email}</span>`;
+    emailLink.removeAttribute('href');
+    emailLink.style.cursor = 'pointer';
+    emailLink.title = "Click to copy email";
+    
+    emailLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText(portfolioData.personalInfo.email).then(() => {
+            const originalHtml = emailLink.innerHTML;
+            emailLink.innerHTML = `<i data-lucide="check" class="w-6 h-6 shrink-0 text-green-400"></i><span class="text-green-400 font-medium">Copied to clipboard!</span>`;
+            if (window.lucide) window.lucide.createIcons();
+            setTimeout(() => {
+                emailLink.innerHTML = originalHtml;
+                if (window.lucide) window.lucide.createIcons();
+            }, 2000);
+        });
+    });
 
     // 2. Populate Experience (Clean List Layout + Scroll Animation)
     const expContainer = document.getElementById('experience-container');
@@ -74,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h4 class="text-xl font-medium mb-2 text-white group-hover:text-brand-accent transition-colors">${proj.title}</h4>
                     <p class="text-white/50 text-xs leading-relaxed font-light line-clamp-3">${proj.description}</p>
                 </div>
-                <div class="flex flex-wrap gap-1.5 mt-auto mb-4">
-                    ${proj.tags.slice(0, 4).map(tag => `<span class="px-2 py-0.5 bg-white/[0.03] border border-white/5 text-[9px] font-mono text-white/60 rounded-full">${tag}</span>`).join('')}
+                <div class="flex flex-wrap gap-2 mt-auto mb-4">
+                    ${proj.tags.slice(0, 4).map(tag => `<span class="px-2.5 py-1 bg-brand-accent/10 border border-brand-accent/30 text-[10px] font-mono text-brand-accent rounded-full">${tag}</span>`).join('')}
                 </div>
                 ${linksHtml}
             </div>
