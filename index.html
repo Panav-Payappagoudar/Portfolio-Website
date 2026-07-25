@@ -39,16 +39,34 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Panav Payappagoudar",
-      "url": "https://panav.xyz",
-      "jobTitle": "Software Developer",
-      "alumniOf": "VIT-AP University",
-      "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Cybersecurity", "Web3", "Full-Stack Development"],
-      "sameAs": [
-        "https://github.com/Panav-Payappagoudar",
-        "https://linkedin.com/in/panav-payappagoudar",
-        "https://www.instagram.com/panav.payappagoudar/"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://panav.xyz/#person",
+          "name": "Panav Payappagoudar",
+          "url": "https://panav.xyz",
+          "jobTitle": "Software Developer",
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "VIT-AP University"
+          },
+          "description": "Building secure, scalable systems at the intersection of AI/ML, Cybersecurity, and Web3.",
+          "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Cybersecurity", "Web3", "Full-Stack Development", "Cryptography"],
+          "sameAs": [
+            "https://github.com/Panav-Payappagoudar",
+            "https://linkedin.com/in/panav-payappagoudar",
+            "https://www.instagram.com/panav.payappagoudar/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://panav.xyz/#website",
+          "url": "https://panav.xyz",
+          "name": "Panav Payappagoudar | Portfolio",
+          "publisher": {
+            "@id": "https://panav.xyz/#person"
+          }
+        }
       ]
     }
     </script>
@@ -172,7 +190,7 @@
                 </h1>
                 
                 <p id="hero-bio-display" class="reveal-on-scroll max-w-xl mx-auto text-lg text-white/50 font-light mb-12 leading-relaxed translate-y-4 px-4" style="transition-delay: 200ms;">
-                    <!-- Injected via JS -->
+                    <!-- INJECT_HERO_BIO -->
                 </p>
 
                 <div class="reveal-on-scroll flex flex-col md:flex-row gap-6 justify-center items-center translate-y-4 px-4" style="transition-delay: 300ms;">
@@ -199,7 +217,7 @@
             <div class="max-w-5xl mx-auto px-6 relative z-10">
                 <h2 class="reveal-on-scroll font-mono text-[10px] text-brand-accent tracking-[0.2em] mb-8 uppercase opacity-80 text-center md:text-left">About Me</h2>
                 <p id="about-text-display" class="reveal-on-scroll text-2xl md:text-3xl lg:text-4xl font-light leading-[1.6] text-white/80 text-center md:text-left" style="transition-delay: 100ms;">
-                    <!-- Injected via JS -->
+                    <!-- INJECT_ABOUT_TEXT -->
                 </p>
             </div>
         </section>
@@ -291,7 +309,7 @@
                 </div>
                 
                 <div id="experience-container" class="space-y-0">
-                    <!-- JS will inject experience here -->
+                    <!-- INJECT_EXPERIENCE -->
                 </div>
             </div>
         </section>
@@ -316,7 +334,7 @@
                 </div>
 
                 <div id="projects-container" class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(250px,auto)] grid-flow-row-dense">
-                    <!-- JS will inject projects here -->
+                    <!-- INJECT_PROJECTS -->
                 </div>
             </div>
         </section>
@@ -332,7 +350,7 @@
                 </div>
                 
                 <div id="achievements-container" class="space-y-0">
-                    <!-- JS will inject achievements here -->
+                    <!-- INJECT_ACHIEVEMENTS -->
                 </div>
             </div>
         </section>
@@ -348,7 +366,7 @@
                 </div>
                 
                 <div id="education-container" class="space-y-12 relative pl-8 border-l border-white/10 ml-4 md:ml-0">
-                    <!-- JS will inject education -->
+                    <!-- INJECT_EDUCATION -->
                 </div>
             </div>
         </section>
@@ -364,7 +382,7 @@
                 </div>
 
                 <div id="skills-list-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- JS will inject skills -->
+                    <!-- INJECT_SKILLS -->
                 </div>
             </div>
         </section>

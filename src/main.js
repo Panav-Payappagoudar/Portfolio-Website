@@ -22,9 +22,7 @@ if ('serviceWorker' in navigator) {
 document.addEventListener('DOMContentLoaded', () => {
     initNetworkBackground();
 
-    // 1. Populate Text
-    document.getElementById('hero-bio-display').textContent = portfolioData.personalInfo.bio;
-    document.getElementById('about-text-display').innerHTML = portfolioData.personalInfo.about;
+    // 1. Setup Email Copy
     const emailLink = document.getElementById('email-link');
     emailLink.innerHTML = `<i data-lucide="mail" class="w-6 h-6 shrink-0"></i><span>${portfolioData.personalInfo.email}</span>`;
     emailLink.removeAttribute('href');
@@ -45,118 +43,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. Populate Experience (Clean List Layout + Scroll Animation)
-    const expContainer = document.getElementById('experience-container');
-    portfolioData.experience.forEach((exp, index) => {
-        if (exp.role.includes("Founder")) return; 
-        
-        const item = document.createElement('div');
-        item.className = 'group grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4 md:gap-10 py-8 border-b border-white/5 last:border-0 hover:bg-white/[0.05] hover:scale-[1.01] transition-all duration-300 px-4 -mx-4 rounded-xl interactable reveal-on-scroll text-left';
-        item.style.transitionDelay = `${index * 100}ms`;
-        item.innerHTML = `
-            <div class="flex-shrink-0">
-                    <span class="font-mono text-xs text-white/40 group-hover:text-brand-accent transition-colors">${exp.date}</span>
-            </div>
-            <div class="overflow-hidden">
-                <div class="flex flex-col mb-2">
-                        <h4 class="text-lg font-medium text-white">${exp.role}</h4>
-                        <span class="text-sm font-light text-white/50">${exp.company}</span>
-                </div>
-                <p class="text-white/60 leading-relaxed text-sm font-light break-words w-full">${exp.description}</p>
-            </div>
-        `;
-        expContainer.appendChild(item);
-    });
-
-    // 3. Populate Projects (Bento Grid with 4-Column Puzzle Layout + Animation)
+    // 3. Project Interactivity (Filters & Video Hover)
     const projContainer = document.getElementById('projects-container');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
-    const renderProjects = (filterCategory) => {
-        projContainer.innerHTML = '';
-        
-        const filteredProjects = portfolioData.projects.filter(proj => {
-            if (filterCategory === 'All') return true;
-            
-            const tags = proj.tags.map(t => t.toLowerCase());
-            if (filterCategory === 'AI' && tags.some(t => ['ai', 'ml', 'tensorflow', 'pytorch', 'gemini 2.5', 'gemini', 'gans', 'cnns', 'scikit-learn', 'data processing'].includes(t))) return true;
-            if (filterCategory === 'Web3' && tags.some(t => ['blockchain', 'solidity', 'web3', 'security', 'cryptography', 'ipfs'].includes(t))) return true;
-            if (filterCategory === 'Systems' && tags.some(t => ['rust', 'systems', 'backend', 'django', 'fastapi', 'node.js', 'redis', 'postgresql', 'c++', 'embedded systems', 'robotics'].includes(t))) return true;
-            
-            return false;
-        });
-
-        filteredProjects.forEach((proj, index) => {
-            const card = document.createElement('div');
-            
-            // --- BENTO LOGIC (4 Column Grid) ---
-            let colSpan = "md:col-span-1";
-            let rowSpan = "md:row-span-1";
-            
-            const patternIndex = index % 6;
-            if (patternIndex === 0) { // Big Feature
-                colSpan = "md:col-span-2";
-                rowSpan = "md:row-span-2";
-            } else if (patternIndex === 3) { // Wide
-                colSpan = "md:col-span-2";
-                rowSpan = "md:row-span-1";
-            }
-
-            card.className = `group bg-[#0A0A0A] border border-white/10 hover:border-brand-accent/40 hover:shadow-2xl hover:shadow-brand-accent/10 hover:scale-[1.02] p-6 rounded-2xl transition-all duration-500 flex flex-col justify-between interactable relative overflow-hidden ${colSpan} ${rowSpan} text-left opacity-0 animate-fade-in`;
-            card.style.animationDelay = `${(index % 4) * 100}ms`;
-            card.style.animationFillMode = 'forwards';
-            
-            const linksHtml = `
-                <div class="flex gap-4 mt-auto pt-6 border-t border-white/5 group-hover:border-white/10 transition-colors z-20">
-                    ${proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">LIVE <i data-lucide="arrow-up-right" class="w-3 h-3"></i></a>` : ''}
-                    ${proj.repoUrl !== '#' ? `<a href="${proj.repoUrl}" target="_blank" rel="noopener noreferrer" class="text-[10px] font-mono tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-1.5">CODE <i data-lucide="github" class="w-3 h-3"></i></a>` : ''}
-                </div>
-            `;
-
-            const videoHtml = proj.videoUrl ? `
-                <video src="${proj.videoUrl}" muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none z-0"></video>
-            ` : '';
-
-            card.innerHTML = `
-                <div class="absolute inset-0 bg-gradient-to-br from-black/80 via-[#0A0A0A]/90 to-transparent z-10 pointer-events-none"></div>
-                ${videoHtml}
-                <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
-                <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:translate-x-0 translate-x-2 z-20">
-                        <i data-lucide="arrow-up-right" class="w-5 h-5 text-brand-accent"></i>
-                </div>
-                
-                <div class="relative z-20 flex flex-col h-full">
-                    <div class="mb-4">
-                        <h4 class="text-xl font-medium mb-2 text-white group-hover:text-brand-accent transition-colors drop-shadow-md">${proj.title}</h4>
-                        <p class="text-white/70 text-xs leading-relaxed font-light line-clamp-3 drop-shadow">${proj.description}</p>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mt-auto mb-4">
-                        ${proj.tags.slice(0, 4).map(tag => `<span class="px-2.5 py-1 bg-black/50 backdrop-blur border border-brand-accent/30 text-[10px] font-mono text-brand-accent rounded-full">${tag}</span>`).join('')}
-                    </div>
-                    ${linksHtml}
-                </div>
-            `;
-            
-            if (proj.videoUrl) {
-                const videoEl = card.querySelector('video');
+    // Attach video hover events
+    const attachVideoEvents = () => {
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            const videoEl = card.querySelector('video');
+            if (videoEl) {
                 card.addEventListener('mouseenter', () => {
-                    if (videoEl) videoEl.play().catch(e => console.warn('Video play blocked:', e));
+                    videoEl.play().catch(e => console.warn('Video play blocked:', e));
                 });
                 card.addEventListener('mouseleave', () => {
-                    if (videoEl) {
-                        videoEl.pause();
-                        videoEl.currentTime = 0;
-                    }
+                    videoEl.pause();
+                    videoEl.currentTime = 0;
                 });
             }
-
-            projContainer.appendChild(card);
         });
-
-        if (window.lucide) window.lucide.createIcons();
     };
 
-    renderProjects('All');
+    const filterProjects = (filterCategory) => {
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach((card, index) => {
+            const category = card.getAttribute('data-category');
+            
+            let shouldShow = false;
+            if (filterCategory === 'All') {
+                shouldShow = true;
+            } else if (category === filterCategory) {
+                shouldShow = true;
+            } else if (filterCategory === 'AI' && category === 'AI & Data') {
+                shouldShow = true;
+            } else if (filterCategory === 'Web3' && category === 'Web3 & Security') {
+                shouldShow = true;
+            } else if (filterCategory === 'Systems' && category === 'Systems & Backend') {
+                shouldShow = true;
+            }
+
+            if (shouldShow) {
+                card.style.display = 'flex';
+                card.style.animationDelay = `${(index % 4) * 100}ms`;
+                card.classList.add('animate-fade-in');
+            } else {
+                card.style.display = 'none';
+                card.classList.remove('animate-fade-in');
+            }
+        });
+    };
+
+    attachVideoEvents();
 
     if (filterBtns) {
         filterBtns.forEach(btn => {
@@ -169,72 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 target.classList.add('active', 'border-brand-accent/50', 'bg-brand-accent/10', 'text-brand-accent');
                 target.classList.remove('border-white/10', 'bg-transparent', 'text-white/50');
                 
-                renderProjects(target.getAttribute('data-filter'));
+                filterProjects(target.getAttribute('data-filter'));
             });
         });
     }
 
-    // 4. Populate Achievements (Clean List Layout)
-    const achContainer = document.getElementById('achievements-container');
-    if (portfolioData.achievements) {
-        portfolioData.achievements.forEach((ach, index) => {
-            const item = document.createElement('div');
-            item.className = 'group grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4 md:gap-10 py-8 border-b border-white/5 last:border-0 hover:bg-white/[0.05] hover:scale-[1.01] transition-all duration-300 px-4 -mx-4 rounded-xl interactable reveal-on-scroll text-left';
-            item.style.transitionDelay = `${index * 100}ms`;
-            item.innerHTML = `
-                <div class="flex-shrink-0">
-                        <span class="font-mono text-xs text-brand-accent transition-colors">${ach.date}</span>
-                </div>
-                <div class="overflow-hidden">
-                    <div class="flex flex-col mb-2">
-                            <h4 class="text-lg font-medium text-white">${ach.title}</h4>
-                            <span class="text-sm font-light text-white/50">${ach.organization}</span>
-                    </div>
-                    <p class="text-white/60 leading-relaxed text-sm font-light break-words w-full">${ach.description}</p>
-                </div>
-            `;
-            achContainer.appendChild(item);
-        });
-    }
 
-    // 5. Populate Education (Vertical Timeline Style + Animation)
-    const eduContainer = document.getElementById('education-container');
-    portfolioData.education.forEach((edu, index) => {
-        const item = document.createElement('div');
-        item.className = "relative pl-8 reveal-on-scroll text-left";
-        item.style.transitionDelay = `${index * 200}ms`;
-        item.innerHTML = `
-            <div class="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-brand-accent rounded-full border-2 border-black"></div>
-            <div class="flex flex-col pb-10 border-l border-white/5 last:border-0 last:pb-0 pl-6 -ml-6">
-                <span class="text-2xl text-white font-light mb-1">${edu.institution}</span>
-                <span class="text-brand-accent font-mono text-xs uppercase tracking-wider mb-2">${edu.degree}</span>
-                <div class="flex justify-between items-center text-white/40 text-sm font-light mt-2">
-                    <span>${edu.date}</span>
-                </div>
-                <span class="text-white/30 text-xs mt-2 font-mono leading-relaxed">${edu.details}</span>
-            </div>
-        `;
-        eduContainer.appendChild(item);
-    });
-
-    // 5. Populate Skills (Professional Grid List + Animation)
-    const skillsContainer = document.getElementById('skills-list-container');
-    portfolioData.skills.forEach((cat, index) => {
-        const categoryBlock = document.createElement('div');
-        categoryBlock.className = "bg-[#050505] p-6 rounded-xl border border-white/5 hover:border-white/10 transition-colors reveal-on-scroll text-left";
-        categoryBlock.style.transitionDelay = `${index * 100}ms`;
-        categoryBlock.innerHTML = `
-            <div class="flex items-center gap-3 mb-6">
-                <h4 class="font-mono text-xs text-brand-accent uppercase tracking-widest">${cat.category}</h4>
-            </div>
-            <div class="flex flex-wrap gap-2">
-                ${cat.items.map(skill => 
-                    `<span class="border border-white/10 bg-white/[0.02] hover:bg-brand-accent/10 hover:border-brand-accent/50 hover:text-white hover:scale-110 hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300 ease-out px-3 py-1.5 text-xs sm:text-sm text-white/70 rounded-md cursor-default inline-block">${skill}</span>`
-                ).join('')}
-            </div>
-        `;
-        skillsContainer.appendChild(categoryBlock);
-    });
 
     // 6. Socials Footer
     const socialFooter = document.getElementById('socials-footer-container');
