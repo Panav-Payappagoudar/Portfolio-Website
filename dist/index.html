@@ -55,6 +55,7 @@
     <!-- Tailwind CSS loaded via Vite -->
     
     <!-- Google Fonts: Inter (Sans) and JetBrains Mono (Mono) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons (Deferred to unblock parsing) -->
@@ -63,26 +64,26 @@
         /* Base Styles that must load immediately to prevent FOUC before Vite injects the main CSS */
         body { background-color: #000000; color: #ffffff; }
     </style>
-  <script type="module" crossorigin src="/assets/index-IaNFHEZn.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DuxxGkm2.css">
+  <script type="module" crossorigin src="/assets/index-CaXuLFfp.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B5axNAn2.css">
 </head>
 <body class="antialiased selection:bg-brand-accent selection:text-white">
 
     <!-- Interactive Spotlight -->
-    <div id="spotlight" class="fixed inset-0 z-0 pointer-events-none opacity-0 transition-opacity duration-700" style="background: radial-gradient(circle 800px at 50% 50%, rgba(59, 130, 246, 0.08), transparent 40%); mix-blend-mode: screen;"></div>
+    <div id="spotlight" class="fixed inset-0 z-0 pointer-events-none opacity-0 transition-opacity duration-700" style="background: radial-gradient(circle 800px at 50% 50%, rgba(59, 130, 246, 0.08), transparent 40%); mix-blend-mode: screen;" aria-hidden="true"></div>
 
     <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
 
     <!-- Noise Texture Overlay (Global) -->
-    <div class="noise-overlay"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="font-mono text-xs sm:text-sm tracking-[0.05em] sm:tracking-[0.1em] uppercase hover:text-white/70 transition-colors z-50 relative interactable truncate max-w-[200px] sm:max-w-none">
-                PANAV_PAYAPPAGOUDAR<span class="text-brand-accent animate-pulse">_</span>
+            <a href="#" aria-label="Back to top" class="font-mono text-xs sm:text-sm tracking-[0.05em] sm:tracking-[0.1em] uppercase hover:text-white/70 transition-colors z-50 relative interactable truncate max-w-[200px] sm:max-w-none">
+                PANAV_PAYAPPAGOUDAR<span class="text-brand-accent animate-pulse" aria-hidden="true">_</span>
             </a>
 
             <!-- Desktop Menu -->
@@ -105,7 +106,7 @@
         </div>
         
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col justify-start items-center xl:hidden overflow-y-auto w-full h-[100dvh]">
+        <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] transform -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col justify-start items-center xl:hidden overflow-y-auto w-full h-[100dvh]">
             <div class="w-full flex justify-end p-6 shrink-0">
                 <button id="close-menu" class="text-white/60 hover:text-white interactable focus:outline-none p-2" aria-label="Close Menu">
                     <i data-lucide="x" class="w-8 h-8"></i>
@@ -136,8 +137,8 @@
                     </div>
                 </div>
                 
-                <h1 class="reveal-on-scroll text-5xl md:text-7xl lg:text-9xl font-medium tracking-tighter mb-8 text-balance translate-y-4" style="transition-delay: 100ms;">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-brand-accent animate-gradient-x inline-block">Secure Systems.</span><br>
+                <h1 class="reveal-on-scroll text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter mb-8 text-balance translate-y-4 px-2" style="transition-delay: 100ms;">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-brand-accent animate-gradient-x inline-block pb-2">Secure Systems.</span><br>
                     <span class="text-white/30">Scalable AI.</span>
                 </h1>
                 
@@ -156,7 +157,7 @@
                 </div>
             </div>
 
-            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
+            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-30" aria-hidden="true">
                 <i data-lucide="arrow-down" class="w-5 h-5"></i>
             </div>
         </header>
@@ -281,7 +282,7 @@
                     </div>
                 </div>
 
-                <div id="projects-container" class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(250px,auto)]">
+                <div id="projects-container" class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(250px,auto)] grid-flow-row-dense">
                     <!-- JS will inject projects here -->
                 </div>
             </div>
@@ -362,13 +363,17 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-16 lg:gap-32 items-center text-center md:text-left">
                 <div class="flex flex-col items-center md:items-start">
-                    <h2 class="reveal-on-scroll text-6xl md:text-8xl font-medium tracking-tighter mb-8">Let's Connect.</h2>
+                    <h2 class="reveal-on-scroll text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter mb-8">Let's Connect.</h2>
                     <p class="reveal-on-scroll text-white/50 mb-10 max-w-md text-lg font-light" style="transition-delay: 100ms;">
                         Have a project in mind or just want to connect? Feel free to reach out. Open for collaborations.
                     </p>
                     <a id="email-link" href="#" class="reveal-on-scroll interactable inline-flex items-center gap-3 text-xl md:text-2xl font-light hover:text-brand-accent transition-colors border-b border-transparent hover:border-brand-accent pb-1 break-all" style="transition-delay: 200ms;">
                         <i data-lucide="mail" class="w-6 h-6 shrink-0"></i>
                         <!-- Email injected -->
+                    </a>
+                    <a href="https://cal.com/panav-payappagoudar/consulting" target="_blank" rel="noopener noreferrer" class="reveal-on-scroll interactable inline-flex items-center gap-3 text-xl md:text-2xl font-light hover:text-brand-accent transition-colors border-b border-transparent hover:border-brand-accent pb-1 break-all mt-4" style="transition-delay: 250ms;">
+                        <i data-lucide="calendar" class="w-6 h-6 shrink-0"></i>
+                        Schedule a Call
                     </a>
                 </div>
                 
@@ -386,14 +391,17 @@
                             <label class="block font-mono text-[10px] uppercase tracking-widest text-white/30 mb-2 group-hover:text-white/60 transition-colors">Message</label>
                             <textarea rows="3" name="message" required class="interactable w-full bg-transparent border-b border-white/20 py-4 text-white placeholder-white/10 focus:outline-none focus:border-white transition-colors resize-none" placeholder="Tell me about your project..."></textarea>
                         </div>
-                        <div class="group reveal-on-scroll flex items-start gap-3 mt-4 mb-4" style="transition-delay: 550ms;">
-                            <input type="checkbox" id="consent" name="consent" required class="mt-1 bg-transparent border border-white/20 checked:bg-white checked:border-white transition-colors cursor-pointer">
-                            <label for="consent" class="font-mono text-[10px] uppercase tracking-wider text-white/50 leading-relaxed cursor-pointer select-none">
+                        <div class="group reveal-on-scroll flex items-start gap-4 mt-4 mb-6" style="transition-delay: 550ms;">
+                            <div class="relative flex items-center justify-center shrink-0 mt-0.5">
+                                <input type="checkbox" id="consent" name="consent" required class="peer appearance-none w-5 h-5 border border-white/20 bg-white/5 rounded-[4px] checked:bg-brand-accent checked:border-brand-accent hover:border-white/40 hover:bg-white/10 transition-all duration-300 cursor-pointer shadow-sm">
+                                <i data-lucide="check" class="absolute w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none"></i>
+                            </div>
+                            <label for="consent" class="font-mono text-[10px] uppercase tracking-wider text-white/50 leading-relaxed cursor-pointer select-none group-hover:text-white/70 transition-colors">
                                 I consent to my submitted data being collected and stored for communication purposes.
                             </label>
                         </div>
                         <script async defer src="https://cdn.jsdelivr.net/npm/altcha/dist/altcha.min.js" type="module"></script>
-                        <altcha-widget challengeurl="/api/altcha" hidefooter hide-logo class="mb-4" style="--altcha-max-width: 100%"></altcha-widget>
+                        <altcha-widget challengeurl="/api/altcha" hidefooter hidelogo class="mb-4" style="--altcha-max-width: 100%"></altcha-widget>
                         <button type="submit" id="submit-btn" class="reveal-on-scroll interactable w-full py-4 bg-white text-black font-medium tracking-wide hover:bg-gray-200 transition-colors mt-4" style="transition-delay: 600ms;">SEND MESSAGE</button>
                     </form>
                 </div>
@@ -422,17 +430,31 @@
     <!-- Scripts -->
     
     <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 md:p-12 rounded-2xl max-w-md w-[90%] text-center transform scale-95 transition-transform duration-300 shadow-2xl relative" id="success-modal-content">
-            <button id="close-modal-btn" class="absolute top-4 right-4 text-white/50 hover:text-white transition-colors interactable">
-                <i data-lucide="x" class="w-6 h-6"></i>
+    <div id="success-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="bg-white/5 backdrop-blur-2xl border border-white/10 p-10 md:p-14 rounded-3xl max-w-md w-[90%] text-center transform scale-95 transition-transform duration-500 shadow-[0_0_80px_rgba(59,130,246,0.15)] relative overflow-hidden group" id="success-modal-content">
+            
+            <!-- Ambient Glow -->
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-accent/30 rounded-full blur-[60px] opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-brand-accent/20 rounded-full blur-[60px] opacity-50 pointer-events-none"></div>
+            
+            <button id="close-modal-btn" aria-label="Close success modal" class="absolute top-6 right-6 text-white/40 hover:text-white hover:rotate-90 transition-all duration-300 interactable z-10">
+                <i data-lucide="x" class="w-6 h-6" aria-hidden="true"></i>
             </button>
-            <div class="w-16 h-16 bg-brand-accent/20 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-6">
-                <i data-lucide="check" class="w-8 h-8"></i>
+            
+            <div class="relative z-10">
+                <div class="w-20 h-20 border border-brand-accent/30 bg-brand-accent/10 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+                    <i data-lucide="check-circle-2" class="w-10 h-10 stroke-[1.5]"></i>
+                </div>
+                
+                <h3 id="modal-title" class="text-3xl font-medium tracking-tight text-white mb-4">Message Received</h3>
+                <p class="text-white/60 font-light leading-relaxed mb-10 text-sm">
+                    Your transmission has been securely routed to my inbox. I will review it and get back to you shortly.
+                </p>
+                
+                <button id="close-modal-btn-2" class="w-full py-4 border border-white/20 hover:border-brand-accent hover:bg-brand-accent/10 hover:text-brand-accent text-white font-mono tracking-[0.2em] text-xs uppercase transition-all duration-300 rounded-xl interactable">
+                    Return to site
+                </button>
             </div>
-            <h3 class="text-2xl font-medium text-white mb-2">Message Sent!</h3>
-            <p class="text-white/60 font-light mb-8">Thank you for reaching out. I'll get back to you as soon as possible.</p>
-            <button id="close-modal-btn-2" class="w-full py-3 bg-white text-black font-medium tracking-wide hover:bg-gray-200 transition-colors rounded-lg interactable">CLOSE</button>
         </div>
     </div>
 </body>

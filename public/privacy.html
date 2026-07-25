@@ -1,101 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | Panav Payappagoudar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for static public pages) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            accent: '#3b82f6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            background-color: #000000;
-            color: #d1d5db;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        h1, h2 {
-            color: #ffffff;
-            font-weight: 500;
-        }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 24px;
-        }
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 32px;
-            margin-bottom: 16px;
-        }
-        p, li {
-            font-size: 1rem;
-            font-weight: 300;
-            margin-bottom: 16px;
-        }
-        a {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 32px;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-        .back-link:hover {
-            opacity: 1;
-        }
+        body { background-color: #000000; color: #ffffff; -webkit-font-smoothing: antialiased; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
     </style>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-    <a href="/" class="back-link">← Back to Portfolio</a>
+<body class="antialiased selection:bg-brand-accent selection:text-white">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
+        <div class="max-w-4xl mx-auto px-6 h-20 flex items-center">
+            <a href="/" class="flex items-center gap-3 font-mono text-xs sm:text-sm tracking-widest text-white/50 hover:text-white transition-colors group">
+                <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
+                RETURN_TO_PORTFOLIO
+            </a>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 px-6 relative">
+        <div class="max-w-3xl mx-auto">
+            <header class="mb-16 border-b border-white/10 pb-8">
+                <h1 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Privacy Policy</h1>
+                <p class="font-mono text-xs text-brand-accent tracking-widest uppercase">Last Updated: July 2026</p>
+            </header>
+
+            <article class="prose prose-invert max-w-none prose-p:text-white/70 prose-p:font-light prose-p:leading-relaxed prose-headings:font-medium prose-headings:text-white prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline prose-li:text-white/70 prose-li:font-light">
+                <p>Panav Payappagoudar ("I", "my", or "me") operates this portfolio website (the "Service"). This page informs you of my policies regarding the collection, use, and disclosure of personal data when you use my Service and the choices you have associated with that data.</p>
+                
+                <p>This Privacy Policy is compiled in accordance with the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 and the Digital Personal Data Protection Act, 2023 of India, as well as general principles of the GDPR (General Data Protection Regulation) and CCPA (California Consumer Privacy Act) where applicable.</p>
+
+                <h2 class="text-2xl mt-12 mb-6">1. Information Collection and Use</h2>
+                <p>I collect several different types of information for various purposes to provide and improve my Service to you.</p>
+                
+                <h3 class="text-xl mt-8 mb-4">Types of Data Collected</h3>
+                <h4 class="text-lg font-medium mb-2 text-white/90">Personal Data</h4>
+                <p>While using my Service, specifically the Contact Form, I may ask you to provide certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>Email address</li>
+                    <li>First name and last name</li>
+                    <li>Any personal information you voluntarily provide in the message body</li>
+                </ul>
+
+                <h4 class="text-lg font-medium mb-2 text-white/90">Usage Data & Cookies</h4>
+                <p>This Service is built as a static portfolio. I do not actively use non-essential tracking cookies or analytics that personally identify you. Standard web server logs may temporarily capture IP addresses for security and spam prevention.</p>
+
+                <h2 class="text-2xl mt-12 mb-6">2. Use of Data</h2>
+                <p>I use the collected data for various purposes:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>To respond to your inquiries or messages sent via the contact form.</li>
+                    <li>To communicate with you regarding potential professional opportunities.</li>
+                    <li>To detect, prevent and address technical issues or spam.</li>
+                </ul>
+                <p>Your data is strictly confidential. It is never used for marketing purposes, nor is it sold or rented to any third parties under any circumstances.</p>
+
+                <h2 class="text-2xl mt-12 mb-6">3. Data Consent & Rights</h2>
+                <p>By submitting your information through the contact form, you explicitly consent to the collection and processing of your Personal Data as described in this Privacy Policy. You have the right to:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>Access:</strong> Request a copy of the personal data I hold about you.</li>
+                    <li><strong>Rectification:</strong> Request correction of any inaccurate data.</li>
+                    <li><strong>Erasure:</strong> Request the deletion of your personal data ("Right to be Forgotten").</li>
+                    <li><strong>Withdraw Consent:</strong> Withdraw your consent at any time by contacting me directly.</li>
+                </ul>
+
+                <h2 class="text-2xl mt-12 mb-6">4. Data Security</h2>
+                <p>The security of your data is paramount. Form submissions are processed securely and protected against unauthorized access. However, remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While I strive to use commercially acceptable cryptographic and secure means to protect your Personal Data, absolute security cannot be guaranteed.</p>
+
+                <h2 class="text-2xl mt-12 mb-6">5. Service Providers</h2>
+                <p>I may employ third-party companies and individuals to facilitate my Service (e.g., hosting providers like Netlify/Vercel, and spam protection services like Altcha). These third parties have access to your Personal Data only to perform these tasks on my behalf and are obligated not to disclose or use it for any other purpose.</p>
+
+                <h2 class="text-2xl mt-12 mb-6">6. Changes to This Privacy Policy</h2>
+                <p>I may update this Privacy Policy periodically to reflect changes in legal requirements or my Service operations. I will notify you of any changes by posting the new Privacy Policy on this page, updating the "Last Updated" date at the top.</p>
+
+                <h2 class="text-2xl mt-12 mb-6">7. Contact Me</h2>
+                <p>If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact me via the contact form on the main website.</p>
+            </article>
+        </div>
+    </main>
     
-    <h1>Privacy Policy</h1>
-    <p>Last updated: July 2026</p>
-
-    <p>Panav Payappagoudar ("I", "my", or "me") operates this portfolio website (the "Service"). This page informs you of my policies regarding the collection, use, and disclosure of personal data when you use my Service and the choices you have associated with that data.</p>
-    <p>This Privacy Policy is compiled in accordance with the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 and the Digital Personal Data Protection Act, 2023 of India.</p>
-
-    <h2>1. Information Collection and Use</h2>
-    <p>I collect several different types of information for various purposes to provide and improve my Service to you.</p>
-    
-    <h3>Types of Data Collected</h3>
-    <p><strong>Personal Data</strong><br>
-    While using my Service, specifically the Contact Form, I may ask you to provide certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
-    <ul>
-        <li>Email address</li>
-        <li>First name and last name</li>
-        <li>Any personal information you voluntarily provide in the message body</li>
-    </ul>
-
-    <h2>2. Use of Data</h2>
-    <p>I use the collected data for various purposes:</p>
-    <ul>
-        <li>To respond to your inquiries or messages sent via the contact form.</li>
-        <li>To communicate with you regarding potential professional opportunities.</li>
-    </ul>
-    <p>Your data is not used for marketing purposes and is never sold to third parties.</p>
-
-    <h2>3. Data Consent</h2>
-    <p>By submitting your information through the contact form, you explicitly consent to the collection and processing of your Personal Data as described in this Privacy Policy. You have the right to withdraw this consent at any time by contacting me directly.</p>
-
-    <h2>4. Data Security</h2>
-    <p>The security of your data is important to me, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While I strive to use commercially acceptable means to protect your Personal Data, I cannot guarantee its absolute security.</p>
-
-    <h2>5. Service Providers</h2>
-    <p>I may employ third-party companies and individuals to facilitate my Service (e.g., hosting providers, spam protection services like Altcha). These third parties have access to your Personal Data only to perform these tasks on my behalf and are obligated not to disclose or use it for any other purpose.</p>
-
-    <h2>6. Changes to This Privacy Policy</h2>
-    <p>I may update our Privacy Policy from time to time. I will notify you of any changes by posting the new Privacy Policy on this page.</p>
-
-    <h2>7. Contact Me</h2>
-    <p>If you have any questions about this Privacy Policy, please contact me via the contact form on the main website.</p>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

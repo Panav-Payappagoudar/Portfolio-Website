@@ -109,3 +109,20 @@ body.hovering .cursor-dot { opacity: 0; }
         box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
     }
 }
+
+/* Altcha Widget Styling */
+altcha-widget {
+    --altcha-color-base: #0a0a0a;
+    --altcha-color-border: rgba(255, 255, 255, 0.2);
+    --altcha-color-bg: #000000;
+    --altcha-color-bg-hover: rgba(255, 255, 255, 0.05);
+    --altcha-color-primary: #3b82f6;
+    --altcha-color-text: rgba(255, 255, 255, 0.7);
+    --altcha-color-error: #ef4444;
+    --altcha-border-width: 1px;
+    --altcha-border-radius: 0.75rem;
+    transition: all 0.3s ease;
+}
+altcha-widget:hover {
+    --altcha-color-border: rgba(255, 255, 255, 0.4);
+}

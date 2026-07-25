@@ -1,100 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service | Panav Payappagoudar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: #000000;
-            color: #d1d5db;
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        h1, h2 {
-            color: #ffffff;
-            font-weight: 500;
-        }
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 24px;
-        }
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 32px;
-            margin-bottom: 16px;
-        }
-        p, li {
-            font-size: 1rem;
-            font-weight: 300;
-            margin-bottom: 16px;
-        }
-        a {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 32px;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-        .back-link:hover {
-            opacity: 1;
-        }
-    </style>
-</head>
-<body>
-    <a href="/" class="back-link">← Back to Portfolio</a>
     
-    <h1>Terms of Service</h1>
-    <p>Last updated: July 2026</p>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for static public pages) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            accent: '#3b82f6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #000000; color: #ffffff; -webkit-font-smoothing: antialiased; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-white">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
+        <div class="max-w-4xl mx-auto px-6 h-20 flex items-center">
+            <a href="/" class="flex items-center gap-3 font-mono text-xs sm:text-sm tracking-widest text-white/50 hover:text-white transition-colors group">
+                <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
+                RETURN_TO_PORTFOLIO
+            </a>
+        </div>
+    </nav>
 
-    <p>Please read these Terms of Service ("Terms", "Terms of Service") carefully before using this portfolio website (the "Service") operated by Panav Payappagoudar ("I", "me", or "my").</p>
+    <main class="pt-32 pb-24 px-6 relative">
+        <div class="max-w-3xl mx-auto">
+            <header class="mb-16 border-b border-white/10 pb-8">
+                <h1 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Terms of Service</h1>
+                <p class="font-mono text-xs text-brand-accent tracking-widest uppercase">Last Updated: July 2026</p>
+            </header>
 
-    <h2>1. Acceptance of Terms</h2>
-    <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you may not access the Service.</p>
+            <article class="prose prose-invert max-w-none prose-p:text-white/70 prose-p:font-light prose-p:leading-relaxed prose-headings:font-medium prose-headings:text-white prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline prose-li:text-white/70 prose-li:font-light">
+                <p>Please read these Terms of Service ("Terms", "Terms of Service") carefully before using this portfolio website (the "Service") operated by Panav Payappagoudar ("I", "me", or "my").</p>
 
-    <h2>2. Purpose of the Website</h2>
-    <p>This website serves as a professional portfolio to showcase my skills, projects, and experience. The content provided is for informational purposes only.</p>
+                <h2 class="text-2xl mt-12 mb-6">1. Acceptance of Terms</h2>
+                <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you may not access the Service. These terms constitute a binding legal agreement regarding your use of the Service.</p>
 
-    <h2>3. Intellectual Property</h2>
-    <p>The Service and its original content (excluding open-source libraries, frameworks, or attributed third-party assets), features, and functionality are and will remain the exclusive property of Panav Payappagoudar. The Service is protected by copyright, trademark, and other laws of India and foreign countries.</p>
-    <p>You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Service, except as follows:</p>
-    <ul>
-        <li>Your computer may temporarily store copies of such materials in RAM incidental to your accessing and viewing those materials.</li>
-        <li>You may store files that are automatically cached by your Web browser for display enhancement purposes.</li>
-        <li>You may print or download one copy of a reasonable number of pages of the Website for your own personal, non-commercial use and not for further reproduction, publication, or distribution.</li>
-    </ul>
+                <h2 class="text-2xl mt-12 mb-6">2. Purpose of the Website</h2>
+                <p>This website serves as a professional portfolio to showcase my skills, projects, and experience. The content provided is for informational and professional networking purposes only. Any code snippets, ideas, or architectural designs shown are for demonstration and portfolio purposes.</p>
 
-    <h2>4. External Links</h2>
-    <p>My Service may contain links to third-party web sites or services (e.g., GitHub, LinkedIn) that are not owned or controlled by me.</p>
-    <p>I have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party web sites or services. You further acknowledge and agree that I shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
+                <h2 class="text-2xl mt-12 mb-6">3. Intellectual Property</h2>
+                <p>The Service and its original content (excluding open-source libraries, frameworks, or attributed third-party assets), features, and functionality are and will remain the exclusive property of Panav Payappagoudar. The Service is protected by copyright, trademark, and other laws of India and foreign countries.</p>
+                <p>You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Service, except as follows:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>Your computer may temporarily store copies of such materials in RAM incidental to your accessing and viewing those materials.</li>
+                    <li>You may store files that are automatically cached by your Web browser for display enhancement purposes.</li>
+                    <li>You may print or download one copy of a reasonable number of pages of the Website for your own personal, non-commercial use and not for further reproduction, publication, or distribution.</li>
+                </ul>
 
-    <h2>5. Disclaimer of Warranties</h2>
-    <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis. I make no representations or warranties of any kind, express or implied, as to the operation of their services, or the information, content or materials included therein.</p>
-    <p>While I strive to keep the information on this website accurate and up-to-date, I cannot guarantee its absolute correctness or completeness at all times.</p>
+                <h2 class="text-2xl mt-12 mb-6">4. External Links & Third-Party Content</h2>
+                <p>My Service may contain links to third-party web sites or services (e.g., GitHub, LinkedIn, Medium) that are not owned or controlled by me. I have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party web sites or services.</p>
+                <p>You further acknowledge and agree that I shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods, or services available on or through any such web sites or services.</p>
 
-    <h2>6. Limitation of Liability</h2>
-    <p>In no event shall Panav Payappagoudar be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory.</p>
+                <h2 class="text-2xl mt-12 mb-6">5. Disclaimer of Warranties</h2>
+                <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis. I make no representations or warranties of any kind, express or implied, as to the operation of the Service, or the information, content or materials included therein. You expressly agree that your use of the Service is at your sole risk.</p>
+                <p>While I strive to keep the information on this website accurate, secure, and up-to-date, I cannot guarantee its absolute correctness, completeness, or uninterrupted availability at all times.</p>
 
-    <h2>7. Governing Law</h2>
-    <p>These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+                <h2 class="text-2xl mt-12 mb-6">6. Limitation of Liability</h2>
+                <p>In no event shall Panav Payappagoudar be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>Your access to or use of or inability to access or use the Service;</li>
+                    <li>Any conduct or content of any third party on the Service;</li>
+                    <li>Any content obtained from the Service; and</li>
+                    <li>Unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory.</li>
+                </ul>
 
-    <h2>8. Changes to Terms</h2>
-    <p>I reserve the right, at my sole discretion, to modify or replace these Terms at any time. By continuing to access or use my Service after those revisions become effective, you agree to be bound by the revised terms.</p>
+                <h2 class="text-2xl mt-12 mb-6">7. Governing Law</h2>
+                <p>These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions. My failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.</p>
 
-    <h2>9. Contact</h2>
-    <p>If you have any questions about these Terms, please contact me via the contact form on the main website.</p>
+                <h2 class="text-2xl mt-12 mb-6">8. Changes to Terms</h2>
+                <p>I reserve the right, at my sole discretion, to modify or replace these Terms at any time. If a revision is material, I will provide reasonable notice prior to any new terms taking effect. By continuing to access or use my Service after those revisions become effective, you agree to be bound by the revised terms.</p>
+
+                <h2 class="text-2xl mt-12 mb-6">9. Contact</h2>
+                <p>If you have any questions or concerns about these Terms, please contact me via the contact form on the main website.</p>
+            </article>
+        </div>
+    </main>
+    
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

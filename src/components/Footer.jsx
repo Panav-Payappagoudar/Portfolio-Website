@@ -35,7 +35,8 @@ const Footer = () => {
         setErrorMessage(data.message || "Something went wrong.");
         setTimeout(() => setFormStatus('idle'), 5000);
       }
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       setFormStatus('error');
       setErrorMessage("Network error occurred. Please try again.");
       setTimeout(() => setFormStatus('idle'), 5000);

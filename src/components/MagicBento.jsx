@@ -1,4 +1,5 @@
-import { useRef, useEffect, useState, useCallback } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';

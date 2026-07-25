@@ -41,17 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let colSpan = "md:col-span-1";
         let rowSpan = "md:row-span-1";
         
-        const patternIndex = index % 9;
-
+        const patternIndex = index % 6;
         if (patternIndex === 0) { // Big Feature
             colSpan = "md:col-span-2";
             rowSpan = "md:row-span-2";
-        } else if (patternIndex === 1) { // Wide
+        } else if (patternIndex === 3) { // Wide
             colSpan = "md:col-span-2";
-        } else if (patternIndex === 4) { // Tall
-            rowSpan = "md:row-span-2";
-        } else if (patternIndex === 5) { // Wide to fit next to tall
-            colSpan = "md:col-span-2";
+            rowSpan = "md:row-span-1";
+        } else { // Standard
+            colSpan = "md:col-span-1";
+            rowSpan = "md:row-span-1";
         }
 
         card.className = `group bg-[#0A0A0A] border border-white/10 hover:border-brand-accent/40 hover:shadow-2xl hover:shadow-brand-accent/10 hover:scale-[1.02] p-6 rounded-2xl transition-all duration-500 flex flex-col justify-between interactable relative overflow-hidden ${colSpan} ${rowSpan} reveal-on-scroll text-left`;
@@ -190,7 +189,7 @@ if (menuBtn && closeMenu && mobileMenu) {
     });
 
     const closeMobileMenu = () => {
-        mobileMenu.style.transform = 'translateX(100%)';
+        mobileMenu.style.transform = 'translateX(-100%)';
         document.body.style.overflow = '';
     };
 
@@ -273,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 return data;
             })
-            .then(data => {
+            .then(() => {
                 successModal.classList.remove('opacity-0', 'pointer-events-none');
                 modalContent.classList.remove('scale-95');
                 modalContent.classList.add('scale-100');
@@ -290,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset Altcha if method exists
                 const altchaWidget = document.querySelector('altcha-widget');
                 if (altchaWidget && typeof altchaWidget.reset === 'function') {
-                    try { altchaWidget.reset(); } catch(e) {}
+                    try { altchaWidget.reset(); } catch(error) { console.warn(error); }
                 }
             })
             .catch(error => {
