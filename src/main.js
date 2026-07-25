@@ -417,9 +417,13 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(() => {
                 if (window.playChime) window.playChime();
-                successModal.classList.remove('opacity-0', 'pointer-events-none');
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
+                successModal.classList.remove('hidden');
+                // Small timeout to allow display:block to apply before animating opacity
+                setTimeout(() => {
+                    successModal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('translate-y-4');
+                    modalContent.classList.add('translate-y-0');
+                }, 10);
                 
                 // Manually clear fields to avoid web-component reset bugs
                 contactForm.querySelectorAll('input:not([type="hidden"]), textarea').forEach(el => {
@@ -449,8 +453,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeModal = () => {
         successModal.classList.add('opacity-0', 'pointer-events-none');
-        modalContent.classList.remove('scale-100');
-        modalContent.classList.add('scale-95');
+        modalContent.classList.add('translate-y-4');
+        modalContent.classList.remove('translate-y-0');
+        setTimeout(() => {
+            successModal.classList.add('hidden');
+        }, 300); // Wait for transition
     };
 
     closeBtns.forEach(btn => btn?.addEventListener('click', closeModal));
@@ -708,4 +715,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // We can export these globally if needed, or attach them to specific actions
     window.playPop = playPop;
     window.playChime = playChime;
+});
+// Global Loader Fade Out
+window.addEventListener('load', () => {
+    const loader = document.getElementById('global-loader');
+    if (loader) {
+        // Add a tiny delay so the progress bar is visible for at least a split second
+        setTimeout(() => {
+            loader.classList.add('opacity-0');
+            setTimeout(() => loader.remove(), 500); // Remove from DOM after fade
+        }, 100);
+    }
 });
