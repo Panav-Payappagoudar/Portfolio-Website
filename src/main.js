@@ -4,7 +4,6 @@ import Lenis from 'lenis';
 import './index.css';
 
 // Initialize Lenis for buttery smooth scrolling
-// eslint-disable-next-line no-unused-vars
 const lenis = new Lenis({
   autoRaf: true,
   smoothWheel: true
@@ -44,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 3. Project Interactivity (Filters & Video Hover)
-    const projContainer = document.getElementById('projects-container');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
     // Attach video hover events
