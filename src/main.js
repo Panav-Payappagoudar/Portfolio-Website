@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Socials Footer
     const socialFooter = document.getElementById('socials-footer-container');
     portfolioData.socials.forEach(s => {
-        socialFooter.innerHTML += `<a href="${s.url}" target="_blank" class="interactable text-white/30 hover:text-white transition-colors hover:scale-110 transform duration-200"><i data-lucide="${s.icon}" class="w-5 h-5"></i></a>`;
+        socialFooter.innerHTML += `<a href="${s.url}" target="_blank" class="interactable text-white/30 hover:text-white transition-colors hover:scale-110 transform duration-200">${s.svg}</a>`;
     });
 
     // Initialize Icons
