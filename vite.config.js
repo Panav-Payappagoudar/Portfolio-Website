@@ -36,27 +36,24 @@ export default defineConfig({
 
         // 4. Inject Projects
         const projectsHtml = portfolioData.projects.map((proj, index) => {
-            const hasVideo = proj.videoUrl ? true : false;
-            let mediaHtml = '';
-            
-            if (hasVideo) {
-                mediaHtml = `
+            const category = proj.tags?.[0] || 'Project';
+            const link = proj.liveUrl || proj.repoUrl || '#';
+            const mediaHtml = proj.videoUrl 
+                ? `
                     <div class="absolute inset-0 z-0">
                         <video src="${proj.videoUrl}" muted playsinline loop class="w-full h-full object-cover opacity-30 group-hover:opacity-60 transition-opacity duration-700"></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
                     </div>
-                `;
-            } else {
-                mediaHtml = `<div class="absolute inset-0 bg-gradient-to-br from-brand-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>`;
-            }
+                `
+                : `<div class="absolute inset-0 bg-gradient-to-br from-brand-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>`;
 
             return `
-            <div class="project-card group relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-500 flex flex-col justify-end min-h-[320px] overflow-hidden interactable reveal-on-scroll text-left" data-category="${proj.category}" style="transition-delay: ${index * 100}ms">
+            <div class="project-card group relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-500 flex flex-col justify-end min-h-[320px] overflow-hidden interactable reveal-on-scroll text-left" data-category="${category}" style="transition-delay: ${index * 100}ms">
                 ${mediaHtml}
                 <div class="relative z-10 w-full">
                     <div class="flex justify-between items-start mb-4">
-                        <span class="font-mono text-xs text-brand-accent px-2 py-1 bg-brand-accent/10 rounded-sm border border-brand-accent/20 tracking-wider uppercase">${proj.category}</span>
-                        ${proj.link !== '#' ? `<a href="${proj.link}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-colors interactable z-20 shrink-0" aria-label="View Project"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>` : ''}
+                        <span class="font-mono text-xs text-brand-accent px-2 py-1 bg-brand-accent/10 rounded-sm border border-brand-accent/20 tracking-wider uppercase">${category}</span>
+                        ${link !== '#' ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-colors interactable z-20 shrink-0" aria-label="View Project"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>` : ''}
                     </div>
                     <h4 class="text-2xl font-medium text-white mb-2 tracking-tight drop-shadow-md">${proj.title}</h4>
                     <p class="text-white/70 font-light text-sm mb-6 leading-relaxed line-clamp-3 w-full">${proj.description}</p>
