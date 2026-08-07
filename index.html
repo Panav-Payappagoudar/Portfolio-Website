@@ -157,21 +157,24 @@
             </button>
         </div>
         
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col justify-start items-center xl:hidden overflow-y-auto w-full h-[100dvh]">
-            <div class="w-full flex justify-end p-6 shrink-0">
-                <button id="close-menu" class="text-white/60 hover:text-white interactable focus:outline-none p-2" aria-label="Close Menu">
-                    <i data-lucide="x" class="w-8 h-8"></i>
+        <!-- Mobile Menu Backdrop -->
+        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[55] opacity-0 pointer-events-none transition-opacity duration-500 xl:hidden"></div>
+        
+        <!-- Mobile Menu Overlay (Right Drawer) -->
+        <div id="mobile-menu" class="fixed top-0 right-0 h-[100dvh] w-[85vw] max-w-sm bg-[#0a0a0a]/95 backdrop-blur-2xl border-l border-white/10 z-[60] transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] flex flex-col justify-start items-start xl:hidden overflow-y-auto shadow-2xl">
+            <div class="w-full flex justify-end p-6 shrink-0 border-b border-white/5">
+                <button id="close-menu" class="text-white/60 hover:text-white interactable focus:outline-none p-2 bg-white/5 rounded-full border border-white/10" aria-label="Close Menu">
+                    <i data-lucide="x" class="w-6 h-6"></i>
                 </button>
             </div>
-            <div class="flex flex-col items-center space-y-6 pb-20 w-full mt-4 shrink-0">
-                <a href="#about" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">About</a>
-                <a href="#venture" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Venture</a>
-                <a href="#experience" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Experience</a>
-                <a href="#achievements" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Achievements</a>
-                <a href="#projects" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Projects</a>
-                <a href="#skills" class="text-2xl font-light tracking-tight hover:text-white/60 transition-colors mobile-link">Skills</a>
-                <a href="#contact" class="text-lg font-mono border border-white/20 px-8 py-3 rounded-full mobile-link mt-6 bg-white text-black font-semibold">GET IN TOUCH</a>
+            <div class="flex flex-col items-start space-y-6 p-8 w-full shrink-0">
+                <a href="#about" class="text-2xl font-medium tracking-tight hover:text-white/60 transition-colors mobile-link">About</a>
+                <a href="#venture" class="text-2xl font-medium tracking-tight hover:text-white/60 transition-colors mobile-link">Venture</a>
+                <a href="#experience" class="text-2xl font-medium tracking-tight hover:text-white/60 transition-colors mobile-link">Experience</a>
+                <a href="#achievements" class="text-2xl font-medium tracking-tight hover:text-white/60 transition-colors mobile-link">Achievements</a>
+                <a href="#projects" class="text-2xl font-medium tracking-tight hover:text-white/60 transition-colors mobile-link">Projects</a>
+                <a href="#skills" class="text-2xl font-medium tracking-tight hover:text-white/60 transition-colors mobile-link">Skills</a>
+                <a href="#contact" class="text-sm font-mono border border-white/20 px-8 py-4 rounded-full mobile-link mt-8 bg-white text-black font-semibold uppercase tracking-widest hover:bg-gray-200 transition-colors w-full text-center">GET IN TOUCH</a>
             </div>
         </div>
     </nav>
@@ -338,7 +341,8 @@
                     </div>
                 </div>
 
-                <div id="projects-container" class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(250px,auto)] grid-flow-row-dense">
+                <!-- Safelist for dynamic bento classes: md:col-span-2 md:row-span-2 min-h-[300px] min-h-[380px] min-h-[420px] -->
+                <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[minmax(280px,auto)] grid-flow-row-dense">
                     <!-- INJECT_PROJECTS -->
                 </div>
             </div>

@@ -24,6 +24,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Background
     initBackground();
 
+    // Mobile Menu Logic
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuBackdrop = document.getElementById('mobile-menu-backdrop');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const body = document.body;
+
+    const toggleMenu = (show) => {
+        if (show) {
+            mobileMenu.classList.remove('translate-x-full');
+            menuBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            body.style.overflow = 'hidden';
+        } else {
+            mobileMenu.classList.add('translate-x-full');
+            menuBackdrop.classList.add('opacity-0', 'pointer-events-none');
+            body.style.overflow = '';
+        }
+    };
+
+    if (menuBtn && closeBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => toggleMenu(true));
+        closeBtn.addEventListener('click', () => toggleMenu(false));
+        menuBackdrop.addEventListener('click', () => toggleMenu(false));
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
+        });
+    }
+
     // Glow Cards Mouse Tracking
     document.getElementById('skills-list-container')?.addEventListener('mousemove', e => {
         for(const card of document.querySelectorAll('.glow-card')) {

@@ -28,7 +28,7 @@ export default defineConfig({
         `).join('');
         html = html.replace('<!-- INJECT_EXPERIENCE -->', experienceHtml);
 
-        // 4. Inject Projects — use inline grid-column style to guarantee spanning (Tailwind purges dynamic classes)
+        // 4. Inject Projects - Dynamic Bento Box Layout
         const projectsHtml = portfolioData.projects.map((proj, index) => {
             const category = proj.tags?.[0] || 'Project';
             const link = proj.repoUrl && proj.repoUrl !== '#' ? proj.repoUrl : (proj.liveUrl !== '#' ? proj.liveUrl : null);
@@ -36,34 +36,36 @@ export default defineConfig({
             const mediaHtml = proj.videoUrl
                 ? `<div class="absolute inset-0 z-0">
                         <video src="${proj.videoUrl}" muted playsinline loop class="w-full h-full object-cover opacity-25 group-hover:opacity-55 transition-opacity duration-700"></video>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#040404] via-[#040404]/80 to-transparent"></div>
                    </div>`
-                : `<div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-brand-accent/8 via-transparent to-transparent"></div>`;
+                : `<div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-brand-accent/10 via-transparent to-transparent"></div>`;
 
-            // Use inline grid styles — guaranteed to work regardless of Tailwind purging
-            let inlineStyle = `transition-delay: ${(index % 4) * 80}ms;`;
-            let minH = 'min-height: 320px;';
+            // Dynamic Bento Box Classes
+            let gridClasses = 'col-span-1 row-span-1 min-h-[300px]';
             if (index === 0) {
-                inlineStyle += ' grid-column: span 2; grid-row: span 2; min-height: 420px;';
-                minH = '';
-            } else if (index === 3 || index === 6 || index === 9) {
-                inlineStyle += ' grid-column: span 2;';
+                gridClasses = 'md:col-span-2 md:row-span-2 min-h-[420px]';
+            } else if (index === 1 || index === 4 || index === 9) {
+                gridClasses = 'md:col-span-2 min-h-[300px]';
+            } else if (index === 2 || index === 7) {
+                gridClasses = 'md:row-span-2 min-h-[380px]';
             }
 
             return `
-            <div class="project-card group relative p-7 rounded-2xl border border-white/[0.08] overflow-hidden interactable reveal-on-scroll text-left flex flex-col justify-end" data-category="${category}" style="${inlineStyle} ${minH} background: #040404;">
+            <div class="project-card group relative p-7 rounded-3xl border border-white/[0.08] overflow-hidden interactable reveal-on-scroll text-left flex flex-col justify-end ${gridClasses}" data-category="${category}" style="transition-delay: ${(index % 4) * 80}ms; background: #040404;">
                 ${mediaHtml}
                 <div class="relative z-10 w-full mt-auto">
-                    <div class="flex justify-between items-start mb-3">
-                        <span class="font-mono text-[10px] text-brand-accent px-2 py-1 rounded border border-brand-accent/25 bg-brand-accent/8 tracking-widest uppercase">${category}</span>
-                        ${link ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/8 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-200 interactable shrink-0" aria-label="View Project"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>` : ''}
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="font-mono text-[10px] text-brand-accent px-3 py-1.5 rounded-full border border-brand-accent/25 bg-brand-accent/10 tracking-widest uppercase shadow-[0_0_15px_rgba(59,130,246,0.15)]">${category}</span>
+                        ${link ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white hover:text-black hover:scale-110 transition-all duration-300 interactable shrink-0 shadow-lg backdrop-blur-sm" aria-label="View Project"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>` : ''}
                     </div>
-                    <h4 class="text-xl font-semibold text-white mb-2 tracking-tight leading-snug">${proj.title}</h4>
-                    <p class="text-white/50 font-light text-sm mb-5 leading-relaxed line-clamp-3">${proj.description}</p>
-                    <div class="flex flex-wrap gap-1.5">
-                        ${(proj.tags || []).map(t => `<span class="px-2 py-0.5 bg-white/5 border border-white/[0.08] rounded text-[10px] font-mono text-white/40 uppercase tracking-wider">${t}</span>`).join('')}
+                    <h4 class="text-2xl font-semibold text-white mb-3 tracking-tight leading-snug group-hover:text-brand-accent transition-colors duration-300">${proj.title}</h4>
+                    <p class="text-white/50 font-light text-sm mb-6 leading-relaxed line-clamp-3 group-hover:text-white/70 transition-colors duration-300">${proj.description}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${(proj.tags || []).map(t => `<span class="px-2.5 py-1 bg-white/[0.03] border border-white/[0.08] rounded-md text-[10px] font-mono text-white/50 uppercase tracking-widest group-hover:border-white/20 transition-colors">${t}</span>`).join('')}
                     </div>
                 </div>
+                <!-- Interactive Hover Glow -->
+                <div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen" style="background: radial-gradient(circle 400px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.15), transparent 60%);"></div>
             </div>`;
         }).join('');
         html = html.replace('<!-- INJECT_PROJECTS -->', projectsHtml);
