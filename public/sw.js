@@ -1,4 +1,4 @@
-const CACHE_NAME = 'panav-portfolio-v2';
+const CACHE_NAME = 'panav-portfolio-v3';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
