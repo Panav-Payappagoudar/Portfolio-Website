@@ -17,7 +17,7 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
@@ -30,16 +30,41 @@
         }
     </script>
     <style>
-        body { background-color: #000000; color: #ffffff; -webkit-font-smoothing: antialiased; }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        body { 
+            background-color: #000000; 
+            color: #ffffff; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+        }
+        /* Noise Texture */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9000; opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 128px;
+        }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #333; }
+        
+        .prose-custom p { margin-bottom: 1.5rem; line-height: 1.8; font-weight: 300; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+        @media (min-width: 768px) { .prose-custom p { font-size: 1rem; } }
+        .prose-custom h2 { font-size: 1.5rem; font-weight: 500; margin-top: 3rem; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        @media (min-width: 768px) { .prose-custom h2 { font-size: 1.75rem; } }
+        .prose-custom h3 { font-size: 1.25rem; font-weight: 500; margin-top: 2rem; margin-bottom: 1rem; }
+        .prose-custom ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: rgba(255,255,255,0.7); font-weight: 300; }
+        .prose-custom li { margin-bottom: 0.5rem; line-height: 1.6; font-size: 0.95rem; }
+        @media (min-width: 768px) { .prose-custom li { font-size: 1rem; } }
+        .prose-custom a { color: #3b82f6; text-decoration: none; transition: all 0.2s; }
+        .prose-custom a:hover { color: #fff; text-decoration: underline; }
     </style>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="antialiased selection:bg-brand-accent selection:text-white">
+<body class="antialiased selection:bg-brand-accent selection:text-white overflow-x-hidden">
+    <div class="noise-overlay"></div>
     <!-- Navbar -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
         <div class="max-w-4xl mx-auto px-6 h-20 flex items-center">
@@ -57,7 +82,7 @@
                 <p class="font-mono text-xs text-brand-accent tracking-widest uppercase">Last Updated: July 2026</p>
             </header>
 
-            <article class="prose prose-invert max-w-none prose-p:text-white/70 prose-p:font-light prose-p:leading-relaxed prose-headings:font-medium prose-headings:text-white prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline prose-li:text-white/70 prose-li:font-light">
+            <article class="prose-custom max-w-none">
                 <p>Please read these Terms of Service ("Terms", "Terms of Service") carefully before using this portfolio website (the "Service") operated by Panav Payappagoudar ("I", "me", or "my").</p>
 
                 <h2 class="text-2xl mt-12 mb-6">1. Acceptance of Terms</h2>
