@@ -462,7 +462,8 @@
                                 I consent to my submitted data being collected and stored for communication purposes, as outlined in the <a href="/privacy.html" target="_blank" class="text-brand-accent hover:text-white hover:underline transition-colors interactable">Privacy Policy</a>.
                             </label>
                         </div>
-                        <altcha-widget test hidefooter style="display:block; --altcha-max-width:100%;"></altcha-widget>
+                        <!-- Real Altcha Challenge using Netlify API -->
+                        <altcha-widget challengeurl="/api/altcha" hidefooter style="display:block; --altcha-max-width:100%;"></altcha-widget>
                         <button type="submit" id="submit-btn" class="reveal-on-scroll interactable btn-magnetic w-full py-4 bg-white text-black font-medium tracking-wide hover:bg-gray-200 transition-colors mt-4" style="transition-delay: 600ms;">SEND MESSAGE</button>
                     </form>
                 </div>

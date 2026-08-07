@@ -10,25 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (CDN for static public pages) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            accent: '#3b82f6'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         body { 
             background-color: #000000; 
@@ -62,6 +43,7 @@
     </style>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="/src/main.js"></script>
 </head>
 <body class="antialiased selection:bg-brand-accent selection:text-white overflow-x-hidden">
     <div class="noise-overlay"></div>

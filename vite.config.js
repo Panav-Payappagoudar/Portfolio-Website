@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'path'
 import { portfolioData } from './src/data/portfolio.js'
 
 // https://vite.dev/config/
@@ -133,6 +134,15 @@ export default defineConfig({
       }
     }
   ],
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        privacy: resolve(__dirname, 'privacy.html'),
+        terms: resolve(__dirname, 'terms.html')
+      }
+    }
+  },
   server: {
     proxy: {
       '/api': {
