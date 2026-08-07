@@ -65,24 +65,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Setup Email Copy
     const emailLink = document.getElementById('email-link');
-    emailLink.innerHTML = `<i data-lucide="mail" class="w-6 h-6 shrink-0"></i><span>${portfolioData.personalInfo.email}</span>`;
-    emailLink.removeAttribute('href');
-    emailLink.style.cursor = 'pointer';
-    emailLink.title = "Click to copy email";
-    
-    emailLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        navigator.clipboard.writeText(portfolioData.personalInfo.email).then(() => {
-            if (window.playPop) window.playPop();
-            const originalHtml = emailLink.innerHTML;
-            emailLink.innerHTML = `<i data-lucide="check" class="w-6 h-6 shrink-0 text-green-400"></i><span class="text-green-400 font-medium">Copied to clipboard!</span>`;
-            if (window.lucide) window.lucide.createIcons();
-            setTimeout(() => {
-                emailLink.innerHTML = originalHtml;
+    if (emailLink) {
+        emailLink.innerHTML = `<i data-lucide="mail" class="w-6 h-6 shrink-0"></i><span>${portfolioData.personalInfo.email}</span>`;
+        emailLink.removeAttribute('href');
+        emailLink.style.cursor = 'pointer';
+        emailLink.title = "Click to copy email";
+        
+        emailLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText(portfolioData.personalInfo.email).then(() => {
+                if (window.playPop) window.playPop();
+                const originalHtml = emailLink.innerHTML;
+                emailLink.innerHTML = `<i data-lucide="check" class="w-6 h-6 shrink-0 text-green-400"></i><span class="text-green-400 font-medium">Copied to clipboard!</span>`;
                 if (window.lucide) window.lucide.createIcons();
-            }, 2000);
+                setTimeout(() => {
+                    emailLink.innerHTML = originalHtml;
+                    if (window.lucide) window.lucide.createIcons();
+                }, 2000);
+            });
         });
-    });
+    }
 
     // 3. Project Interactivity (Filters & Video Hover)
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -145,19 +147,68 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = e.target;
                 target.classList.add('active', 'border-brand-accent/50', 'bg-brand-accent/10', 'text-brand-accent');
                 target.classList.remove('border-white/10', 'bg-transparent', 'text-white/50');
-                
                 filterProjects(target.getAttribute('data-filter'));
             });
         });
     }
 
+    // --- 3D TILT PHYSICS ENGINE ---
+    const init3DTilt = () => {
+        const cards = document.querySelectorAll('.project-card');
+        
+        // Detect touch device to disable complex 3D math on mobile (prevents scroll jank)
+        const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        if (isTouchDevice) return;
 
+        cards.forEach(card => {
+            let bounds;
+            
+            const rotateToMouse = (e) => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                const leftX = mouseX - bounds.x;
+                const topY = mouseY - bounds.y;
+                const center = {
+                    x: leftX - bounds.width / 2,
+                    y: topY - bounds.height / 2
+                };
+                
+                // Calculate Rotation
+                const maxRotation = 15; // Max degrees of tilt
+                
+                const tiltX = (center.y / (bounds.height / 2)) * -maxRotation;
+                const tiltY = (center.x / (bounds.width / 2)) * maxRotation;
+                
+                card.style.transform = `perspective(1000px) scale(1.02) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-5px)`;
+                
+                // Update Glare Pos
+                card.style.setProperty('--mouse-x', `${leftX}px`);
+                card.style.setProperty('--mouse-y', `${topY}px`);
+            };
 
+            card.addEventListener('mouseenter', () => {
+                bounds = card.getBoundingClientRect();
+                card.classList.remove('is-leaving');
+                document.addEventListener('mousemove', rotateToMouse);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                document.removeEventListener('mousemove', rotateToMouse);
+                card.classList.add('is-leaving');
+                card.style.transform = 'perspective(1000px) scale(1) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                card.style.setProperty('--mouse-x', '50%');
+                card.style.setProperty('--mouse-y', '50%');
+            });
+        });
+    };
+    init3DTilt();
     // 6. Socials Footer
     const socialFooter = document.getElementById('socials-footer-container');
-    portfolioData.socials.forEach(s => {
-        socialFooter.innerHTML += `<a href="${s.url}" target="_blank" class="interactable text-white/30 hover:text-white transition-colors hover:scale-110 transform duration-200">${s.svg}</a>`;
-    });
+    if (socialFooter) {
+        portfolioData.socials.forEach(s => {
+            socialFooter.innerHTML += `<a href="${s.url}" target="_blank" class="interactable text-white/30 hover:text-white transition-colors hover:scale-110 transform duration-200">${s.svg}</a>`;
+        });
+    }
 
     // Initialize Icons
     if (window.lucide) {
@@ -241,29 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// Mobile Menu Logic
-const menuBtn = document.getElementById('menu-btn');
-const closeMenu = document.getElementById('close-menu');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileLinks = document.querySelectorAll('.mobile-link');
-
-if (menuBtn && closeMenu && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.style.transform = 'translateX(0)';
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling glitch on Android
-    });
-
-    const closeMobileMenu = () => {
-        mobileMenu.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.style.overflow = '';
-        }, 500);
-    };
-
-    closeMenu.addEventListener('click', closeMobileMenu);
-    mobileLinks.forEach(link => link.addEventListener('click', closeMobileMenu));
-}
-
+// Global cursor logic continues
 // Custom Cursor Logic
 if (window.matchMedia("(pointer: fine)").matches) {
     const cursorDot = document.querySelector('.cursor-dot');

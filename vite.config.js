@@ -1,6 +1,10 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { portfolioData } from './src/data/portfolio.js'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -51,13 +55,12 @@ export default defineConfig({
                 gridClasses = 'md:row-span-2 min-h-[380px]';
             }
 
-            return `
-            <div class="project-card group relative p-7 rounded-3xl border border-white/[0.08] overflow-hidden interactable reveal-on-scroll text-left flex flex-col justify-end ${gridClasses}" data-category="${category}" style="transition-delay: ${(index % 4) * 80}ms; background: #040404;">
+            const cardContent = `
                 ${mediaHtml}
                 <div class="relative z-10 w-full mt-auto">
                     <div class="flex justify-between items-start mb-4">
                         <span class="font-mono text-[10px] text-brand-accent px-3 py-1.5 rounded-full border border-brand-accent/25 bg-brand-accent/10 tracking-widest uppercase shadow-[0_0_15px_rgba(59,130,246,0.15)]">${category}</span>
-                        ${link ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-white hover:text-black hover:scale-110 transition-all duration-300 interactable shrink-0 shadow-lg backdrop-blur-sm" aria-label="View Project"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>` : ''}
+                        ${link ? `<div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/70 group-hover:bg-white group-hover:text-black group-hover:scale-110 transition-all duration-300 shadow-lg backdrop-blur-sm" aria-label="View Project"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></div>` : ''}
                     </div>
                     <h4 class="text-2xl font-semibold text-white mb-3 tracking-tight leading-snug group-hover:text-brand-accent transition-colors duration-300">${proj.title}</h4>
                     <p class="text-white/50 font-light text-sm mb-6 leading-relaxed line-clamp-3 group-hover:text-white/70 transition-colors duration-300">${proj.description}</p>
@@ -67,7 +70,15 @@ export default defineConfig({
                 </div>
                 <!-- Interactive Hover Glow -->
                 <div class="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen" style="background: radial-gradient(circle 400px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.15), transparent 60%);"></div>
-            </div>`;
+            `;
+
+            return link 
+                ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="project-card group relative p-7 rounded-3xl border border-white/[0.08] overflow-hidden interactable reveal-on-scroll text-left flex flex-col justify-end ${gridClasses} block" data-category="${category}" style="transition-delay: ${(index % 4) * 80}ms; background: #040404; text-decoration: none;">
+                    ${cardContent}
+                   </a>`
+                : `<div class="project-card group relative p-7 rounded-3xl border border-white/[0.08] overflow-hidden interactable reveal-on-scroll text-left flex flex-col justify-end ${gridClasses}" data-category="${category}" style="transition-delay: ${(index % 4) * 80}ms; background: #040404;">
+                    ${cardContent}
+                   </div>`;
         }).join('');
         html = html.replace('<!-- INJECT_PROJECTS -->', projectsHtml);
 
