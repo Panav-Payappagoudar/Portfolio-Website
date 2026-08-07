@@ -100,13 +100,25 @@ export default defineConfig({
         html = html.replace('<!-- INJECT_EDUCATION -->', eduHtml);
 
         // 7. Inject Skills
+        const categoryIcons = {
+            'AI/ML & Robotics': '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73A2 2 0 0 1 10 4a2 2 0 0 1 2-2z"/><circle cx="7.5" cy="14.5" r="1.5"/><circle cx="16.5" cy="14.5" r="1.5"/></svg>',
+            'Web3 & Security': '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+            'Engineering & Infra': '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+            'Development Stack': '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+            'Data & Analysis': '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+        };
         const skillsHtml = portfolioData.skills.map((cat, index) => `
-            <div class="glow-card p-6 rounded-2xl bg-black border border-white/10 transition-all duration-500 group interactable reveal-on-scroll text-left relative overflow-hidden shadow-xl" style="transition-delay: ${(index % 3) * 100}ms">
+            <div class="glow-card p-7 rounded-2xl bg-[#080808] border border-white/[0.08] transition-all duration-500 group interactable reveal-on-scroll text-left relative overflow-hidden" style="transition-delay: ${(index % 3) * 120}ms">
                 <div class="glow-border pointer-events-none"></div>
                 <div class="relative z-10">
-                    <h4 class="font-mono text-xs text-white/50 uppercase tracking-[0.2em] mb-6 group-hover:text-brand-accent transition-colors">${cat.category}</h4>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-9 h-9 rounded-xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0 group-hover:bg-brand-accent/20 transition-colors duration-300">
+                            ${categoryIcons[cat.category] || ''}
+                        </div>
+                        <h4 class="font-mono text-[11px] text-white/50 uppercase tracking-[0.2em] group-hover:text-brand-accent transition-colors duration-300">${cat.category}</h4>
+                    </div>
                     <div class="flex flex-wrap gap-2">
-                        ${cat.items.map(item => `<span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-md text-sm font-light text-white/70 group-hover:border-white/20 transition-colors">${item}</span>`).join('')}
+                        ${cat.items.map(item => `<span class="skill-tag px-3 py-1.5 bg-white/[0.04] border border-white/[0.07] rounded-lg text-sm font-light text-white/60 hover:border-brand-accent/40 hover:text-white hover:bg-brand-accent/5 transition-all duration-200 cursor-default">${item}</span>`).join('')}
                     </div>
                 </div>
             </div>

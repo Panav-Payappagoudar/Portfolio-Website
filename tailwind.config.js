@@ -3,6 +3,18 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./vite.config.js",
+  ],
+  safelist: [
+    'md:col-span-2',
+    'md:col-span-3',
+    'md:row-span-2',
+    'md:row-span-3',
+    'min-h-[400px]',
+    'min-h-[500px]',
+    'col-span-2',
+    'row-span-2',
+    'lg:col-span-2',
   ],
   theme: {
     extend: {

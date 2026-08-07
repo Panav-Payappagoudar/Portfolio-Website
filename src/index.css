@@ -53,7 +53,7 @@
 
 /* Custom Cursor Elements (Desktop Only) */
 @media (pointer: fine) {
-    body, a, button, input, textarea { cursor: none !important; }
+    body, body a, body button, body input, body textarea, body select { cursor: none !important; }
     .cursor-dot, .cursor-outline { display: block; }
 }
 @media (pointer: coarse) {
@@ -80,28 +80,61 @@ body.hovering .cursor-outline {
 body.hovering .cursor-dot { opacity: 0; }
 
 /* Animation Classes */
-.btn-magnetic { transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.btn-magnetic { transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 
+/* Reveal on scroll - staggered slide-up */
 .reveal-on-scroll {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
-.reveal-on-scroll.revealed { opacity: 1 !important; transform: translateY(0) !important; }
+.reveal-on-scroll.revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Staggered delays for child elements */
+.reveal-on-scroll:nth-child(1) { transition-delay: 0ms; }
+.reveal-on-scroll:nth-child(2) { transition-delay: 80ms; }
+.reveal-on-scroll:nth-child(3) { transition-delay: 160ms; }
+.reveal-on-scroll:nth-child(4) { transition-delay: 240ms; }
+.reveal-on-scroll:nth-child(5) { transition-delay: 320ms; }
+
+/* Project card hover lift */
+.project-card {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.4s ease;
+}
+.project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px -20px rgba(59, 130, 246, 0.25);
+}
 
 /* Creative Section Separator */
 .section-separator {
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 20%, rgba(59,130,246,0.3) 50%, rgba(255,255,255,0.05) 80%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 20%, rgba(59,130,246,0.4) 50%, rgba(255,255,255,0.04) 80%, transparent 100%);
     margin: 0;
     position: relative;
     animation: separatorPulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite alternate;
     will-change: opacity, box-shadow;
 }
 @keyframes separatorPulse {
-    0% { opacity: 0.5; box-shadow: 0 0 0px rgba(59,130,246,0); }
-    100% { opacity: 1; box-shadow: 0 0 15px rgba(59,130,246,0.5); }
+    0% { opacity: 0.4; box-shadow: 0 0 0px rgba(59,130,246,0); }
+    100% { opacity: 1; box-shadow: 0 0 20px rgba(59,130,246,0.6); }
+}
+
+/* Skill tag hover */
+.glow-card .skill-tag {
+    transition: all 0.2s ease;
+}
+.glow-card:hover .skill-tag {
+    border-color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.9);
 }
 
 /* Smooth Hover Transitions for Devices */
@@ -115,18 +148,25 @@ body.hovering .cursor-dot { opacity: 0; }
 /* Altcha Widget Styling */
 altcha-widget {
     --altcha-color-base: #0a0a0a;
-    --altcha-color-border: rgba(255, 255, 255, 0.2);
-    --altcha-color-bg: #000000;
+    --altcha-color-border: rgba(255, 255, 255, 0.15);
+    --altcha-color-bg: #111111;
     --altcha-color-bg-hover: rgba(255, 255, 255, 0.05);
     --altcha-color-primary: #3b82f6;
-    --altcha-color-text: rgba(255, 255, 255, 0.7);
+    --altcha-color-text: rgba(255, 255, 255, 0.8);
     --altcha-color-error: #ef4444;
     --altcha-border-width: 1px;
     --altcha-border-radius: 0.75rem;
-    transition: all 0.3s ease;
+    display: block !important;
+    visibility: visible !important;
+    cursor: auto !important;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 50;
 }
-altcha-widget:hover {
-    --altcha-color-border: rgba(255, 255, 255, 0.4);
+/* Allow web component shadow DOM to have normal cursor */
+altcha-widget, altcha-widget * {
+    cursor: auto !important;
+    pointer-events: auto !important;
 }
 
 @keyframes fade-in {
@@ -137,8 +177,13 @@ altcha-widget:hover {
   animation: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-/* Custom Cursor */
-.cursor-none, .cursor-none * {
+/* Custom Cursor - scoped to prevent breaking web components */
+body.cursor-none,
+body.cursor-none a,
+body.cursor-none button,
+body.cursor-none input,
+body.cursor-none textarea,
+body.cursor-none [class*="interactable"] {
   cursor: none !important;
 }
 .cursor-dot {
