@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@resvg/resvg-js": "^2.6.2",
-    "altcha": "^3.1.0",
     "altcha-lib": "^1.4.1",
     "clsx": "^2.1.1",
     "cors": "^2.8.6",
@@ -30,6 +28,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@resvg/resvg-js": "^2.6.2",
+    "altcha": "^3.2.1",
     "autoprefixer": "^10.4.22",
     "baseline-browser-mapping": "^2.9.18",
     "eslint": "^9.39.1",
