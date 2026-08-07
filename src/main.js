@@ -137,15 +137,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Re-trigger observer for new elements
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.05,
+        rootMargin: "0px 0px -40px 0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
+                // Apply stagger to sibling elements within same container
+                const siblings = entry.target.parentElement?.querySelectorAll('.reveal-on-scroll:not(.revealed)');
+                if (siblings && siblings.length > 1) {
+                    let delay = 0;
+                    siblings.forEach(sib => {
+                        if (!sib.classList.contains('revealed')) {
+                            setTimeout(() => {
+                                sib.classList.add('revealed');
+                                observer.unobserve(sib);
+                            }, delay);
+                            delay += 70;
+                        }
+                    });
+                } else {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
             }
         });
     }, observerOptions);
@@ -153,6 +168,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.reveal-on-scroll').forEach(el => {
         observer.observe(el);
     });
+
+    // Immediately reveal any already-visible elements (above the fold)
+    setTimeout(() => {
+        document.querySelectorAll('.reveal-on-scroll:not(.revealed)').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                el.classList.add('revealed');
+                observer.unobserve(el);
+            }
+        });
+    }, 300);
 
     // 7. Dynamic Copyright
     const copyrightYear = document.getElementById('copyright-year');

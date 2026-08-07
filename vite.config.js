@@ -15,18 +15,14 @@ export default defineConfig({
         
         // 3. Inject Experience
         const experienceHtml = portfolioData.experience.map((exp, index) => `
-            <div class="group grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4 md:gap-10 py-10 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors duration-500 px-4 -mx-4 rounded-xl interactable reveal-on-scroll text-left" style="transition-delay: ${index * 100}ms">
+            <div class="exp-row group grid grid-cols-1 md:grid-cols-[160px_1fr] gap-4 md:gap-12 py-10 px-5 border-b border-white/[0.05] last:border-0 reveal-on-scroll text-left" style="transition-delay: ${(index % 5) * 80}ms">
                 <div class="flex-shrink-0">
-                    <span class="font-mono text-sm text-brand-accent/80 transition-colors">${exp.date}</span>
+                    <span class="font-mono text-xs text-brand-accent/70 tracking-widest uppercase">${exp.date}</span>
                 </div>
-                <div class="overflow-hidden">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
-                        <div class="flex flex-col">
-                            <h4 class="text-xl font-medium text-white group-hover:text-brand-accent transition-colors">${exp.role}</h4>
-                            <span class="text-base font-light text-white/50">${exp.company}</span>
-                        </div>
-                    </div>
-                    <p class="text-white/60 leading-relaxed font-light mt-4 mb-4 break-words w-full text-sm">${exp.description}</p>
+                <div>
+                    <h4 class="text-lg font-medium text-white mb-1 group-hover:text-brand-accent transition-colors duration-300">${exp.role}</h4>
+                    <span class="font-mono text-xs text-white/40 uppercase tracking-widest">${exp.company}</span>
+                    <p class="text-white/55 leading-relaxed font-light mt-4 text-sm">${exp.description}</p>
                 </div>
             </div>
         `).join('');
@@ -70,16 +66,14 @@ export default defineConfig({
 
         // 5. Inject Achievements
         const achievementsHtml = portfolioData.achievements.map((ach, index) => `
-            <div class="group grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4 md:gap-10 py-8 border-b border-white/5 last:border-0 hover:bg-white/[0.05] hover:scale-[1.01] transition-all duration-300 px-4 -mx-4 rounded-xl interactable reveal-on-scroll text-left" style="transition-delay: ${index * 100}ms">
-                <div class="flex-shrink-0">
-                    <span class="font-mono text-xs text-brand-accent transition-colors">${ach.date}</span>
+            <div class="exp-row group grid grid-cols-1 md:grid-cols-[160px_1fr] gap-4 md:gap-12 py-9 px-5 border-b border-white/[0.05] last:border-0 reveal-on-scroll text-left" style="transition-delay: ${(index % 5) * 80}ms">
+                <div class="flex-shrink-0 flex flex-col gap-1">
+                    <span class="font-mono text-xs text-brand-accent/70 tracking-widest uppercase">${ach.date}</span>
+                    <span class="font-mono text-[10px] text-white/30 uppercase tracking-wider">${ach.organization}</span>
                 </div>
-                <div class="overflow-hidden">
-                    <div class="flex flex-col mb-2">
-                        <h4 class="text-lg font-medium text-white">${ach.title}</h4>
-                        <span class="text-sm font-light text-white/50">${ach.organization}</span>
-                    </div>
-                    <p class="text-white/60 leading-relaxed text-sm font-light break-words w-full">${ach.description}</p>
+                <div>
+                    <h4 class="text-lg font-medium text-white mb-3 group-hover:text-brand-accent transition-colors duration-300">${ach.title}</h4>
+                    <p class="text-white/55 leading-relaxed text-sm font-light">${ach.description}</p>
                 </div>
             </div>
         `).join('');
