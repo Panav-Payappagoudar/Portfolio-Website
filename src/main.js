@@ -1,6 +1,7 @@
 import { portfolioData } from './data/portfolio.js';
 import Lenis from 'lenis';
 import { initBackground } from './canvas-bg.js';
+import 'altcha';
 import './index.css';
 
 // Initialize Lenis for buttery smooth scrolling
