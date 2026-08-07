@@ -180,3 +180,40 @@ altcha-widget:hover {
   border-color: rgba(59, 130, 246, 0.8);
   background-color: rgba(59, 130, 246, 0.1);
 }
+
+/* Project Filter Animation */
+.filter-btn.active { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.5); color: #3b82f6; }
+
+/* Magic Bento Glow Card */
+.glow-card {
+    position: relative;
+}
+.glow-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+.glow-card:hover::before {
+    opacity: 1;
+}
+.glow-border {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.4), transparent 40%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.glow-card:hover .glow-border {
+    opacity: 1;
+}

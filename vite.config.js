@@ -45,8 +45,13 @@ export default defineConfig({
                 `
                 : `<div class="absolute inset-0 bg-gradient-to-br from-brand-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>`;
 
+            // Magic Bento Grid Sizing Logic
+            let spanClass = '';
+            if (index === 0) spanClass = 'md:col-span-2 md:row-span-2 min-h-[400px]';
+            else if (index === 3 || index === 6) spanClass = 'md:col-span-2';
+
             return `
-            <div class="project-card group relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-white/30 transition-all duration-500 flex flex-col justify-end min-h-[320px] overflow-hidden interactable reveal-on-scroll text-left" data-category="${category}" style="transition-delay: ${index * 100}ms">
+            <div class="project-card group relative p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/30 transition-all duration-500 flex flex-col justify-end min-h-[320px] overflow-hidden interactable reveal-on-scroll text-left ${spanClass}" data-category="${category}" style="transition-delay: ${(index % 4) * 100}ms">
                 ${mediaHtml}
                 <div class="relative z-10 w-full">
                     <div class="flex justify-between items-start mb-4">
@@ -96,10 +101,13 @@ export default defineConfig({
 
         // 7. Inject Skills
         const skillsHtml = portfolioData.skills.map((cat, index) => `
-            <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/20 transition-all duration-500 group interactable reveal-on-scroll text-left" style="transition-delay: ${index * 100}ms">
-                <h4 class="font-mono text-xs text-white/50 uppercase tracking-[0.2em] mb-6 group-hover:text-brand-accent transition-colors">${cat.category}</h4>
-                <div class="flex flex-wrap gap-2">
-                    ${cat.items.map(item => `<span class="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-sm font-light text-white/70 group-hover:border-white/30 transition-colors">${item}</span>`).join('')}
+            <div class="glow-card p-6 rounded-2xl bg-black border border-white/10 transition-all duration-500 group interactable reveal-on-scroll text-left relative overflow-hidden shadow-xl" style="transition-delay: ${(index % 3) * 100}ms">
+                <div class="glow-border pointer-events-none"></div>
+                <div class="relative z-10">
+                    <h4 class="font-mono text-xs text-white/50 uppercase tracking-[0.2em] mb-6 group-hover:text-brand-accent transition-colors">${cat.category}</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${cat.items.map(item => `<span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-md text-sm font-light text-white/70 group-hover:border-white/20 transition-colors">${item}</span>`).join('')}
+                    </div>
                 </div>
             </div>
         `).join('');

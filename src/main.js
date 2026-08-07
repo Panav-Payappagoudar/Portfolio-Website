@@ -1,5 +1,6 @@
 import { portfolioData } from './data/portfolio.js';
 import Lenis from 'lenis';
+import { initBackground } from './canvas-bg.js';
 import './index.css';
 
 // Initialize Lenis for buttery smooth scrolling
@@ -18,6 +19,20 @@ if ('serviceWorker' in navigator) {
 
 // --- RENDER LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Initialize Background
+    initBackground();
+
+    // Glow Cards Mouse Tracking
+    document.getElementById('skills-list-container')?.addEventListener('mousemove', e => {
+        for(const card of document.querySelectorAll('.glow-card')) {
+            const rect = card.getBoundingClientRect(),
+                  x = e.clientX - rect.left,
+                  y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        }
+    });
 
     // 1. Setup Email Copy
     const emailLink = document.getElementById('email-link');
@@ -184,8 +199,10 @@ if (menuBtn && closeMenu && mobileMenu) {
     });
 
     const closeMobileMenu = () => {
-        mobileMenu.style.transform = 'translateX(-100%)';
-        document.body.style.overflow = '';
+        mobileMenu.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            document.body.style.overflow = '';
+        }, 500);
     };
 
     closeMenu.addEventListener('click', closeMobileMenu);
