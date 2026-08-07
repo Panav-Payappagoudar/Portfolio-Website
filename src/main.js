@@ -1,5 +1,4 @@
 import { portfolioData } from './data/portfolio.js';
-import { initNetworkBackground } from './network.js';
 import Lenis from 'lenis';
 import './index.css';
 
@@ -19,7 +18,6 @@ if ('serviceWorker' in navigator) {
 
 // --- RENDER LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
-    initNetworkBackground();
 
     // 1. Setup Email Copy
     const emailLink = document.getElementById('email-link');
