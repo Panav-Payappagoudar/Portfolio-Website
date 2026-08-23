@@ -60,18 +60,50 @@
 /* ===== NOISE TEXTURE ===== */
 .noise-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 9000; opacity: 0.025;
+    pointer-events: none; z-index: 50; opacity: 0.025;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 128px;
 }
 
-/* ===== CUSTOM CURSOR (scoped, won't break web components) ===== */
-@media (pointer: fine) {
-    body, body a, body button, body input, body textarea, body select, body label { cursor: none !important; }
-    .cursor-dot, .cursor-outline { display: block; }
+/* ===== CUSTOM CURSOR ===== */
+/* 
+ * CRITICAL FIX: Only hide cursor when JS has confirmed a fine pointer device
+ * and added the .cursor-none class to body. This prevents touch devices from
+ * getting invisible cursors.
+ */
+.cursor-dot, .cursor-outline {
+    display: none;
 }
+
+@media (pointer: fine) {
+    /* Only activate custom cursor when JS adds the class */
+    body.cursor-none,
+    body.cursor-none a,
+    body.cursor-none button,
+    body.cursor-none input,
+    body.cursor-none textarea,
+    body.cursor-none select,
+    body.cursor-none label {
+        cursor: none !important;
+    }
+    
+    /* IMPORTANT: Never hide cursor inside Altcha widget — it uses shadow DOM */
+    body.cursor-none altcha-widget,
+    body.cursor-none altcha-widget * {
+        cursor: auto !important;
+        pointer-events: auto !important;
+    }
+    
+    body.cursor-none .cursor-dot,
+    body.cursor-none .cursor-outline {
+        display: block;
+    }
+}
+
+/* Touch devices: ensure cursor elements are hidden and native cursor works */
 @media (pointer: coarse) {
-    .cursor-dot, .cursor-outline { display: none; }
+    .cursor-dot, .cursor-outline { display: none !important; }
+    body, body * { cursor: auto !important; }
 }
 
 .cursor-dot, .cursor-outline {
@@ -149,10 +181,12 @@
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s ease;
 }
 
-/* Elevate the content inside the card slightly to give true 3D depth */
-.project-card > * {
-    transform: translateZ(30px);
-    transition: transform 0.3s ease;
+/* Elevate the content inside the card slightly to give true 3D depth — DESKTOP ONLY */
+@media (hover: hover) and (pointer: fine) {
+    .project-card > * {
+        transform: translateZ(30px);
+        transition: transform 0.3s ease;
+    }
 }
 
 /* Mouse-tracking Glare Effect */
@@ -282,9 +316,9 @@ altcha-widget {
     position: relative;
     z-index: 100;
 }
-/* Ensure nothing inside the shadow DOM is blocked */
-altcha-widget,
-altcha-widget * {
+
+/* Ensure Altcha widget is always interactive — override any cursor:none */
+altcha-widget {
     cursor: auto !important;
     pointer-events: auto !important;
 }

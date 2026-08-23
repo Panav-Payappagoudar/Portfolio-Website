@@ -146,14 +146,26 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], limiter, 
   name = validator.escape(name);
   message = validator.escape(message);
 
-    try {
+  try {
     // 2. Verify Altcha payload & Prevent Replay Attacks
+    // The altcha payload is a base64-encoded JSON string from the widget
+    if (typeof altcha !== 'string' || altcha.length === 0) {
+      console.warn(`[SECURITY] Empty or invalid CAPTCHA payload type: ${typeof altcha} from IP: ${req.ip}`);
+      return res.status(400).json({ success: false, message: 'CAPTCHA verification missing or invalid.' });
+    }
+
     if (usedCaptchas.has(altcha)) {
       console.warn(`[SECURITY] REPLAY ATTACK BLOCKED from IP: ${req.ip}. Signature already used.`);
       return res.status(400).json({ success: false, message: 'CAPTCHA already used. Please refresh the page.' });
     }
 
-    const isValid = await verifySolution(altcha, HMAC_KEY);
+    let isValid = false;
+    try {
+      isValid = await verifySolution(altcha, HMAC_KEY);
+    } catch (verifyError) {
+      console.error(`[SECURITY] CAPTCHA verification threw error for IP: ${req.ip}:`, verifyError);
+      return res.status(400).json({ success: false, message: 'CAPTCHA verification failed. Please try again.' });
+    }
     
     if (!isValid) {
       console.warn(`[SECURITY] Invalid CAPTCHA payload from IP: ${req.ip}`);
