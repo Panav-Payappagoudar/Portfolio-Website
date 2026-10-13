@@ -1,7 +1,49 @@
 import { portfolioData } from './data/portfolio.js';
 import Lenis from 'lenis';
 import { initBackground } from './canvas-bg.js';
+import {
+    createIcons,
+    ArrowDown,
+    ArrowLeft,
+    ArrowRight,
+    Calendar,
+    Check,
+    Copy,
+    Mail,
+    Menu,
+    Palette,
+    Search,
+    ShoppingCart,
+    User,
+    Volume2,
+    VolumeX,
+    X
+} from 'lucide';
+import 'altcha';
 import './index.css';
+
+// Selective, tree-shaken Lucide icons map
+const icons = {
+    ArrowDown,
+    ArrowLeft,
+    ArrowRight,
+    Calendar,
+    Check,
+    Copy,
+    Mail,
+    Menu,
+    Palette,
+    Search,
+    ShoppingCart,
+    User,
+    Volume2,
+    VolumeX,
+    X
+};
+
+window.lucide = {
+    createIcons: () => createIcons({ icons })
+};
 
 // Initialize Lenis for buttery smooth scrolling
 const lenis = new Lenis({
@@ -35,13 +77,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggleMenu = (show) => {
         if (show) {
-            mobileMenu.classList.remove('translate-x-full');
-            menuBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            mobileMenu.classList.remove('invisible');
+            requestAnimationFrame(() => {
+                mobileMenu.classList.remove('translate-x-full');
+                menuBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            });
             body.style.overflow = 'hidden';
         } else {
             mobileMenu.classList.add('translate-x-full');
             menuBackdrop.classList.add('opacity-0', 'pointer-events-none');
             body.style.overflow = '';
+            setTimeout(() => {
+                if (mobileMenu.classList.contains('translate-x-full')) {
+                    mobileMenu.classList.add('invisible');
+                }
+            }, 500);
         }
     };
 
@@ -210,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const socialFooter = document.getElementById('socials-footer-container');
     if (socialFooter) {
         portfolioData.socials.forEach(s => {
-            socialFooter.innerHTML += `<a href="${s.url}" target="_blank" class="interactable text-white/30 hover:text-white transition-colors hover:scale-110 transform duration-200">${s.svg}</a>`;
+            socialFooter.innerHTML += `<a href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.name}" class="interactable text-white/30 hover:text-white transition-colors hover:scale-110 transform duration-200">${s.svg}</a>`;
         });
     }
 
@@ -508,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const togglePalette = (force) => {
         isOpen = force !== undefined ? force : !isOpen;
         if (isOpen) {
-            paletteOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            paletteOverlay.classList.remove('invisible', 'opacity-0', 'pointer-events-none');
             palette.classList.remove('scale-95');
             palette.classList.add('scale-100');
             input.value = '';
@@ -519,6 +569,9 @@ document.addEventListener('DOMContentLoaded', () => {
             palette.classList.remove('scale-100');
             palette.classList.add('scale-95');
             input.blur();
+            setTimeout(() => {
+                if (!isOpen) paletteOverlay.classList.add('invisible');
+            }, 300);
         }
     };
 

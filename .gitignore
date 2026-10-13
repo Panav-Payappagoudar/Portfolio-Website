@@ -31,3 +31,14 @@ dist-ssr
 
 # Netlify
 .netlify
+
+# Scratch, Dump, & Sensitive Files
+*.txt
+!public/robots.txt
+!public/humans.txt
+!public/llms.txt
+*.scratch.*
+test-imports.js
+temp.*
+match.*
+all_user_input.*

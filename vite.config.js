@@ -73,7 +73,7 @@ export default defineConfig({
             `;
 
             return link 
-                ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="project-card group relative p-7 rounded-3xl border border-white/[0.08] overflow-hidden interactable reveal-on-scroll text-left flex flex-col justify-end ${gridClasses} block" data-category="${category}" style="transition-delay: ${(index % 4) * 80}ms; background: #040404; text-decoration: none;">
+                ? `<a href="${link}" target="_blank" rel="noopener noreferrer" aria-label="View project ${proj.title}" class="project-card group relative p-7 rounded-3xl border border-white/[0.08] overflow-hidden interactable reveal-on-scroll text-left flex flex-col justify-end ${gridClasses} block" data-category="${category}" style="transition-delay: ${(index % 4) * 80}ms; background: #040404; text-decoration: none;">
                     ${cardContent}
                    </a>`
                 : `<div class="project-card group relative p-7 rounded-3xl border border-white/[0.08] overflow-hidden interactable reveal-on-scroll text-left flex flex-col justify-end ${gridClasses}" data-category="${category}" style="transition-delay: ${(index % 4) * 80}ms; background: #040404;">

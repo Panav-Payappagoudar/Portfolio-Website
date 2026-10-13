@@ -18,11 +18,59 @@
   to = "/index.html"
   status = 200
 
+# -----------------------------------------------------------------------------
+# GLOBAL SECURITY HEADERS (Max Grade on MDN HTTP Observatory & SecurityHeaders)
+# -----------------------------------------------------------------------------
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; media-src 'self' https://assets.mixkit.co; img-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://panav.xyz https://www.panav.xyz; worker-src 'self' blob: https://cdn.jsdelivr.net; frame-src 'none'; object-src 'none';"
+    # 1. Content Security Policy:
+    # - default-src 'none' (Strict deny-by-default for MDN Observatory +25 bonus)
+    # - script-src 'self' blob: (Zero 'unsafe-inline' and zero external CDNs)
+    # - base-uri 'self' (Restricts <base> tag injection)
+    # - form-action 'self' (Restricts form target destinations)
+    # - frame-ancestors 'none' (Enforces anti-clickjacking)
+    # - object-src 'none' (Blocks legacy plugins)
+    # - upgrade-insecure-requests (Forces HTTPS for active & passive content)
+    Content-Security-Policy = "default-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; media-src 'self' https://assets.mixkit.co; img-src 'self' data: https:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://panav.xyz https://www.panav.xyz; worker-src 'self' blob:; upgrade-insecure-requests;"
+
+    # 2. HTTP Strict Transport Security (HSTS - 1 year, includes subdomains, preload-ready)
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # 3. Comprehensive Permissions-Policy (Solves RED Missing Header Flag)
+    Permissions-Policy = "accelerometer=(), autoplay=(), camera=(), cross-origin-isolated=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), xr-spatial-tracking=()"
+
+    # 4. Anti-MIME Sniffing
     X-Content-Type-Options = "nosniff"
+
+    # 5. Anti-Clickjacking (Legacy fallback alongside frame-ancestors 'none')
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
+
+    # 6. Referrer Policy (Strict privacy)
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # 7. Modern XSS Header
+    X-XSS-Protection = "0"
+
+    # 8. Cross-Origin Policies (COOP, CORP, COEP for complete MDN Observatory compliance)
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+    Cross-Origin-Resource-Policy = "same-origin"
+    Cross-Origin-Embedder-Policy = "credentialless"
+
+# -----------------------------------------------------------------------------
+# HIGH-PERFORMANCE ASSET CACHING (Solves PageSpeed Insights Cache Lifetimes)
+# -----------------------------------------------------------------------------
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
