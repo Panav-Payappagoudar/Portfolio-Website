@@ -1,4 +1,31 @@
 User-agent: *
 Allow: /
 
+# Explicit AI Crawlers & LLM Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# AI Context Reference
+# See https://panav.xyz/llms.txt for LLM-optimized context
 Sitemap: https://panav.xyz/sitemap.xml
