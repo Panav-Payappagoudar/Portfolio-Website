@@ -21,7 +21,7 @@ export async function handler(event) {
     const hmacKey = process.env.ALTCHA_HMAC_KEY || process.env.EMAIL_PASS || 'altcha-prod-hmac-panav-portfolio-secure-key-2025';
     const challenge = await createChallenge({
       hmacKey,
-      maxNumber: 50000,
+      maxNumber: 20000,
       expires: new Date(Date.now() + 15 * 60 * 1000)
     });
 

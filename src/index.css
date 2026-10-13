@@ -301,26 +301,28 @@
 
 /* ===== ALTCHA WIDGET ===== */
 altcha-widget {
-    --altcha-color-base:     #0c0c0c;
-    --altcha-color-border:   rgba(255,255,255,0.12);
-    --altcha-color-bg:       #111111;
-    --altcha-color-bg-hover: rgba(255,255,255,0.06);
-    --altcha-color-primary:  #3b82f6;
-    --altcha-color-text:     rgba(255,255,255,0.75);
-    --altcha-color-error:    #ef4444;
-    --altcha-border-width:   1px;
-    --altcha-border-radius:  10px;
-    display: block !important;
-    visibility: visible !important;
-    min-height: 58px;
-    position: relative;
-    z-index: 100;
-}
-
-/* Ensure Altcha widget is always interactive — override any cursor:none */
-altcha-widget {
-    cursor: auto !important;
-    pointer-events: auto !important;
+    --altcha-color-base:         #111111;
+    --altcha-color-border:       rgba(255, 255, 255, 0.25);
+    --altcha-color-border-focus: #3b82f6;
+    --altcha-color-text:         #ffffff;
+    --altcha-color-error-text:   #ef4444;
+    --altcha-color-base-content: #ffffff;
+    --altcha-color-neutral-content: #e5e7eb;
+    --altcha-border-color:       rgba(255, 255, 255, 0.25);
+    --altcha-checkbox-border-color: rgba(255, 255, 255, 0.6);
+    --altcha-border-width:       1px;
+    --altcha-border-radius:      12px;
+    --altcha-max-width:          100%;
+    color:                       #ffffff !important;
+    display:                     block !important;
+    visibility:                  visible !important;
+    min-height:                  60px;
+    position:                    relative;
+    z-index:                     50;
+    cursor:                      auto !important;
+    pointer-events:              auto !important;
+    margin-top:                  1rem;
+    margin-bottom:               0.5rem;
 }
 
 /* ===== EXPERIENCE / ACHIEVEMENT ROWS ===== */
