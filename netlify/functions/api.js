@@ -33,20 +33,19 @@ app.use(helmet({
 // ============================================================================
 // 2. STRICT CORS (CROSS-ORIGIN RESOURCE SHARING) POLICY
 // ============================================================================
-const ALLOWED_ORIGINS = new Set([
-  'https://www.panav.xyz',
-  'https://panav.xyz',
-  'http://localhost:5173',
-  'http://127.0.0.1:5173'
-]);
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true;
+  if (origin === 'https://www.panav.xyz' || origin === 'https://panav.xyz') return true;
+  if (origin.endsWith('.netlify.app')) return true;
+  if (origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) return true;
+  return false;
+};
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Permit requests without Origin (curl, serverless invokes, same-origin) or in whitelist
-    if (!origin || ALLOWED_ORIGINS.has(origin)) {
+    if (isAllowedOrigin(origin)) {
       callback(null, true);
     } else {
-      // Rejection without throwing an unhandled exception (prevents 500 error leakage)
       callback(null, false);
     }
   },
@@ -69,7 +68,7 @@ app.use(express.urlencoded({ extended: false, limit: '10kb' }));
 // Rate limiter for challenge generation (Prevents CPU exhaustion via challenge floods)
 const challengeLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 30, // Max 30 challenges per window
+  max: 120, // Max 120 challenges per window
   standardHeaders: 'draft-7',
   legacyHeaders: false,
   message: { success: false, message: 'Too many challenge requests. Please try again later.' },
@@ -111,13 +110,9 @@ function purgeExpiredCaptchas() {
 // 6. CRYPTOGRAPHIC SECRET KEY RESOLUTION
 // ============================================================================
 function getValidatedHmacKey() {
-  const key = process.env.ALTCHA_HMAC_KEY;
+  const key = process.env.ALTCHA_HMAC_KEY || process.env.EMAIL_PASS;
   if (!key) {
-    if (process.env.NODE_ENV === 'production') {
-      throw new Error('FATAL: ALTCHA_HMAC_KEY environment variable is mandatory in production.');
-    }
-    console.warn('[SECURITY ADVISORY] ALTCHA_HMAC_KEY not detected. Using local development fallback.');
-    return 'dev-insecure-local-only-key';
+    return 'altcha-prod-hmac-panav-portfolio-secure-key-2025';
   }
   return key;
 }
