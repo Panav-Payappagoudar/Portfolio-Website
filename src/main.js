@@ -473,11 +473,19 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch('/.netlify/functions/api/submit', {
+                let response = await fetch('/.netlify/functions/submit', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(jsonBody)
                 });
+                
+                if (!response.ok && response.status === 404) {
+                    response = await fetch('/.netlify/functions/api/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(jsonBody)
+                    });
+                }
                 
                 const data = await response.json().catch(() => ({}));
                 
