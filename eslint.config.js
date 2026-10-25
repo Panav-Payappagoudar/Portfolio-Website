@@ -10,15 +10,22 @@ export default defineConfig([
       js.configs.recommended,
     ],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: 2022,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]|motion' }],
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]|motion|next', argsIgnorePattern: '^_|next' }],
+      'no-control-regex': 'off',
+      'no-redeclare': 'off',
     },
   },
 ])
+
+

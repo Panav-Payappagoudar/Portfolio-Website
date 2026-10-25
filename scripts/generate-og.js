@@ -28,16 +28,15 @@ async function generateOGImage() {
                 style: {
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#000000',
-                    backgroundImage: 'radial-gradient(circle at 50% 50%, #111827, #000000)',
+                    backgroundColor: '#0e0f12',
                     fontFamily: 'Roboto',
-                    color: 'white',
-                    padding: '80px',
-                    border: '8px solid rgba(59, 130, 246, 0.4)',
+                    color: '#f3efe6',
+                    padding: '80px 90px',
+                    border: '1px solid rgba(243, 239, 230, 0.12)',
                 },
                 children: [
                     {
@@ -45,31 +44,15 @@ async function generateOGImage() {
                         props: {
                             style: {
                                 display: 'flex',
-                                fontSize: 96,
-                                fontWeight: 700,
-                                letterSpacing: '-0.05em',
-                                marginBottom: 20,
-                                textAlign: 'center',
-                                background: 'linear-gradient(to right, #ffffff, #9ca3af)',
-                                backgroundClip: 'text',
-                                color: 'transparent',
-                            },
-                            children: 'Panav Payappagoudar'
-                        }
-                    },
-                    {
-                        type: 'div',
-                        props: {
-                            style: {
-                                display: 'flex',
-                                fontSize: 42,
+                                alignItems: 'center',
+                                gap: '12px',
+                                fontSize: 22,
                                 fontWeight: 400,
-                                color: 'rgba(255,255,255,0.7)',
-                                letterSpacing: '0.1em',
+                                color: '#c47847',
+                                letterSpacing: '0.12em',
                                 textTransform: 'uppercase',
-                                marginBottom: 60,
                             },
-                            children: 'Software Developer'
+                            children: 'Systems & Applied ML Researcher'
                         }
                     },
                     {
@@ -77,28 +60,94 @@ async function generateOGImage() {
                         props: {
                             style: {
                                 display: 'flex',
-                                gap: '30px',
+                                flexDirection: 'column',
+                                gap: '16px',
                             },
                             children: [
-                                'AI / ML',
-                                'Cybersecurity',
-                                'Web3'
-                            ].map(skill => ({
-                                type: 'div',
-                                props: {
-                                    style: {
-                                        display: 'flex',
-                                        fontSize: 28,
-                                        fontWeight: 400,
-                                        color: '#3b82f6',
-                                        padding: '12px 32px',
-                                        border: '2px solid rgba(59, 130, 246, 0.3)',
-                                        borderRadius: '8px',
-                                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                                    },
-                                    children: skill
+                                {
+                                    type: 'div',
+                                    props: {
+                                        style: {
+                                            display: 'flex',
+                                            fontSize: 78,
+                                            fontWeight: 700,
+                                            letterSpacing: '-0.03em',
+                                            color: '#f3efe6',
+                                            lineHeight: 1.05,
+                                        },
+                                        children: 'Panav Payappagoudar'
+                                    }
+                                },
+                                {
+                                    type: 'div',
+                                    props: {
+                                        style: {
+                                            display: 'flex',
+                                            fontSize: 32,
+                                            fontWeight: 400,
+                                            color: '#9e9a91',
+                                            letterSpacing: '-0.01em',
+                                        },
+                                        children: 'VIT-AP University (ECS) · Amazon ML Scholar ’26'
+                                    }
                                 }
-                            }))
+                            ]
+                        }
+                    },
+                    {
+                        type: 'div',
+                        props: {
+                            style: {
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                width: '100%',
+                                paddingTop: '28px',
+                                borderTop: '1px solid rgba(243, 239, 230, 0.08)',
+                            },
+                            children: [
+                                {
+                                    type: 'div',
+                                    props: {
+                                        style: {
+                                            display: 'flex',
+                                            gap: '16px',
+                                        },
+                                        children: [
+                                            'Numerical Physics',
+                                            'Satellite Vision',
+                                            'Resilient Systems'
+                                        ].map(skill => ({
+                                            type: 'div',
+                                            props: {
+                                                style: {
+                                                    display: 'flex',
+                                                    fontSize: 20,
+                                                    fontWeight: 400,
+                                                    color: '#f3efe6',
+                                                    padding: '10px 22px',
+                                                    border: '1px solid rgba(243, 239, 230, 0.12)',
+                                                    borderRadius: '6px',
+                                                    backgroundColor: '#14151a',
+                                                },
+                                                children: skill
+                                            }
+                                        }))
+                                    }
+                                },
+                                {
+                                    type: 'div',
+                                    props: {
+                                        style: {
+                                            display: 'flex',
+                                            fontSize: 22,
+                                            color: '#8e8a82',
+                                            letterSpacing: '0.04em',
+                                        },
+                                        children: 'panav.xyz'
+                                    }
+                                }
+                            ]
                         }
                     }
                 ]

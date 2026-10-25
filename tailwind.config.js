@@ -2,54 +2,40 @@
 export default {
   content: [
     "./index.html",
+    "./privacy.html",
+    "./terms.html",
     "./src/**/*.{js,ts,jsx,tsx}",
     "./vite.config.js",
-  ],
-  safelist: [
-    'md:col-span-2',
-    'md:col-span-3',
-    'md:row-span-2',
-    'md:row-span-3',
-    'min-h-[400px]',
-    'min-h-[500px]',
-    'col-span-2',
-    'row-span-2',
-    'lg:col-span-2',
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        editorial: ['Newsreader', 'Georgia', 'serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
-        brand: {
-          black: '#000000',
-          dark: '#050505', 
-          gray: '#0a0a0a', 
-          accent: '#3b82f6' 
+        canvas: {
+          DEFAULT: '#0e0f12',
+          subtle: '#14151a',
+        },
+        surface: {
+          DEFAULT: '#14151a',
+          elevated: '#1a1b22',
+          border: 'rgba(243, 239, 230, 0.08)',
+          'border-strong': 'rgba(243, 239, 230, 0.16)',
+        },
+        ink: {
+          primary: '#f3efe6',
+          secondary: '#9e9a91',
+          muted: '#625f58',
+          subtle: '#45433e',
+        },
+        accent: {
+          DEFAULT: '#c47847',
+          muted: 'rgba(196, 120, 71, 0.15)',
+          hover: '#d58754',
         }
-      },
-      animation: {
-          'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          'float': 'float 6s ease-in-out infinite',
-          'gradient-x': 'gradient-x 10s ease infinite',
-      },
-      keyframes: {
-          float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-15px)' },
-          },
-          'gradient-x': {
-              '0%, 100%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'left center'
-              },
-              '50%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'right center'
-              },
-          }
       },
     },
   },

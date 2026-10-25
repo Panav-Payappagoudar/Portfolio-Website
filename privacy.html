@@ -2,66 +2,84 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#0e0f12">
+    
     <title>Privacy Policy | Panav Payappagoudar</title>
+    <meta name="description" content="Privacy Policy for the personal portfolio of Panav Payappagoudar. Details regarding data handling, contact form processing, and user rights.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://panav.xyz/privacy.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://panav.xyz/privacy.html">
+    <meta property="og:title" content="Privacy Policy | Panav Payappagoudar">
+    <meta property="og:description" content="Privacy Policy for the personal portfolio of Panav Payappagoudar.">
+    <meta property="og:image" content="https://panav.xyz/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://panav.xyz/privacy.html">
+    <meta property="twitter:title" content="Privacy Policy | Panav Payappagoudar">
+    <meta property="twitter:description" content="Privacy Policy for the personal portfolio of Panav Payappagoudar.">
+    <meta property="twitter:image" content="https://panav.xyz/og-image.png">
+
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
-    <!-- Google Fonts -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+
+    <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        body { 
-            background-color: #000000; 
-            color: #ffffff; 
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+        body {
+            background-color: #0e0f12;
+            color: #f3efe6;
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
         }
-        /* Noise Texture */
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9000; opacity: 0.025;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 128px;
-        }
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #333; }
-        
-        .prose-custom p { margin-bottom: 1.5rem; line-height: 1.8; font-weight: 300; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
-        @media (min-width: 768px) { .prose-custom p { font-size: 1rem; } }
-        .prose-custom h2 { font-size: 1.5rem; font-weight: 500; margin-top: 3rem; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-        @media (min-width: 768px) { .prose-custom h2 { font-size: 1.75rem; } }
-        .prose-custom h3 { font-size: 1.25rem; font-weight: 500; margin-top: 2rem; margin-bottom: 1rem; }
-        .prose-custom ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: rgba(255,255,255,0.7); font-weight: 300; }
+        .prose-custom p { margin-bottom: 1.5rem; line-height: 1.8; font-weight: 300; color: #9e9a91; font-size: 0.95rem; }
+        .prose-custom h1, .prose-custom h2, .prose-custom h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; color: #f3efe6; }
+        .prose-custom h2 { font-size: 1.75rem; margin-top: 3rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(243,239,230,0.08); padding-bottom: 0.5rem; }
+        .prose-custom h3 { font-size: 1.35rem; margin-top: 2rem; margin-bottom: 1rem; color: #f3efe6; }
+        .prose-custom ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #9e9a91; font-weight: 300; }
         .prose-custom li { margin-bottom: 0.5rem; line-height: 1.6; font-size: 0.95rem; }
-        @media (min-width: 768px) { .prose-custom li { font-size: 1rem; } }
-        .prose-custom a { color: #3b82f6; text-decoration: none; transition: all 0.2s; }
-        .prose-custom a:hover { color: #fff; text-decoration: underline; }
+        .prose-custom a { color: #c47847; text-decoration: underline; text-underline-offset: 3px; }
+        .prose-custom a:hover { color: #f3efe6; }
     </style>
-    <script type="module" src="/src/main.js"></script>
 </head>
-<body class="antialiased selection:bg-brand-accent selection:text-white overflow-x-hidden">
-    <div class="noise-overlay"></div>
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
-        <div class="max-w-4xl mx-auto px-6 h-20 flex items-center">
-            <a href="/" class="flex items-center gap-3 font-mono text-xs sm:text-sm tracking-widest text-white/50 hover:text-white transition-colors group">
-                <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
-                RETURN_TO_PORTFOLIO
+<body class="antialiased selection:bg-[#c47847] selection:text-white bg-[#0e0f12] text-[#f3efe6] overflow-x-hidden min-h-screen flex flex-col justify-between">
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2 focus:bg-[#c47847] focus:text-white focus:text-xs focus:font-mono focus:rounded focus:outline-none">Skip to main content</a>
+
+    <!-- Subtle paper grain overlay -->
+    <div class="subtle-grain" aria-hidden="true"></div>
+
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#0e0f12]/90 backdrop-blur-md border-b border-[rgba(243,239,230,0.06)]" aria-label="Main Navigation">
+        <div class="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="/" class="text-left group">
+                <span class="font-normal text-sm sm:text-base text-[#f3efe6] tracking-tight group-hover:text-[#c47847] transition-colors">
+                    Panav Payappagoudar
+                </span>
+            </a>
+            <a href="/" class="flex items-center gap-2 text-xs font-mono text-[#8e8a82] hover:text-[#f3efe6] transition-colors group">
+                <span class="group-hover:-translate-x-1 transition-transform">←</span>
+                <span>Return to portfolio</span>
             </a>
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 px-6 relative">
-        <div class="max-w-3xl mx-auto">
-            <header class="mb-16 border-b border-white/10 pb-8">
-                <h1 class="text-4xl md:text-5xl font-medium tracking-tight mb-4">Privacy Policy</h1>
-                <p class="font-mono text-xs text-brand-accent tracking-widest uppercase">Last Updated: July 2026</p>
+    <!-- Main Content -->
+    <main id="main-content" class="pt-32 pb-24 px-6 flex-1">
+        <div class="max-w-3xl mx-auto text-left">
+            <header class="mb-14 border-b border-[rgba(243,239,230,0.08)] pb-8">
+                <div class="font-mono text-xs text-[#8e8a82] mb-3">Legal & Governance</div>
+                <h1 class="text-4xl md:text-5xl font-normal tracking-tight mb-4 font-editorial">Privacy Policy</h1>
+                <p class="font-mono text-xs text-[#8e8a82]">Last updated: October 2026</p>
             </header>
 
             <article class="prose-custom max-w-none">
@@ -69,56 +87,67 @@
                 
                 <p>This Privacy Policy is compiled in accordance with the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 and the Digital Personal Data Protection Act, 2023 of India, as well as general principles of the GDPR (General Data Protection Regulation) and CCPA (California Consumer Privacy Act) where applicable.</p>
 
-                <h2 class="text-2xl mt-12 mb-6">1. Information Collection and Use</h2>
+                <h2>1. Information Collection and Use</h2>
                 <p>I collect several different types of information for various purposes to provide and improve my Service to you.</p>
                 
-                <h3 class="text-xl mt-8 mb-4">Types of Data Collected</h3>
-                <h4 class="text-lg font-medium mb-2 text-white/90">Personal Data</h4>
+                <h3>Types of Data Collected</h3>
+                <h4 class="text-base font-medium mb-2 text-[#f3efe6]">Personal Data</h4>
                 <p>While using my Service, specifically the Contact Form, I may ask you to provide certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
-                <ul class="list-disc pl-6 mb-6 space-y-2">
+                <ul>
                     <li>Email address</li>
                     <li>First name and last name</li>
                     <li>Any personal information you voluntarily provide in the message body</li>
                 </ul>
 
-                <h4 class="text-lg font-medium mb-2 text-white/90">Usage Data & Cookies</h4>
+                <h4 class="text-base font-medium mb-2 text-[#f3efe6]">Usage Data & Cookies</h4>
                 <p>This Service is built as a static portfolio. I do not actively use non-essential tracking cookies or analytics that personally identify you. Standard web server logs may temporarily capture IP addresses for security and spam prevention.</p>
 
-                <h2 class="text-2xl mt-12 mb-6">2. Use of Data</h2>
+                <h2>2. Use of Data</h2>
                 <p>I use the collected data for various purposes:</p>
-                <ul class="list-disc pl-6 mb-6 space-y-2">
+                <ul>
                     <li>To respond to your inquiries or messages sent via the contact form.</li>
                     <li>To communicate with you regarding potential professional opportunities.</li>
                     <li>To detect, prevent and address technical issues or spam.</li>
                 </ul>
                 <p>Your data is strictly confidential. It is never used for marketing purposes, nor is it sold or rented to any third parties under any circumstances.</p>
 
-                <h2 class="text-2xl mt-12 mb-6">3. Data Consent & Rights</h2>
+                <h2>3. Data Consent & Rights</h2>
                 <p>By submitting your information through the contact form, you explicitly consent to the collection and processing of your Personal Data as described in this Privacy Policy. You have the right to:</p>
-                <ul class="list-disc pl-6 mb-6 space-y-2">
+                <ul>
                     <li><strong>Access:</strong> Request a copy of the personal data I hold about you.</li>
                     <li><strong>Rectification:</strong> Request correction of any inaccurate data.</li>
                     <li><strong>Erasure:</strong> Request the deletion of your personal data ("Right to be Forgotten").</li>
                     <li><strong>Withdraw Consent:</strong> Withdraw your consent at any time by contacting me directly.</li>
                 </ul>
 
-                <h2 class="text-2xl mt-12 mb-6">4. Data Security</h2>
+                <h2>4. Data Security</h2>
                 <p>The security of your data is paramount. Form submissions are processed securely and protected against unauthorized access. However, remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While I strive to use commercially acceptable cryptographic and secure means to protect your Personal Data, absolute security cannot be guaranteed.</p>
 
-                <h2 class="text-2xl mt-12 mb-6">5. Service Providers</h2>
-                <p>I may employ third-party companies and individuals to facilitate my Service (e.g., hosting providers like Netlify/Vercel, and spam protection services like Altcha). These third parties have access to your Personal Data only to perform these tasks on my behalf and are obligated not to disclose or use it for any other purpose.</p>
+                <h2>5. Service Providers</h2>
+                <p>I may employ third-party companies and individuals to facilitate my Service (e.g., hosting providers like Netlify, and spam protection services like Altcha). These third parties have access to your Personal Data only to perform these tasks on my behalf and are obligated not to disclose or use it for any other purpose.</p>
 
-                <h2 class="text-2xl mt-12 mb-6">6. Changes to This Privacy Policy</h2>
+                <h2>6. Changes to This Privacy Policy</h2>
                 <p>I may update this Privacy Policy periodically to reflect changes in legal requirements or my Service operations. I will notify you of any changes by posting the new Privacy Policy on this page, updating the "Last Updated" date at the top.</p>
 
-                <h2 class="text-2xl mt-12 mb-6">7. Contact Me</h2>
-                <p>If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact me via the contact form on the main website.</p>
+                <h2>7. Contact Me</h2>
+                <p>If you have any questions about this Privacy Policy or wish to exercise your data rights, please reach out via the <a href="/#contact">contact form</a> or by email at <a href="mailto:panav.p@proton.me">panav.p@proton.me</a>.</p>
             </article>
         </div>
     </main>
     
-    <script>
-        lucide.createIcons();
-    </script>
+    <!-- Shared Footer -->
+    <footer class="py-10 border-t border-[rgba(243,239,230,0.08)]">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-mono text-[#8e8a82]">
+            <div>© 2024–2026 Panav Payappagoudar. All rights reserved.</div>
+            <div class="flex items-center gap-6">
+                <a href="/terms.html" class="hover:text-[#f3efe6] transition-colors">Terms of Service</a>
+                <a href="https://github.com/Panav-Payappagoudar" target="_blank" rel="noopener noreferrer" class="hover:text-[#f3efe6] transition-colors">GitHub ↗</a>
+                <a href="https://linkedin.com/in/panav-payappagoudar" target="_blank" rel="noopener noreferrer" class="hover:text-[#f3efe6] transition-colors">LinkedIn ↗</a>
+                <a href="/" class="hover:text-[#f3efe6] transition-colors">Portfolio ↑</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Application Script for Vite styles and interactions -->
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

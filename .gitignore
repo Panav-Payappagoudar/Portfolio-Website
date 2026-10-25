@@ -42,3 +42,5 @@ test-imports.js
 temp.*
 match.*
 all_user_input.*
+lighthouse-report.json
+baseline-lh-*.json

@@ -8,8 +8,9 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import validator from 'validator';
 import { z } from 'zod';
-import { createChallenge, verifySolution } from 'altcha-lib';
+import { createChallenge, verifySolution, extractParams } from 'altcha-lib';
 import { isDisposableDomain, isProfaneText } from './blocklists.js';
+import { isAllowedOrigin, getValidatedHmacKey, logDiagnostic } from './security.js';
 
 dotenv.config();
 
@@ -33,13 +34,8 @@ app.use(helmet({
 // ============================================================================
 // 2. STRICT CORS (CROSS-ORIGIN RESOURCE SHARING) POLICY
 // ============================================================================
-const isAllowedOrigin = (origin) => {
-  if (!origin) return true;
-  if (origin === 'https://www.panav.xyz' || origin === 'https://panav.xyz') return true;
-  if (origin.endsWith('.netlify.app')) return true;
-  if (origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) return true;
-  return false;
-};
+// Validated via shared security module to eliminate blanket *.netlify.app wildcard trust.
+
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -57,9 +53,9 @@ app.use(cors({
 // ============================================================================
 // 3. RESOURCE EXHAUSTION DEFENSE (PAYLOAD SIZE LIMITS)
 // ============================================================================
-// Strictly restrict incoming body size to 10kb to neutralize buffer overflow and memory starvation attacks
-app.use(express.json({ limit: '10kb', strict: true }));
-app.use(express.urlencoded({ extended: false, limit: '10kb' }));
+// Strictly restrict incoming body size to 20kb to neutralize buffer overflow and memory starvation attacks
+app.use(express.json({ limit: '20kb', strict: true }));
+app.use(express.urlencoded({ extended: false, limit: '20kb' }));
 
 // ============================================================================
 // 4. RATE LIMITING POLICIES (DEFENSE AGAINST BRUTE FORCE & DOS)
@@ -71,22 +67,23 @@ const challengeLimiter = rateLimit({
   max: 120, // Max 120 challenges per window
   standardHeaders: 'draft-7',
   legacyHeaders: false,
-  message: { success: false, message: 'Too many challenge requests. Please try again later.' },
+  message: { success: false, code: 'RATE_LIMITED', message: 'Too many challenge requests. Please try again later.' },
   handler: (req, res, next, options) => {
-    res.status(options.statusCode).json(options.message);
+    const correlationId = logDiagnostic('RATE_LIMITED', { endpoint: 'api/altcha', clientIp: req.ip });
+    res.status(options.statusCode).json({ ...options.message, correlationId });
   }
 });
 
-// Rate limiter for form submission (Max 5 submissions per hour per IP)
+// Rate limiter for form submission attempts (Max 30 attempts per hour per IP)
 const submissionLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5,
+  max: 30,
   standardHeaders: 'draft-7',
   legacyHeaders: false,
-  message: { success: false, message: 'Too many submissions from this IP. Please try again after one hour.' },
+  message: { success: false, code: 'RATE_LIMITED', message: 'Too many submissions from this IP. Please try again after one hour.' },
   handler: (req, res, next, options) => {
-    console.warn(`[SECURITY] Submission rate limit triggered for IP: ${req.ip}`);
-    res.status(options.statusCode).json(options.message);
+    const correlationId = logDiagnostic('RATE_LIMITED', { endpoint: 'api/submit', clientIp: req.ip });
+    res.status(options.statusCode).json({ ...options.message, correlationId });
   }
 });
 
@@ -95,7 +92,7 @@ const submissionLimiter = rateLimit({
 // ============================================================================
 const usedCaptchas = new Map(); // token -> timestamp
 const MAX_CACHE_ENTRIES = 1000;
-const REPLAY_TTL_MS = 15 * 60 * 1000; // 15 minutes
+const REPLAY_TTL_MS = 10 * 60 * 1000; // 10 minutes (aligned with challenge TTL)
 
 function purgeExpiredCaptchas() {
   const now = Date.now();
@@ -107,15 +104,10 @@ function purgeExpiredCaptchas() {
 }
 
 // ============================================================================
-// 6. CRYPTOGRAPHIC SECRET KEY RESOLUTION
+// 6. CRYPTOGRAPHIC SECRET KEY RESOLUTION (DELEGATED TO SECURITY MODULE)
 // ============================================================================
-function getValidatedHmacKey() {
-  const key = process.env.ALTCHA_HMAC_KEY || process.env.EMAIL_PASS;
-  if (!key) {
-    return 'altcha-prod-hmac-panav-portfolio-secure-key-2025';
-  }
-  return key;
-}
+// Uses getValidatedHmacKey() from ./security.js to prevent credential reuse and hardcoded secrets.
+
 
 // ============================================================================
 // 7. ZOD INPUT VALIDATION SCHEMA (INJECTION & XSS DEFENSE)
@@ -136,7 +128,9 @@ const submissionSchema = z.object({
     .trim()
     .toLowerCase()
     .max(150, { message: 'Email must not exceed 150 characters' })
-    .email({ message: 'A valid email address is required' })
+    .regex(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/, {
+      message: 'A valid email address is required'
+    })
     .refine((val) => {
       const domain = val.split('@')[1];
       return !isDisposableDomain(domain);
@@ -152,7 +146,7 @@ const submissionSchema = z.object({
     .string({ required_error: 'CAPTCHA verification token is required' })
     .trim()
     .min(1, { message: 'CAPTCHA verification token is required' })
-    .max(2048, { message: 'CAPTCHA token exceeds maximum allowable length' }),
+    .max(4096, { message: 'CAPTCHA token exceeds maximum allowable length' }),
 
   _honeypot: z
     .string()
@@ -168,14 +162,29 @@ const submissionSchema = z.object({
 app.get(['/api/altcha', '/altcha', '/.netlify/functions/api/altcha'], challengeLimiter, async (req, res, next) => {
   try {
     const hmacKey = getValidatedHmacKey();
+    if (!hmacKey) {
+      const correlationId = logDiagnostic('MISSING_CONFIG', { endpoint: 'api/altcha', clientIp: req.ip });
+      return res.status(503).json({
+        success: false,
+        code: 'MISSING_CONFIG',
+        message: 'Security challenge configuration is unavailable.',
+        correlationId
+      });
+    }
     const challenge = await createChallenge({
       hmacKey,
-      maxNumber: 100000, // Balanced computational difficulty for client devices
+      maxNumber: 50000, // Balanced computational difficulty for client devices
       expires: new Date(Date.now() + 10 * 60 * 1000) // Explicit 10-minute validity window
     });
     return res.status(200).json(challenge);
   } catch (error) {
-    return next(error);
+    const correlationId = logDiagnostic('CHALLENGE_GEN_FAILED', { endpoint: 'api/altcha', clientIp: req.ip, reason: error.message });
+    return res.status(500).json({
+      success: false,
+      code: 'CHALLENGE_GEN_FAILED',
+      message: 'Failed to generate security challenge.',
+      correlationId
+    });
   }
 });
 
@@ -185,38 +194,93 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], submissio
     // 1. Zod Schema Validation
     const parseResult = submissionSchema.safeParse(req.body);
     if (!parseResult.success) {
-      const firstError = parseResult.error.errors[0]?.message || 'Invalid input provided.';
-      return res.status(400).json({ success: false, message: firstError });
+      const firstError = parseResult.error.issues?.[0]?.message || parseResult.error.errors?.[0]?.message || 'Invalid input provided.';
+      const correlationId = logDiagnostic('INVALID_PAYLOAD', { endpoint: 'api/submit', clientIp: req.ip, reason: firstError });
+      return res.status(400).json({ success: false, code: 'INVALID_PAYLOAD', message: firstError, correlationId });
     }
 
     const { name, email, message, altcha, _honeypot } = parseResult.data;
 
     // 2. Honeypot Bot Trap (Silent 200 OK drop)
     if (_honeypot && _honeypot.trim().length > 0) {
-      console.warn(`[SECURITY] Bot honeypot triggered from IP: ${req.ip}. Silently discarding.`);
+      logDiagnostic('HONEYPOT_TRIGGERED', { endpoint: 'api/submit', clientIp: req.ip });
       return res.status(200).json({ success: true, message: 'Message sent successfully!' });
     }
 
-    // 3. Anti-Replay Defense
-    purgeExpiredCaptchas();
-    if (usedCaptchas.has(altcha)) {
-      console.warn(`[SECURITY] Replay attack detected from IP: ${req.ip}`);
-      return res.status(400).json({ success: false, message: 'CAPTCHA token has already been used. Please refresh.' });
+    // 3. Cryptographic Configuration Check (Fail closed if secret is unconfigured)
+    const hmacKey = getValidatedHmacKey();
+    if (!hmacKey) {
+      const correlationId = logDiagnostic('MISSING_CONFIG', { endpoint: 'api/submit', clientIp: req.ip });
+      return res.status(503).json({
+        success: false,
+        code: 'MISSING_CONFIG',
+        message: 'Security verification service temporarily unavailable.',
+        correlationId
+      });
     }
 
-    // 4. Cryptographic Proof-of-Work Verification
-    const hmacKey = getValidatedHmacKey();
+    // 4. Altcha Parameter Extraction and Expiration Check
+    let altchaParams = null;
+    try {
+      altchaParams = extractParams(altcha);
+    } catch {
+      const correlationId = logDiagnostic('INVALID_PAYLOAD', { endpoint: 'api/submit', clientIp: req.ip, reason: 'Failed to decode Altcha token' });
+      return res.status(400).json({
+        success: false,
+        code: 'INVALID_PAYLOAD',
+        message: 'Invalid verification token format. Please re-verify.',
+        correlationId
+      });
+    }
+
+    const expiresSec = altchaParams?.expires || altchaParams?.expire;
+    if (expiresSec) {
+      const expDate = new Date(parseInt(expiresSec, 10) * 1000);
+      if (!Number.isNaN(expDate.getTime()) && expDate.getTime() < Date.now()) {
+        const correlationId = logDiagnostic('EXPIRED_CHALLENGE', { endpoint: 'api/submit', clientIp: req.ip, expiredAt: expDate.toISOString() });
+        return res.status(400).json({
+          success: false,
+          code: 'EXPIRED_CHALLENGE',
+          message: 'Security challenge has expired. Please verify the checkbox again.',
+          correlationId
+        });
+      }
+    }
+
+    // 5. Anti-Replay Defense
+    purgeExpiredCaptchas();
+    if (usedCaptchas.has(altcha)) {
+      const correlationId = logDiagnostic('REPLAY_REJECTED', { endpoint: 'api/submit', clientIp: req.ip });
+      return res.status(400).json({
+        success: false,
+        code: 'REPLAY_REJECTED',
+        message: 'Verification token has already been used. Please re-verify.',
+        correlationId
+      });
+    }
+
+    // 6. Cryptographic Proof-of-Work Verification
     let isSignatureValid = false;
     try {
       isSignatureValid = await verifySolution(altcha, hmacKey);
     } catch (cryptoErr) {
-      console.error(`[SECURITY] Cryptographic verification failed for IP: ${req.ip}:`, cryptoErr.message);
-      return res.status(400).json({ success: false, message: 'CAPTCHA verification failed. Please try again.' });
+      const correlationId = logDiagnostic('SIGNATURE_FAILED', { endpoint: 'api/submit', clientIp: req.ip, reason: cryptoErr.message });
+      return res.status(400).json({
+        success: false,
+        code: 'SIGNATURE_FAILED',
+        message: 'Security verification failed. Please try again.',
+        correlationId
+      });
     }
 
     if (!isSignatureValid) {
-      console.warn(`[SECURITY] Invalid CAPTCHA solution supplied by IP: ${req.ip}`);
-      return res.status(400).json({ success: false, message: 'Invalid CAPTCHA solution.' });
+      const correlationId = logDiagnostic('SIGNATURE_FAILED', { endpoint: 'api/submit', clientIp: req.ip, reason: 'Hash or signature mismatch' });
+      return res.status(400).json({
+        success: false,
+        code: 'SIGNATURE_FAILED',
+        message: 'Invalid CAPTCHA solution. Please try again.',
+        correlationId
+      });
     }
 
     // Record token into bounded anti-replay cache
@@ -226,28 +290,33 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], submissio
     }
     usedCaptchas.set(altcha, Date.now());
 
-    // 5. Profanity / Abusive Text Filter (Shadow Ban)
+    // 6. Profanity / Abusive Text Filter (Shadow Ban)
     if (isProfaneText(name) || isProfaneText(message)) {
-      console.warn(`[SECURITY] Content flagged as profane/hate-speech from IP: ${req.ip}. Shadow banning.`);
+      logDiagnostic('PROFANITY_SHADOW_BAN', { endpoint: 'api/submit', clientIp: req.ip });
       return res.status(200).json({ success: true, message: 'Message sent successfully!' });
     }
 
-    // 6. Verify SMTP Service Availability
+    // 7. Verify SMTP Service Availability
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error('[CONFIG] SMTP credentials (EMAIL_USER / EMAIL_PASS) are unconfigured.');
-      return res.status(503).json({ success: false, message: 'Email service is temporarily unavailable.' });
+      const correlationId = logDiagnostic('SMTP_UNAVAILABLE', { endpoint: 'api/submit', clientIp: req.ip });
+      return res.status(503).json({
+        success: false,
+        code: 'SMTP_UNAVAILABLE',
+        message: 'Email service is temporarily unavailable. Please email directly at panav.p@proton.me.',
+        correlationId
+      });
     }
 
     // 7. Contextual Sanitization & Safe Email Construction
     // Header names are sanitized to eliminate CRLF/header injection
     const sanitizedHeaderName = name.replace(/[\r\n\t]/g, ' ').replace(/"/g, "'");
-    const recipientEmail = process.env.NOTIFICATION_EMAIL || process.env.EMAIL_USER || 'panav.p@proton.me';
+    const recipientEmail = (process.env.NOTIFICATION_EMAIL || process.env.EMAIL_USER || 'panav.p@proton.me').trim();
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: process.env.EMAIL_USER?.trim(),
+        pass: process.env.EMAIL_PASS?.replace(/\s+/g, '')
       }
     });
 
@@ -268,17 +337,28 @@ app.post(['/api/submit', '/submit', '/.netlify/functions/api/submit'], submissio
       `
     };
 
-    await transporter.sendMail(mailOptions);
-    console.log(`[AUDIT] Form submission successfully delivered for sender: ${email}`);
-
-    // NOTE: In strict accordance with OWASP anti-relay guidelines, we intentionally do NOT dispatch
-    // unauthenticated auto-responders to arbitrary recipient emails to protect the SMTP account
-    // from being weaponized as an email bombing/spam relay.
+    try {
+      await transporter.sendMail(mailOptions);
+    } catch (smtpErr) {
+      const correlationId = logDiagnostic('SMTP_FAILED', { endpoint: 'api/submit', clientIp: req.ip, reason: smtpErr.message });
+      return res.status(500).json({
+        success: false,
+        code: 'SMTP_FAILED',
+        message: 'Unable to deliver message at this time. Please email directly at panav.p@proton.me.',
+        correlationId
+      });
+    }
 
     return res.status(200).json({ success: true, message: 'Message sent successfully!' });
 
   } catch (error) {
-    return next(error);
+    const correlationId = logDiagnostic('UNCAUGHT_SUBMISSION_ERROR', { endpoint: 'api/submit', clientIp: req.ip, reason: error.message });
+    return res.status(500).json({
+      success: false,
+      code: 'INTERNAL_ERROR',
+      message: 'An unexpected internal error occurred.',
+      correlationId
+    });
   }
 });
 
