@@ -140,3 +140,184 @@ altcha-widget {
     min-height: 56px;
     color: #f3efe6 !important;
 }
+
+/* =============================================================
+   ROLLS-ROYCE-INSPIRED CIRCULAR CURSOR
+   Refined, restrained, high-precision desktop cursor interaction
+   ============================================================= */
+
+@media (pointer: fine) and (hover: hover) {
+    /* Hide native cursor for page elements when custom cursor is active */
+    body.has-custom-cursor,
+    body.has-custom-cursor a,
+    body.has-custom-cursor button,
+    body.has-custom-cursor [role="button"],
+    body.has-custom-cursor [role="tab"],
+    body.has-custom-cursor summary,
+    body.has-custom-cursor .project-entry {
+        cursor: none !important;
+    }
+
+    /* Preserve standard native cursors on text inputs, textareas, selects, and ALTCHA */
+    body.has-custom-cursor input,
+    body.has-custom-cursor textarea,
+    body.has-custom-cursor select,
+    body.has-custom-cursor [contenteditable="true"],
+    body.has-custom-cursor altcha-widget,
+    body.has-custom-cursor altcha-widget * {
+        cursor: auto !important;
+    }
+    body.has-custom-cursor input[type="text"],
+    body.has-custom-cursor input[type="email"],
+    body.has-custom-cursor textarea {
+        cursor: text !important;
+    }
+    body.has-custom-cursor input[type="checkbox"],
+    body.has-custom-cursor input[type="radio"],
+    body.has-custom-cursor input[type="submit"],
+    body.has-custom-cursor input[type="button"] {
+        cursor: pointer !important;
+    }
+}
+
+/* Cursor container: fixed, pointer-events none, maximum stacking order */
+#rr-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none !important;
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+#rr-cursor.rr-cursor-active {
+    opacity: 1;
+}
+
+#rr-cursor.is-hidden {
+    opacity: 0 !important;
+    transition: opacity 0.15s ease;
+}
+
+/* Positional containers translated via translate3d in RAF loop */
+.rr-cursor-ring-pos,
+.rr-cursor-dot-pos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none !important;
+    will-change: transform;
+}
+
+/* Elegant Outer Ring */
+.rr-cursor-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(243, 239, 230, 0.38);
+    background-color: rgba(243, 239, 230, 0.015);
+    transform: translate(-50%, -50%) scale(1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    pointer-events: none !important;
+    transition: 
+        width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.24s ease,
+        background-color 0.24s ease,
+        transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.24s ease;
+}
+
+/* Precision Inner Dot */
+.rr-cursor-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #f3efe6;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: none !important;
+    transition: 
+        transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* Contextual Label (VIEW) inside Ring */
+.rr-cursor-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: #f3efe6;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: 
+        opacity 0.2s ease,
+        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    pointer-events: none !important;
+}
+
+/* Hover State: Expanded ring over clickable links & buttons */
+#rr-cursor.is-hover .rr-cursor-ring {
+    width: 52px;
+    height: 52px;
+    border-color: rgba(243, 239, 230, 0.65);
+    background-color: rgba(243, 239, 230, 0.06);
+}
+
+#rr-cursor.is-hover .rr-cursor-dot {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(0.6);
+}
+
+/* View State: Expanded ring with VIEW badge over project cards */
+#rr-cursor.is-view .rr-cursor-ring {
+    width: 76px;
+    height: 76px;
+    border-color: rgba(243, 239, 230, 0.55);
+    background-color: rgba(20, 21, 26, 0.82);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+#rr-cursor.is-view .rr-cursor-dot {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+#rr-cursor.is-view .rr-cursor-label {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Click / Active Press State: Slight tactile compression */
+#rr-cursor.is-clicking .rr-cursor-ring {
+    transform: translate(-50%, -50%) scale(0.88);
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+    #rr-cursor,
+    .rr-cursor-ring,
+    .rr-cursor-dot,
+    .rr-cursor-label {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
