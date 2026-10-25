@@ -5,7 +5,20 @@ import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 
 let devFallbackKey = null;
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+function getModuleDir() {
+  if (typeof __dirname !== 'undefined') {
+    return __dirname;
+  }
+  try {
+    if (typeof import.meta !== 'undefined' && import.meta && import.meta.url) {
+      return path.dirname(fileURLToPath(import.meta.url));
+    }
+  } catch {
+    // fallback
+  }
+  return process.cwd();
+}
 
 /**
  * Structured diagnostic logger for security and verification events.
@@ -68,7 +81,7 @@ export function getValidatedHmacKey() {
   try {
     const candidateDirs = [
       path.resolve(process.cwd(), 'node_modules', '.cache'),
-      path.resolve(__dirname, '..', '..', 'node_modules', '.cache')
+      path.resolve(getModuleDir(), '..', '..', 'node_modules', '.cache')
     ];
     let keyFile = null;
     let cacheDir = null;
