@@ -2,11 +2,6 @@ import Lenis from 'lenis';
 import 'altcha';
 import './index.css';
 
-// 0. Activate deferred webfonts asynchronously without violating CSP inline-handler restrictions
-const fontLink = document.getElementById('google-fonts-link');
-if (fontLink && fontLink.media !== 'all') {
-  fontLink.media = 'all';
-}
 
 // 1. Initialize Lenis for smooth, restrained scrolling (respecting reduced motion preferences)
 const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
