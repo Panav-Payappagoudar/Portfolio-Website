@@ -13,7 +13,7 @@ export default defineConfig({
       transformIndexHtml(html) {
         // 1. Inject Hero Section (Art-directed editorial composition)
         const heroHtml = `
-          <div class="reveal-on-scroll">
+          <div>
             <!-- Dateline & Research Anchor -->
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between pb-6 mb-10 sm:mb-14 border-b border-[rgba(243,239,230,0.08)] text-xs font-mono text-[#9e9a91]">
               <div class="flex items-center gap-2.5">
