@@ -125,12 +125,12 @@ export function getValidatedHmacKey() {
 export function isAllowedOrigin(origin) {
   if (!origin) return true; // Direct same-origin request without Origin header
   const normalized = origin.trim().toLowerCase();
-  
+
   // Trusted production domains
   if (normalized === 'https://panav.xyz' || normalized === 'https://www.panav.xyz') {
     return true;
   }
-  
+
   // Trusted local development domains
   if (/^http:\/\/localhost(:\d+)?$/.test(normalized) || /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(normalized)) {
     return true;
@@ -141,18 +141,18 @@ export function isAllowedOrigin(origin) {
   if (process.env.DEPLOY_PRIME_URL && normalized === process.env.DEPLOY_PRIME_URL.toLowerCase()) return true;
   if (process.env.DEPLOY_URL && normalized === process.env.DEPLOY_URL.toLowerCase()) return true;
   if (process.env.SITE_NAME) {
-    const siteRegex = new RegExp(`^https:\\/\\/([a-z0-9-]+--)?${process.env.SITE_NAME.toLowerCase()}\\.netlify\\.app$`);
+    const escapedSite = process.env.SITE_NAME.trim().toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const siteRegex = new RegExp(`^https:\\/\\/([a-z0-9-]+--)?${escapedSite}\\.netlify\\.app$`);
     if (siteRegex.test(normalized)) return true;
   }
 
-  // Trusted Netlify deploy previews and branch deploys for Panav portfolio
+  // Exact verified Netlify site identifiers (never wildcard prefixes like panav-evil.netlify.app)
   if (
-    /^https:\/\/([a-z0-9-]+--)?panav[a-z0-9-]*\.netlify\.app$/.test(normalized) ||
-    /^https:\/\/deploy-preview-\d+--panav[a-z0-9-]*\.netlify\.app$/.test(normalized)
+    /^https:\/\/([a-z0-9-]+--)?(panav-payappagoudar|panav)\.netlify\.app$/.test(normalized)
   ) {
     return true;
   }
-  
+
   return false;
 }
 
@@ -164,7 +164,8 @@ export function getCorsHeaders(origin, allowedMethods = 'GET, POST, OPTIONS') {
     'Content-Type': 'application/json',
     'Vary': 'Origin',
     'X-Content-Type-Options': 'nosniff',
-    'X-Frame-Options': 'DENY'
+    'X-Frame-Options': 'DENY',
+    'Referrer-Policy': 'strict-origin-when-cross-origin'
   };
 
   if (!origin) {
@@ -205,13 +206,19 @@ const MAX_RATE_LIMIT_ENTRIES = 5000;
 
 export function checkRateLimit(key, maxRequests = 5, windowMs = 60 * 60 * 1000) {
   const now = Date.now();
-  
+
   // Evict expired entries when capacity is approached
-  if (rateLimitMap.size > MAX_RATE_LIMIT_ENTRIES) {
+  if (rateLimitMap.size >= MAX_RATE_LIMIT_ENTRIES) {
     for (const [k, v] of rateLimitMap.entries()) {
       if (now > v.resetTime) {
         rateLimitMap.delete(k);
       }
+    }
+    // Enforce hard upper cap under unexpired flood
+    while (rateLimitMap.size >= MAX_RATE_LIMIT_ENTRIES) {
+      const oldestKey = rateLimitMap.keys().next().value;
+      if (!oldestKey) break;
+      rateLimitMap.delete(oldestKey);
     }
   }
 

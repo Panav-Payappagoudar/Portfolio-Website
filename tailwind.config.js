@@ -4,39 +4,40 @@ export default {
     "./index.html",
     "./privacy.html",
     "./terms.html",
+    "./404.html",
+    "./work/**/*.{html,js}",
+    "./experience/**/*.{html,js}",
+    "./achievements/**/*.{html,js}",
+    "./about/**/*.{html,js}",
+    "./contact/**/*.{html,js}",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./vite.config.js",
+    "./scripts/**/*.{js,ts}"
   ],
   theme: {
     extend: {
       fontFamily: {
-        editorial: ['Newsreader', 'Georgia', 'serif'],
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        heading: ['"Manrope"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       colors: {
-        canvas: {
-          DEFAULT: '#0e0f12',
-          subtle: '#14151a',
-        },
-        surface: {
-          DEFAULT: '#14151a',
-          elevated: '#1a1b22',
-          border: 'rgba(243, 239, 230, 0.08)',
-          'border-strong': 'rgba(243, 239, 230, 0.16)',
-        },
-        ink: {
-          primary: '#f3efe6',
-          secondary: '#9e9a91',
-          muted: '#625f58',
-          subtle: '#45433e',
-        },
-        accent: {
-          DEFAULT: '#c47847',
-          muted: 'rgba(196, 120, 71, 0.15)',
-          hover: '#d58754',
-        }
+        background: '#F9F9F9',
+        surface: '#FFFFFF',
+        'surface-subtle': '#F4F4F5',
+        'surface-dark': '#111111',
+        primary: '#111111',
+        secondary: '#64748B',
+        muted: '#71717A',
+        border: 'rgba(0, 0, 0, 0.08)',
+        'border-dark': 'rgba(255, 255, 255, 0.12)',
       },
+      borderRadius: {
+        DEFAULT: '6px',
+        md: '6px',
+        lg: '8px',
+        xl: '12px',
+        '2xl': '16px',
+      }
     },
   },
   plugins: [],

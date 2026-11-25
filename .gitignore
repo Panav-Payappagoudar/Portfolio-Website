@@ -37,6 +37,7 @@ dist-ssr
 !public/robots.txt
 !public/humans.txt
 !public/llms.txt
+!public/llms-full.txt
 *.scratch.*
 test-imports.js
 temp.*

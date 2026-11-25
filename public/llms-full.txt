@@ -1,0 +1,284 @@
+# Panav Payappagoudar — Complete Portfolio Reference
+
+> Canonical Source: https://panav.xyz/
+> Concise Index: https://panav.xyz/llms.txt
+
+## Overview
+
+- **Name**: Panav Payappagoudar
+- **Academic Program**: Computer Science Undergraduate · VIT-AP University
+- **Focus**: Building software across applied machine learning, distributed systems, and embedded robotics.
+- **Summary**: I am a Computer Science undergraduate at VIT-AP University working on applied ML pipelines, simulation engines, and decentralized tooling. Outside engineering and campus research, I explore independent design projects and write technical breakdowns.
+- **Location**: India
+- **Email**: panav.p@proton.me
+
+## Background & Education
+
+- **VIT-AP University** — B.Tech in Computer Science and Engineering (2024 – 2028): School of Electronics & Computer Science (ECS Department). Member of the Machine Learning Club and ECS Robotics Research Group.
+- **Sri Chaitanya Techno School** — Intermediate (MPC & Computer Science) (2022 – 2024): Mathematics, Physics, Chemistry, and Python foundations.
+
+Computer Science and Engineering undergraduate at VIT-AP University (2024–2028).
+My interests center on systems programming, computer vision, geospatial data processing, and microcontroller robotics — particularly where mathematical modeling meets hands-on software engineering.
+
+Through campus research groups and hackathons, I have built projects ranging from collaborative multi-body physics simulations and satellite imagery change-detection pipelines to decentralized document storage and sensor-driven mobile robots.
+
+Beyond coursework and research, I run The Essentialist (a minimalist print-on-demand apparel project) and write technical notes on Medium and Hashnode documenting builds and system architectures.
+
+Currently, I am focused on deepening my systems programming skills in Rust and Python, refining computer vision workflows, and collaborating on challenging engineering internships and research.
+
+## Technical Capabilities
+
+- **AI, ML & Computer Vision**: PyTorch, TensorFlow, OpenCV, scikit-learn, LLMs / Gemini, RAG Pipelines, GANs / CNNs — Model training, vision pipelines, and applied LLM workflows.
+- **Geospatial & Scientific Computing**: Rasterio, GDAL, NumPy, PostGIS, Three.js / WebGL, MATLAB — Raster processing, spatial databases, and numerical simulations.
+- **Systems & Embedded Robotics**: Rust, C / C++, Embedded C++, Arduino UNO, Linux, Sensor Fusion — Userspace experiments, microcontroller firmware, and sensor integration.
+- **Backend & Full-Stack**: Python, FastAPI, Django / DRF, Node.js, PostgreSQL, Redis, Celery, React, Flutter / Dart, Docker — Web services, task queues, and cross-platform interfaces.
+- **Security & Web3**: Solidity, IPFS, Cryptographic Verification, Networking, Secure API Design — Decentralized storage patterns, smart contracts, and input hardening.
+
+## Projects (12 Builds)
+
+### Gravity Sandbox (2025) — Real-time collaborative N-body astrophysics simulation
+- **URL**: https://panav.xyz/work#gravity-sandbox
+- **Category**: Systems & Simulation
+- **Status**: Hackathon Winner · SimVerse ’25
+- **Recognition**: SimVerse ’25 — 1st Place Winner
+- **Technologies**: React, Three.js, Socket.io, Node.js, Physics Engine
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/SimVerse25
+- **Overview**: A collaborative astrophysics sandbox allowing multiple users to interact with multi-body gravitational mechanics in the browser. Built with a Host-Relay WebSocket architecture so one client computes physics state updates and broadcasts them to connected peers without running centralized physics servers.
+- **Technical Highlights**:
+  - Host-Relay synchronization topology over WebSockets (Socket.io + Node.js)
+  - Client-side N-body gravitational simulation engine without server-side compute
+  - Interactive 3D browser visualization rendered using Three.js
+- **Context**: Synchronizing multi-user gravitational simulations via centralized physics servers adds hosting overhead and network round-trip latency for every step.
+- **Approach**: Implemented a Host-Relay architecture where one designated host client computes the N-body physics state and broadcasts updates to connected viewers sharing the Three.js scene.
+- **Outcome**: Awarded 1st Place at SimVerse ’25 for delivering real-time collaborative physics interaction in the browser.
+
+### ClaimAgent (2026) — Automated prior-authorization workflow prototype for clinical records
+- **URL**: https://panav.xyz/work#claim-agent
+- **Category**: Applied AI & Automation
+- **Status**: Hackathon Prototype · Radiothon ’26
+- **Recognition**: Radiothon ’26 — Top 5 Finalist
+- **Technologies**: Gemini 2.5, RAG, Playwright, Node.js, REST API
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/ClaimAgent
+- **Overview**: An autonomous prior-authorization prototype built for Radiothon ’26. Pairs Gemini 2.5 and retrieval-augmented generation (RAG) over clinical criteria with headless Playwright automation to extract patient context and populate payer portal forms.
+- **Technical Highlights**:
+  - RAG pipeline matching clinical notes against policy rules via Gemini 2.5
+  - Headless Playwright browser automation for form completion and submission
+  - Tested end-to-end against a companion mock insurer backend repository
+- **Context**: Healthcare prior authorization typically requires staff to manually cross-check clinical records (~90 minutes per request on manual flows) and copy entries into web forms.
+- **Approach**: Built a multi-step hackathon prototype combining document retrieval with Gemini 2.5 and Playwright automation running against a simulated insurance backend.
+- **Outcome**: Placed Top 5 Finalist at Radiothon ’26, compressing test case form preparation down to roughly 3 minutes.
+
+### Geospatial Change Detection (2025) — Multi-temporal satellite imagery & cloud-masking pipeline
+- **URL**: https://panav.xyz/work#geospatial-change
+- **Category**: Computer Vision & GIS
+- **Status**: Hackathon Prototype · ISRO Track
+- **Recognition**: ISRO Hackathon Prototype
+- **Technologies**: Python, FastAPI, PostGIS, Rasterio, Celery, Vue.js
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/ISRO-Hackathon
+- **Overview**: An automated remote sensing prototype engineered for the ISRO Hackathon to surface land-use and environmental changes across multi-temporal satellite captures. Preprocesses raster tiles with cloud masking and persists spatial change records into PostGIS.
+- **Technical Highlights**:
+  - Raster preprocessing and cloud masking built on Python and Rasterio
+  - Asynchronous task queue using Celery and FastAPI for multi-date comparisons
+  - Spatial results persisted in PostGIS and displayed via a Vue.js interface
+- **Context**: Manual inspection of multi-temporal satellite captures is slow and frequently disrupted by transient cloud cover causing false change alerts.
+- **Approach**: Constructed a FastAPI and Celery pipeline using Rasterio to apply cloud-masking filters before comparing multi-date captures and saving spatial footprints to PostGIS.
+- **Outcome**: Delivered a complete GIS monitoring prototype handling automated tile ingestion, filtering, and spatial alert generation.
+
+### SecureX (2025) — Decentralized document storage, smart contracts, and AI Q&A
+- **URL**: https://panav.xyz/work#securex
+- **Category**: Systems & Security
+- **Status**: Hackathon Prototype · Top 2%
+- **Recognition**: Microsoft Triwizardathon — Top 2% (23/1,290)
+- **Technologies**: React, Node.js, Solidity, IPFS, LangChain, MongoDB
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/Secure-X
+- **Live Deployment**: https://final-secure-x-ix3r.vercel.app/
+- **Overview**: A decentralized document management prototype created for Microsoft Triwizardathon. Integrates IPFS storage (via NFT.Storage), Ethereum smart contracts written in Solidity for access management, and LangChain-powered contextual document Q&A.
+- **Technical Highlights**:
+  - Decentralized content storage pinned to IPFS via NFT.Storage
+  - Access governance and audit state handled on Ethereum via Solidity contracts
+  - Contextual document querying built with LangChain alongside React and MongoDB
+- **Context**: Conventional document vaults store files on single centralized providers with limited on-chain auditability for access permissions.
+- **Approach**: Paired IPFS storage and Ethereum smart contracts in Solidity for decentralized file referencing and permission control, plus a LangChain Q&A workflow.
+- **Outcome**: Ranked 23rd out of 1,290 competing teams (Top 2%) at Microsoft Triwizardathon with a live Vercel deployment.
+
+### Autonomous Human-Following Robot (2025) — Microcontroller mobile robotics prototype with sensor fusion
+- **URL**: https://panav.xyz/work#human-following-robot
+- **Category**: Robotics & Hardware
+- **Status**: Undergraduate Research Prototype
+- **Recognition**: Undergraduate Research · VIT-AP ECS
+- **Technologies**: Arduino UNO, Embedded C++, IR & Ultrasonic Sensors, Differential Drive
+- **Overview**: An embedded robotics research prototype built in the School of Electronics & Computer Science (VIT-AP University) under faculty supervision of Dr. Y. Narasimha Rao. Combines Arduino UNO R3 firmware, ultrasonic and infrared sensors, and differential-drive DC motors to track a moving human target.
+- **Technical Highlights**:
+  - Sensor fusion logic pairing ultrasonic rangefinding with infrared proximity sensors
+  - Embedded C++ firmware running on Arduino UNO R3 with obstacle avoidance
+  - Differential-drive motor actuation driven by geared DC motors
+- **Context**: Tracking a moving human target with low-cost sensors involves filtering noisy readings and reacting quickly to obstacles inside indoor spaces.
+- **Approach**: Implemented embedded C++ sensor fusion on Arduino UNO R3 combining ultrasonic and IR arrays to steer differential-drive DC geared motors smoothly.
+- **Outcome**: Demonstrated an autonomous hardware tracking prototype as part of undergraduate ECS departmental research.
+
+### OmitFS (2025) — Zero-dependency semantic filesystem experiment in Rust
+- **URL**: https://panav.xyz/work#omitfs
+- **Category**: Systems Experiment
+- **Status**: Experiment
+- **Technologies**: Rust, Systems, Filesystems
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/OmitFS
+- **Overview**: An experimental filesystem written in Rust without external dependencies, exploring intent-based semantic navigation instead of nested hierarchical directories.
+
+
+### VectorGit (2025) — Semantic code search and commit history tooling in Rust
+- **URL**: https://panav.xyz/work#vectorgit
+- **Category**: Developer Tooling
+- **Status**: Prototype
+- **Technologies**: Rust, AI, Vector Search
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/VectorGit
+- **Overview**: An experimental Git tooling prototype in Rust exploring vector embeddings for semantic search across codebases and version control history.
+
+
+### Sketch-to-Face Forensics (2025) — Deep learning facial synthesis from hand-drawn sketches
+- **URL**: https://panav.xyz/work#sketch-to-face
+- **Category**: Computer Vision & ML
+- **Status**: Club Research
+- **Technologies**: TensorFlow, OpenCV, CNNs, GANs
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/Sketch-to-face-forensics
+- **Overview**: A computer vision research project at the VIT-AP Machine Learning Club using TensorFlow, OpenCV, CNNs, and GANs to match and translate hand-drawn witness sketches into photorealistic faces.
+
+
+### GridShield (2025) — Network security and threat detection prototype
+- **URL**: https://panav.xyz/work#gridshield
+- **Category**: Security & Networking
+- **Status**: Prototype
+- **Technologies**: Security, Networking, Cryptography
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/GridShield
+- **Overview**: A network security framework prototype focused on threat detection and cryptographic traffic monitoring patterns in distributed computing environments.
+
+
+### Clarity AI (2025) — Hybrid ML pipeline for air quality CO forecasting
+- **URL**: https://panav.xyz/work#clarity-ai
+- **Category**: Machine Learning
+- **Status**: Academic / ML Project
+- **Technologies**: Python, Flask, React, scikit-learn, Chart.js
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/Clarity-AI
+- **Overview**: An environmental ML application pairing Random Forest and Linear Regression models across 31 engineered features from the UCI Air Quality dataset to forecast CO levels, exposed via a Flask API and React/Chart.js frontend.
+
+
+### HealthGuard AI (2025) — Cross-platform mobile health triage & hospital locator
+- **URL**: https://panav.xyz/work#healthguard-ai
+- **Category**: Mobile Application
+- **Status**: Hackathon Prototype
+- **Technologies**: Flutter, Dart, Gemini, OpenStreetMap
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/HealthGuard_AI
+- **Overview**: A Flutter mobile app built for the OpenAI Hackathon combining gpt-oss and Gemini for health consultations, offline-first local storage, and nearby hospital mapping via OpenStreetMap.
+
+
+### Jet2holidayz — Hotel Booking Platform (2024) — Full-stack Django reservation system with task queues
+- **URL**: https://panav.xyz/work#travel-booking
+- **Category**: Full-Stack Web
+- **Status**: Web Application
+- **Technologies**: Django, DRF, PostgreSQL, Celery
+- **GitHub Repository**: https://github.com/Panav-Payappagoudar/Travel-Booking
+- **Overview**: A hotel booking web application built with Django and Django REST Framework featuring real-time reservation workflows, role-based authentication, payment integration structure, and Celery background queues.
+
+
+
+## Experience (10 Entries)
+
+### Summer Scholar — Amazon ML Summer School ’26 (Jul 2026 – Aug 2026)
+- **Type**: Fellowship · Completed
+- Selected from 135,000+ national applicants (~2.2% acceptance rate) for direct training from Amazon Applied Scientists.
+- Studied deep learning architectures, probabilistic graphical models, and optimization methods in structured sessions.
+
+### Open Source Contributor — GirlScript Summer of Code (GSSoC ’25 & ’26) (2025 – 2026)
+- **Type**: Open Source · Selected & Active
+- Selected contributor across consecutive 2025 and 2026 cohorts contributing to community open-source repositories.
+- Worked on issue triage, bug fixes, feature pull requests, and technical documentation across collaborative codebases.
+
+### Founder & Creative Director — The Essentialist (Oct 2025 – Present)
+- **Type**: Independent Venture · Active
+- Founded and manage a print-on-demand apparel storefront translating engineering themes into minimalist merchandise.
+- Handled visual identity, typography layouts, product catalog design, and e-commerce storefront management.
+
+### Technical Writer — Medium & Hashnode (Oct 2025 – Present)
+- **Type**: Writing · Active
+- Publish hands-on technical articles and project walkthroughs covering applied ML, Web3, cybersecurity, and systems engineering.
+
+### ML Researcher — Deep Learning & CV Team — The Machine Learning Club, VIT-AP (Aug 2025 – Present)
+- **Type**: Campus Research · Active
+- Built deep learning image-translation workflows (Sketch-to-Face Forensics) with TensorFlow, OpenCV, CNNs, and GANs.
+- Worked on LiDAR, Digital Elevation Models (DEM), and U-Net segmentation pipelines for solar utilization and terrain mapping.
+
+### Undergraduate Robotics Researcher — VIT-AP University — ECS Department (Jul 2025 – Present)
+- **Type**: Academic Research · Active
+- Building an autonomous human-following mobile robot under the faculty supervision of Dr. Y. Narasimha Rao.
+- Wrote embedded C++ firmware on Arduino UNO R3 integrating ultrasonic/IR sensor fusion, obstacle avoidance, and differential drive.
+
+### AI & Cloud Intern — IBM SkillsBuild (Sep 2025 – Oct 2025)
+- **Type**: Internship · Completed
+- Completed a structured AI and cloud engineering internship program covering containerized workloads and foundational cloud deployment.
+
+### Data Analyst Intern — VOIS & Vodafone Idea Foundation (Sep 2025 – Oct 2025)
+- **Type**: Internship · Completed
+- Built data processing workflows integrating language models for conversational transcript analysis and automated summarization.
+
+### Technical Team Associate — The Machine Learning Club, VIT-AP (Nov 2024 – Aug 2025)
+- **Type**: Student Research · Completed
+- Contributed to data preprocessing, raster tiling, and baseline U-Net models for solar mapping and sustainability exploration.
+
+### Freelance Technical Tutor & Peer Mentor — Independent (Sep 2024 – Present)
+- **Type**: Mentorship · Active
+- Tutored 25+ students in Java, Python, C++, and Data Structures & Algorithms, and supported peers with debugging and coding interview preparation.
+
+
+## Achievements (9 Entries)
+
+### Amazon ML Summer School ’26 (Jul 2026)
+- **Organization**: Amazon
+- **Status**: Selected & Completed
+- **Detail**: Selected from over 135,000 applicants (~2.2% acceptance rate) for machine learning coursework and sessions led by Amazon Applied Scientists.
+
+### SimVerse ’25 Hackathon — 1st Place (2025)
+- **Organization**: SimVerse
+- **Status**: Winner
+- **Detail**: Won 1st place for Gravity Sandbox, a collaborative real-time N-body physics engine built with WebSockets and Three.js.
+
+### Microsoft Triwizardathon — Top 2% (23rd / 1,290) (2025)
+- **Organization**: Microsoft
+- **Status**: Finalist
+- **Detail**: Ranked 23rd out of 1,290 engineering teams for SecureX, a decentralized document management and Q&A prototype using IPFS, Solidity, and LangChain.
+
+### Radiothon ’26 — Top 5 (2026)
+- **Organization**: Radiothon
+- **Status**: Finalist
+- **Detail**: Placed Top 5 finalist with ClaimAgent, an automated clinical prior-authorization workflow prototype using Gemini 2.5 RAG and Playwright.
+
+### IIT Bombay Techfest — Double Finalist (2025 – 2026)
+- **Organization**: IIT Bombay
+- **Status**: Finalist
+- **Detail**: Reached the finals across both the Aarohan and AWS ImpactX competition tracks.
+
+### Matrix Hackathon — Top 10 (2025)
+- **Organization**: Matrix Hackathon
+- **Status**: Finalist
+- **Detail**: Finished inside the Top 10 teams in the Matrix Hackathon.
+
+### GirlScript Summer of Code (GSSoC ’25 & ’26) (2025 – 2026)
+- **Organization**: GirlScript Foundation
+- **Status**: Selected Contributor
+- **Detail**: Selected across consecutive 2025 and 2026 open-source contribution cohorts.
+
+### Overall Hackathon Record (2024 – 2026)
+- **Organization**: Collegiate & National Events
+- **Status**: Track Record
+- **Detail**: 1× Winner, 2× Runner-up, and 11× Finalist across university and national developer hackathons.
+
+### Six Sigma White Belt Certification (2025)
+- **Organization**: Quality Management
+- **Status**: Certified
+- **Detail**: Completed introductory White Belt certification covering process improvement and quality control fundamentals.
+
+
+## Verified Public Profiles
+
+- **GitHub**: https://github.com/Panav-Payappagoudar
+- **LinkedIn**: https://linkedin.com/in/panav-payappagoudar
+- **Medium**: https://panav-payappagoudar.medium.com/
+- **Cal.com**: https://cal.com/panav-payappagoudar/consulting

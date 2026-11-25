@@ -1,0 +1,55 @@
+{
+  "specVersion": "0.91",
+  "host": {
+    "displayName": "Panav Payappagoudar",
+    "identifier": "panav.xyz"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:panav.xyz:profile:portfolio",
+      "displayName": "Panav Payappagoudar — Portfolio",
+      "type": "text/html",
+      "url": "https://panav.xyz/",
+      "description": "Personal portfolio of Panav Payappagoudar covering computer science education at VIT-AP University, software engineering, applied machine learning, distributed systems, and embedded robotics.",
+      "representativeQueries": [
+        "Who is Panav Payappagoudar?",
+        "What is Panav Payappagoudar studying and building?",
+        "Where can I contact Panav Payappagoudar?"
+      ],
+      "trustManifest": {
+        "identity": "panav.xyz",
+        "contact": "mailto:panav.p@proton.me"
+      }
+    },
+    {
+      "identifier": "urn:air:panav.xyz:docs:llms-txt",
+      "displayName": "AI Portfolio Navigation Guide (llms.txt)",
+      "type": "text/markdown",
+      "url": "https://panav.xyz/llms.txt",
+      "description": "Concise machine-readable summary and canonical URL directory for panav.xyz.",
+      "representativeQueries": [
+        "Overview of sections on panav.xyz",
+        "Verified public profiles for Panav Payappagoudar"
+      ],
+      "trustManifest": {
+        "identity": "panav.xyz",
+        "contact": "mailto:panav.p@proton.me"
+      }
+    },
+    {
+      "identifier": "urn:air:panav.xyz:docs:llms-full",
+      "displayName": "Complete Technical Portfolio Reference (llms-full.txt)",
+      "type": "text/markdown",
+      "url": "https://panav.xyz/llms-full.txt",
+      "description": "Structured markdown catalog of all 12 projects, 10 experience entries, 9 achievements, education, and technical skills.",
+      "representativeQueries": [
+        "What projects has Panav Payappagoudar built?",
+        "What experience and hackathons does Panav Payappagoudar have?"
+      ],
+      "trustManifest": {
+        "identity": "panav.xyz",
+        "contact": "mailto:panav.p@proton.me"
+      }
+    }
+  ]
+}

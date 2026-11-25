@@ -1,151 +1,113 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth bg-[#F9F9F9] text-[#111111]">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#0e0f12">
+    <meta name="theme-color" content="#F9F9F9">
     
     <title>Privacy Policy | Panav Payappagoudar</title>
-    <meta name="description" content="Privacy Policy for the personal portfolio of Panav Payappagoudar. Details regarding data handling, contact form processing, and user rights.">
+    <meta name="description" content="Privacy Policy for panav.xyz describing contact form handling, ALTCHA proof-of-work verification, third-party hosting, and user rights.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://panav.xyz/privacy.html">
 
     <!-- Open Graph -->
+    <meta property="og:site_name" content="Panav Payappagoudar">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://panav.xyz/privacy.html">
     <meta property="og:title" content="Privacy Policy | Panav Payappagoudar">
-    <meta property="og:description" content="Privacy Policy for the personal portfolio of Panav Payappagoudar.">
+    <meta property="og:description" content="Privacy Policy for panav.xyz describing contact form handling, ALTCHA proof-of-work verification, third-party hosting, and user rights.">
     <meta property="og:image" content="https://panav.xyz/og-image.png">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://panav.xyz/privacy.html">
-    <meta property="twitter:title" content="Privacy Policy | Panav Payappagoudar">
-    <meta property="twitter:description" content="Privacy Policy for the personal portfolio of Panav Payappagoudar.">
-    <meta property="twitter:image" content="https://panav.xyz/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://panav.xyz/privacy.html">
+    <meta name="twitter:title" content="Privacy Policy | Panav Payappagoudar">
+    <meta name="twitter:description" content="Privacy Policy for panav.xyz describing contact form handling, ALTCHA proof-of-work verification, third-party hosting, and user rights.">
+    <meta name="twitter:image" content="https://panav.xyz/og-image.png">
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <style>
-        @font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 300 600; font-display: swap; src: url('/fonts/plus-jakarta-sans.woff2') format('woff2'); }
-        @font-face { font-family: 'Newsreader'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/newsreader.woff2') format('woff2'); }
-        @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 500; font-display: swap; src: url('/fonts/jetbrains-mono.woff2') format('woff2'); }
-        body {
-            background-color: #0e0f12;
-            color: #f3efe6;
-            margin: 0;
-            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-        }
-        .prose-custom p { margin-bottom: 1.5rem; line-height: 1.8; font-weight: 300; color: #9e9a91; font-size: 0.95rem; }
-        .prose-custom h1, .prose-custom h2, .prose-custom h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; color: #f3efe6; }
-        .prose-custom h2 { font-size: 1.75rem; margin-top: 3rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(243,239,230,0.08); padding-bottom: 0.5rem; }
-        .prose-custom h3 { font-size: 1.35rem; margin-top: 2rem; margin-bottom: 1rem; color: #f3efe6; }
-        .prose-custom ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #9e9a91; font-weight: 300; }
-        .prose-custom li { margin-bottom: 0.5rem; line-height: 1.6; font-size: 0.95rem; }
-        .prose-custom a { color: #c47847; text-decoration: underline; text-underline-offset: 3px; }
-        .prose-custom a:hover { color: #f3efe6; }
-    </style>
+    <link rel="stylesheet" href="/src/index.css">
 </head>
-<body class="antialiased selection:bg-[#c47847] selection:text-white bg-[#0e0f12] text-[#f3efe6] overflow-x-hidden min-h-screen flex flex-col justify-between">
+<body class="antialiased selection:bg-[#111111] selection:text-white bg-[#F9F9F9] text-[#111111] min-h-screen flex flex-col justify-between">
     <!-- Skip to main content link -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2 focus:bg-[#c47847] focus:text-white focus:text-xs focus:font-mono focus:rounded focus:outline-none">Skip to main content</a>
-
-    <!-- Subtle paper grain overlay -->
-    <div class="subtle-grain" aria-hidden="true"></div>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2 focus:bg-[#111111] focus:text-white focus:text-xs focus:font-sans focus:font-medium focus:rounded-[6px] focus:outline-none">Skip to main content</a>
 
     <!-- Navigation Header -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-[#0e0f12]/90 backdrop-blur-md border-b border-[rgba(243,239,230,0.06)]" aria-label="Main Navigation">
-        <div class="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="/" class="text-left group">
-                <span class="font-normal text-sm sm:text-base text-[#f3efe6] tracking-tight group-hover:text-[#c47847] transition-colors">
-                    Panav Payappagoudar
-                </span>
-            </a>
-            <a href="/" class="flex items-center gap-2 text-xs font-mono text-[#8e8a82] hover:text-[#f3efe6] transition-colors group">
-                <span class="group-hover:-translate-x-1 transition-transform">←</span>
-                <span>Return to portfolio</span>
-            </a>
-        </div>
+    <nav class="nav border-b border-black/[0.06]" id="main-nav" aria-label="Legal Page Navigation">
+        <a href="/" class="nav-brand">
+            <span class="w-2 h-2 rounded-full bg-[#111111] inline-block shrink-0" aria-hidden="true"></span>
+            <span>Panav Payappagoudar</span>
+        </a>
+        <a href="/" class="nav-link text-sm font-sans whitespace-nowrap shrink-0 min-h-[44px] inline-flex items-center">
+            <span aria-hidden="true">←</span>
+            <span class="hidden sm:inline">Return to portfolio</span>
+            <span class="sm:hidden">Home</span>
+        </a>
     </nav>
 
     <!-- Main Content -->
-    <main id="main-content" class="pt-32 pb-24 px-6 flex-1">
+    <main id="main-content" class="pt-24 sm:pt-28 pb-16 sm:pb-20 px-5 sm:px-6 flex-1">
         <div class="max-w-3xl mx-auto text-left">
-            <header class="mb-14 border-b border-[rgba(243,239,230,0.08)] pb-8">
-                <div class="font-mono text-xs text-[#8e8a82] mb-3">Legal & Governance</div>
-                <h1 class="text-4xl md:text-5xl font-normal tracking-tight mb-4 font-editorial">Privacy Policy</h1>
-                <p class="font-mono text-xs text-[#8e8a82]">Last updated: October 2026</p>
+            <header class="mb-10 border-b border-neutral-200 pb-6">
+                <p class="font-sans text-sm text-neutral-500 mb-2 font-medium">Legal &amp; Governance</p>
+                <h1 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight mb-2 text-[#111111]">Privacy Policy</h1>
+                <p class="font-sans text-sm text-neutral-500">Last updated: November 2026</p>
             </header>
 
             <article class="prose-custom max-w-none">
-                <p>Panav Payappagoudar ("I", "my", or "me") operates this portfolio website (the "Service"). This page informs you of my policies regarding the collection, use, and disclosure of personal data when you use my Service and the choices you have associated with that data.</p>
+                <p>Panav Payappagoudar operates this personal portfolio website (the "Service"). This Privacy Policy explains what information is collected when you use the website, how it is handled, and the choices available to you.</p>
                 
-                <p>This Privacy Policy is compiled in accordance with the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 and the Digital Personal Data Protection Act, 2023 of India, as well as general principles of the GDPR (General Data Protection Regulation) and CCPA (California Consumer Privacy Act) where applicable.</p>
+                <p>It is written with reference to general data-handling transparency principles under applicable frameworks — including India’s Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011 and Digital Personal Data Protection Act, 2023, as well as GDPR and CCPA principles where relevant — while reflecting that this is a personal, non-commercial portfolio website.</p>
 
-                <h2>1. Information Collection and Use</h2>
-                <p>I collect several different types of information for various purposes to provide and improve my Service to you.</p>
-                
-                <h3>Types of Data Collected</h3>
-                <h4 class="text-base font-medium mb-2 text-[#f3efe6]">Personal Data</h4>
-                <p>While using my Service, specifically the Contact Form, I may ask you to provide certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
+                <h2>1. Information Collected &amp; Technical Logs</h2>
+                <p>Information processed when you visit or use the website falls into three narrow categories:</p>
                 <ul>
-                    <li>Email address</li>
-                    <li>First name and last name</li>
-                    <li>Any personal information you voluntarily provide in the message body</li>
+                    <li><strong>Contact Form Submissions:</strong> When you submit the contact form, you provide your <strong>Name</strong>, <strong>Email Address</strong>, and <strong>Message Content</strong> so I can identify and reply to your inquiry (an invisible honeypot field is also present strictly to filter automated spam).</li>
+                    <li><strong>Security &amp; Abuse-Prevention Telemetry:</strong> When interacting with the contact verification or submission endpoints, the backend serverless functions read the request IP address for temporary in-memory rate limiting, record redacted diagnostic logs on validation or delivery errors (storing only a partial IP prefix, timestamp, and error code — never message contents), and include the sender's IP address in the plain-text notification email sent to my inbox.</li>
+                    <li><strong>Infrastructure &amp; Self-Hosted Assets:</strong> Netlify (the hosting provider) may process standard HTTP request metadata (such as IP address, user-agent, and path) in edge and serverless access logs. All typography font files are self-hosted with the website, so browsing pages does not generate third-party font CDN requests.</li>
                 </ul>
 
-                <h4 class="text-base font-medium mb-2 text-[#f3efe6]">Usage Data & Cookies</h4>
-                <p>This Service is built as a static portfolio. I do not actively use non-essential tracking cookies or analytics that personally identify you. Standard web server logs may temporarily capture IP addresses for security and spam prevention.</p>
+                <h2>2. Cookies, Local Storage &amp; Analytics</h2>
+                <p>Based on the current implementation, this website does not load third-party analytics services, advertising pixels, or cross-site tracking scripts, and its frontend code does not write cookies, <code>localStorage</code>, or <code>sessionStorage</code> entries. A minimal legacy service worker script (<code>/sw.js</code>) only clears obsolete caches and unregisters older registrations.</p>
 
-                <h2>2. Use of Data</h2>
-                <p>I use the collected data for various purposes:</p>
+                <h2>3. Proof-of-Work Verification (ALTCHA)</h2>
+                <p>To prevent automated spam on the contact form without tracking cookies or image puzzles, the site uses <strong>ALTCHA</strong>, an open-source cryptographic proof-of-work mechanism. Verification spans both client and server:</p>
                 <ul>
-                    <li>To respond to your inquiries or messages sent via the contact form.</li>
-                    <li>To communicate with you regarding potential professional opportunities.</li>
-                    <li>To detect, prevent and address technical issues or spam.</li>
-                </ul>
-                <p>Your data is strictly confidential. It is never used for marketing purposes, nor is it sold or rented to any third parties under any circumstances.</p>
-
-                <h2>3. Data Consent & Rights</h2>
-                <p>By submitting your information through the contact form, you explicitly consent to the collection and processing of your Personal Data as described in this Privacy Policy. You have the right to:</p>
-                <ul>
-                    <li><strong>Access:</strong> Request a copy of the personal data I hold about you.</li>
-                    <li><strong>Rectification:</strong> Request correction of any inaccurate data.</li>
-                    <li><strong>Erasure:</strong> Request the deletion of your personal data ("Right to be Forgotten").</li>
-                    <li><strong>Withdraw Consent:</strong> Withdraw your consent at any time by contacting me directly.</li>
+                    <li><strong>Client-Side Computation:</strong> Your browser requests a short-lived challenge token from <code>/.netlify/functions/altcha</code> and computes a SHA-256 proof-of-work solution locally in memory.</li>
+                    <li><strong>Server-Side Validation:</strong> When the form is submitted, <code>/.netlify/functions/submit</code> checks the challenge signature with a server-side HMAC key, verifies expiration (10-minute validity window), and temporarily holds used challenge tokens in an ephemeral in-memory anti-replay map so solutions cannot be reused.</li>
                 </ul>
 
-                <h2>4. Data Security</h2>
-                <p>The security of your data is paramount. Form submissions are processed securely and protected against unauthorized access. However, remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While I strive to use commercially acceptable cryptographic and secure means to protect your Personal Data, absolute security cannot be guaranteed.</p>
+                <h2>4. Hosting &amp; Email Transmission</h2>
+                <p>Contact submissions are processed by third-party infrastructure providers strictly to deliver your message: <strong>Netlify</strong> executes the serverless validation function, <strong>Gmail SMTP</strong> (via Nodemailer over TLS) dispatches the notification email, and <strong>Proton Mail</strong> receives the delivered correspondence at <a href="mailto:panav.p@proton.me">panav.p@proton.me</a>. Each provider handles data under its respective security and retention practices. Personal information is never sold, rented, or distributed for marketing or brokerage.</p>
 
-                <h2>5. Service Providers</h2>
-                <p>I may employ third-party companies and individuals to facilitate my Service (e.g., hosting providers like Netlify, and spam protection services like Altcha). These third parties have access to your Personal Data only to perform these tasks on my behalf and are obligated not to disclose or use it for any other purpose.</p>
+                <h2>5. Data Retention &amp; Deletion Requests</h2>
+                <p>This website maintains no application database. In-memory rate-limit counters and anti-replay tokens inside serverless functions are ephemeral and expire within minutes to an hour. Messages delivered to my email inbox are retained only as long as reasonably necessary to maintain correspondence. Automated deletion is not implemented; however, you may request manual deletion of prior messages at any time by emailing <a href="mailto:panav.p@proton.me">panav.p@proton.me</a>.</p>
 
-                <h2>6. Changes to This Privacy Policy</h2>
-                <p>I may update this Privacy Policy periodically to reflect changes in legal requirements or my Service operations. I will notify you of any changes by posting the new Privacy Policy on this page, updating the "Last Updated" date at the top.</p>
-
-                <h2>7. Contact Me</h2>
-                <p>If you have any questions about this Privacy Policy or wish to exercise your data rights, please reach out via the <a href="/#contact">contact form</a> or by email at <a href="mailto:panav.p@proton.me">panav.p@proton.me</a>.</p>
+                <h2>6. Contact Information</h2>
+                <p>For questions about this policy or to request removal of a previous email inquiry, contact:</p>
+                <p class="font-sans text-sm text-neutral-700 leading-relaxed">
+                    Panav Payappagoudar<br>
+                    VIT-AP University, Andhra Pradesh, India<br>
+                    Email: <a href="mailto:panav.p@proton.me">panav.p@proton.me</a>
+                </p>
             </article>
         </div>
     </main>
-    
-    <!-- Shared Footer -->
-    <footer class="py-10 border-t border-[rgba(243,239,230,0.08)]">
-        <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-mono text-[#8e8a82]">
-            <div>© 2024–2026 Panav Payappagoudar. All rights reserved.</div>
-            <div class="flex items-center gap-6">
-                <a href="/terms.html" class="hover:text-[#f3efe6] transition-colors">Terms of Service</a>
-                <a href="https://github.com/Panav-Payappagoudar" target="_blank" rel="noopener noreferrer" class="hover:text-[#f3efe6] transition-colors">GitHub ↗</a>
-                <a href="https://linkedin.com/in/panav-payappagoudar" target="_blank" rel="noopener noreferrer" class="hover:text-[#f3efe6] transition-colors">LinkedIn ↗</a>
-                <a href="/" class="hover:text-[#f3efe6] transition-colors">Portfolio ↑</a>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-neutral-200 bg-[#FFFFFF] text-[13px] sm:text-sm font-sans text-neutral-500">
+        <div class="max-w-4xl mx-auto px-5 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-left">
+            <div>© 2024–2026 Panav Payappagoudar</div>
+            <div class="flex flex-wrap items-center gap-x-6 gap-y-1">
+                <a href="/terms.html" class="hover:text-[#111111] transition-colors inline-flex items-center min-h-[44px] sm:min-h-0 sm:py-1">Terms of Service</a>
+                <a href="/contact" class="hover:text-[#111111] transition-colors inline-flex items-center min-h-[44px] sm:min-h-0 sm:py-1">Contact</a>
+                <a href="/" class="hover:text-[#111111] transition-colors inline-flex items-center min-h-[44px] sm:min-h-0 sm:py-1">Portfolio Home ↑</a>
             </div>
         </div>
     </footer>
-    <!-- Application Script for Vite styles and interactions -->
-    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

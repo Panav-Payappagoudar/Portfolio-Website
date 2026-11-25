@@ -1,427 +1,184 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth bg-[#F9F9F9] text-[#111111]">
 <head>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#0e0f12">
+    <meta name="theme-color" content="#F9F9F9">
     
-    <!-- SEO & Metadata -->
-    <title>Panav Payappagoudar — Software Developer & Systems Engineer</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
-    <link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Personal portfolio of Panav Payappagoudar — software engineer, researcher, and builder working on distributed systems, numerical simulations, and applied machine learning.">
-    <meta name="keywords" content="Panav Payappagoudar, Software Developer, Systems Engineer, Machine Learning, Robotics, Computer Vision, VIT-AP, Amazon ML Scholar, Rust, Python, WebGL">
+    <title>Panav Payappagoudar | Software Engineer &amp; Applied ML Researcher</title>
+    <meta name="description" content="Personal portfolio of Panav Payappagoudar, Computer Science undergraduate at VIT-AP University working on applied machine learning, computer vision, distributed systems, and embedded robotics.">
     <meta name="author" content="Panav Payappagoudar">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://panav.xyz/">
-    <link rel="alternate" type="text/markdown" href="/llms.txt" title="AI & LLM Information">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://panav.xyz/">
-    <meta property="og:title" content="Panav Payappagoudar — Software Developer & Systems Engineer">
-    <meta property="og:description" content="Personal website of Panav Payappagoudar — software engineer, researcher, and systems builder.">
-    <meta property="og:image" content="https://panav.xyz/og-image.png">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://panav.xyz/">
-    <meta property="twitter:title" content="Panav Payappagoudar — Software Developer & Systems Engineer">
-    <meta property="twitter:description" content="Personal website of Panav Payappagoudar — software engineer, researcher, and systems builder.">
-    <meta property="twitter:image" content="https://panav.xyz/og-image.png">
     
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://panav.xyz/#person",
-          "name": "Panav Payappagoudar",
-          "url": "https://panav.xyz",
-          "jobTitle": "Software Developer & Systems Engineer",
-          "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "VIT-AP University"
-          },
-          "description": "Undergraduate researcher and systems developer focused on applied machine learning, distributed architectures, and robotics.",
-          "knowsAbout": ["Distributed Systems", "Machine Learning", "Computer Vision", "Robotics", "Full-Stack Architecture", "Sensor Fusion", "Cryptography"],
-          "sameAs": [
-            "https://github.com/Panav-Payappagoudar",
-            "https://linkedin.com/in/panav-payappagoudar",
-            "https://panav-payappagoudar.medium.com/"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://panav.xyz/#website",
-          "url": "https://panav.xyz",
-          "name": "Panav Payappagoudar — Personal Portfolio",
-          "publisher": {
-            "@id": "https://panav.xyz/#person"
-          }
-        }
-      ]
-    }
-    </script>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="alternate" type="text/markdown" href="/llms.txt" title="AI & LLM Context">
+    <link rel="alternate" type="text/markdown" href="/llms-full.txt" title="Complete AI Context Reference">
 
-    <!-- Preload Primary Web Font (Self-Hosted WOFF2 for Instant FCP/LCP) -->
-    <link rel="preload" href="/fonts/plus-jakarta-sans.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Panav Payappagoudar">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://panav.xyz/">
+    <meta property="og:title" content="Panav Payappagoudar | Software Engineer &amp; Applied ML Researcher">
+    <meta property="og:description" content="Personal portfolio of Panav Payappagoudar, Computer Science undergraduate at VIT-AP University working on applied machine learning, computer vision, distributed systems, and embedded robotics.">
+    <meta property="og:image" content="https://panav.xyz/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Panav Payappagoudar — Portfolio Preview">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://panav.xyz/">
+    <meta name="twitter:title" content="Panav Payappagoudar | Software Engineer &amp; Applied ML Researcher">
+    <meta name="twitter:description" content="Personal portfolio of Panav Payappagoudar, Computer Science undergraduate at VIT-AP University working on applied machine learning, computer vision, distributed systems, and embedded robotics.">
+    <meta name="twitter:image" content="https://panav.xyz/og-image.png">
 
-    <style>
-        body {
-            background-color: #0e0f12;
-            color: #f3efe6;
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-        }
-        .font-editorial {
-            font-family: 'Newsreader', Georgia, serif;
-        }
-        altcha-widget { display: block !important; min-height: 56px; }
-    </style>
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://panav.xyz/#website","name":"Panav Payappagoudar","url":"https://panav.xyz/","author":{"@id":"https://panav.xyz/#person"},"publisher":{"@id":"https://panav.xyz/#person"}},{"@type":"Person","@id":"https://panav.xyz/#person","name":"Panav Payappagoudar","url":"https://panav.xyz/","email":"mailto:panav.p@proton.me","jobTitle":"Computer Science Undergraduate & Applied ML Engineer","description":"Building software across applied machine learning, distributed systems, and embedded robotics.","affiliation":{"@type":"CollegeOrUniversity","name":"VIT-AP University"},"knowsAbout":["Applied Machine Learning","Computer Vision","Distributed Systems","Remote Sensing & Geospatial Analysis","Embedded Robotics","Rust","Python"],"sameAs":["https://github.com/Panav-Payappagoudar","https://linkedin.com/in/panav-payappagoudar","https://panav-payappagoudar.medium.com/","https://cal.com/panav-payappagoudar/consulting"]},{"@type":"ProfilePage","@id":"https://panav.xyz/#webpage","url":"https://panav.xyz/","name":"Panav Payappagoudar | Software Engineer & Applied ML Researcher","description":"Personal portfolio of Panav Payappagoudar, Computer Science undergraduate at VIT-AP University working on applied machine learning, computer vision, distributed systems, and embedded robotics.","isPartOf":{"@id":"https://panav.xyz/#website"},"mainEntity":{"@id":"https://panav.xyz/#person"}}]}</script>
+    <link rel="stylesheet" href="/src/index.css">
+  
 </head>
-<body class="antialiased selection:bg-[#c47847] selection:text-white bg-[#0e0f12] text-[#f3efe6] min-h-screen">
-
-    <!-- Skip to main content link for keyboard & screen reader accessibility -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2 focus:bg-[#c47847] focus:text-white focus:text-xs focus:font-mono focus:rounded focus:outline-none shadow-lg">Skip to main content</a>
-
-    <!-- Microscopic print-quality paper grain -->
-    <div class="subtle-grain" aria-hidden="true"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-[#0e0f12]/90 backdrop-blur-md border-b border-[rgba(243,239,230,0.06)] transition-all duration-300" id="navbar" aria-label="Main Navigation">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <!-- Wordmark -->
-            <a href="#hero" class="text-left group">
-                <span class="font-normal text-sm sm:text-base text-[#f3efe6] tracking-tight group-hover:text-[#c47847] transition-colors">
-                    Panav Payappagoudar
-                </span>
-            </a>
-
-            <!-- Desktop Links -->
-            <div class="hidden sm:flex items-center gap-8 text-xs font-mono text-[#9e9a91]">
-                <a href="#work" class="hover:text-[#f3efe6] transition-colors">Work</a>
-                <a href="#experience" class="hover:text-[#f3efe6] transition-colors">Experience</a>
-                <a href="#venture" class="hover:text-[#f3efe6] transition-colors">Venture</a>
-                <a href="#about" class="hover:text-[#f3efe6] transition-colors">About</a>
-                <a href="#contact" class="hover:text-[#f3efe6] transition-colors">Contact</a>
-            </div>
-
-            <!-- Mobile Menu Toggle Button -->
-            <button id="menu-btn" class="sm:hidden text-[#9e9a91] hover:text-[#f3efe6] p-2 transition-colors" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobile-menu">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-            </button>
+<body class="antialiased bg-[#F9F9F9] text-[#111111] min-h-screen flex flex-col justify-between selection:bg-[#111111] selection:text-white">
+  
+    <!-- Conditional non-blocking loader (displayed only if loading exceeds ~300ms) -->
+    <div id="site-loader" class="site-loader" aria-hidden="true" role="status" aria-live="polite">
+      <div class="site-loader-inner">
+        <span class="site-loader-label">Panav Payappagoudar</span>
+        <div class="site-loader-track" aria-hidden="true">
+          <div class="site-loader-bar"></div>
         </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] opacity-0 pointer-events-none transition-opacity duration-300 sm:hidden"></div>
-        <div id="mobile-menu" class="fixed top-0 right-0 h-[100dvh] w-[75vw] max-w-xs bg-[#14151a] border-l border-[rgba(243,239,230,0.08)] z-[80] transform translate-x-full invisible transition-transform duration-300 ease-out flex flex-col justify-between p-8 sm:hidden shadow-2xl" aria-label="Mobile Navigation">
-            <div>
-                <div class="flex items-center justify-between pb-6 border-b border-[rgba(243,239,230,0.08)] mb-8">
-                    <span class="text-xs font-mono text-[#8e8a82]">Menu</span>
-                    <button id="close-menu" class="text-[#9e9a91] hover:text-[#f3efe6] p-1" aria-label="Close Navigation Menu">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                    </button>
-                </div>
-
-                <div class="flex flex-col space-y-6 text-sm text-[#9e9a91]">
-                    <a href="#work" class="mobile-link hover:text-[#f3efe6] transition-colors">Work</a>
-                    <a href="#experience" class="mobile-link hover:text-[#f3efe6] transition-colors">Experience</a>
-                    <a href="#venture" class="mobile-link hover:text-[#f3efe6] transition-colors">Venture</a>
-                    <a href="#about" class="mobile-link hover:text-[#f3efe6] transition-colors">About</a>
-                    <a href="#contact" class="mobile-link hover:text-[#f3efe6] transition-colors">Contact</a>
-                </div>
-            </div>
-
-            <div class="pt-6 border-t border-[rgba(243,239,230,0.08)] text-xs font-mono text-[#8e8a82]">
-                <div>panav.p@proton.me</div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main id="main-content" class="relative z-10 pt-20">
-
-        <!-- Hero Section (Authored Editorial Composition) -->
-        <header id="hero" class="pt-24 sm:pt-36 pb-20 sm:pb-28 border-b border-[rgba(243,239,230,0.08)]">
-            <div class="max-w-6xl mx-auto px-6">
-                <!-- INJECT_HERO -->
-            </div>
-        </header>
-
-        <!-- Unified Projects Section (All 12 projects in one single cohesive index) -->
-        <section id="work" class="py-24 sm:py-32 border-b border-[rgba(243,239,230,0.08)]">
-            <div class="max-w-6xl mx-auto px-6">
-                <!-- Header & Minimalist Filters -->
-                <div class="mb-14 reveal-on-scroll text-left">
-                    <span class="font-mono text-xs text-[#8e8a82] uppercase tracking-wider block mb-2">Projects & Systems</span>
-                    <h2 class="font-editorial text-3xl sm:text-5xl font-normal text-[#f3efe6] tracking-tight mb-4">
-                        Selected Work
-                    </h2>
-                    <p class="text-sm sm:text-base text-[#9e9a91] font-light max-w-2xl leading-relaxed mb-8">
-                        A cohesive index of twelve software systems, research pipelines, and developer tools spanning numerical astrophysics, clinical automation, remote sensing, and systems engineering.
-                    </p>
-
-                    <!-- Text-based Filter Tabs & Quiet Search -->
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-b border-[rgba(243,239,230,0.08)] pb-4">
-                        <div class="flex flex-wrap items-center gap-x-6 gap-y-2" id="project-filter-tabs" role="tablist" aria-label="Project category filters">
-                            <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All (12)</button>
-                            <button class="filter-tab" data-filter="systems" role="tab" aria-selected="false">Systems & Simulation</button>
-                            <button class="filter-tab" data-filter="ai" role="tab" aria-selected="false">Machine Learning & Vision</button>
-                            <button class="filter-tab" data-filter="robotics" role="tab" aria-selected="false">Robotics</button>
-                            <button class="filter-tab" data-filter="security" role="tab" aria-selected="false">Security & Infrastructure</button>
-                        </div>
-                        <div class="relative w-full sm:w-64">
-                            <input type="text" id="project-search" placeholder="Filter by keyword or tech..." aria-label="Search projects by keyword or technology" class="w-full px-3 py-1.5 bg-[#14151a] border border-[rgba(243,239,230,0.08)] rounded text-xs font-mono text-[#f3efe6] placeholder-[#8e8a82] focus:outline-none focus:border-[#c47847] transition-colors">
-                        </div>
-                    </div>
-                    <!-- Screen Reader Announcement Live Region -->
-                    <div id="filter-status" class="sr-only" aria-live="polite">Showing all 12 projects</div>
-                </div>
-
-                <!-- Unified Projects Grid (All 12 projects together) -->
-                <div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-                    <!-- INJECT_PROJECTS -->
-                    <!-- Accessible Empty State -->
-                    <div id="no-projects-message" class="col-span-full py-16 text-center border border-[rgba(243,239,230,0.08)] bg-[#14151a] rounded-lg hidden">
-                        <p class="font-editorial text-2xl text-[#f3efe6] mb-2">No projects found</p>
-                        <p class="text-xs font-mono text-[#8e8a82] mb-6">No systems match your active filter or search query.</p>
-                        <button id="reset-filter-btn" class="px-4 py-2 bg-[#1a1b22] hover:bg-[#23242e] text-[#f3efe6] text-xs font-mono rounded border border-[rgba(243,239,230,0.12)] transition-colors">
-                            Reset filters
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience & Research Section -->
-        <section id="experience" class="py-24 sm:py-32 border-b border-[rgba(243,239,230,0.08)]">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-                    <!-- Left: Timeline -->
-                    <div class="lg:col-span-7">
-                        <div class="mb-12 reveal-on-scroll text-left">
-                            <span class="font-mono text-xs text-[#8e8a82] uppercase tracking-wider block mb-2">Appointments & Labs</span>
-                            <h2 class="font-editorial text-3xl sm:text-4xl font-normal text-[#f3efe6] tracking-tight mb-3">
-                                Experience & Research
-                            </h2>
-                            <p class="text-sm text-[#9e9a91] font-light max-w-xl leading-relaxed">
-                                Academic laboratory research in the School of Electronics & Computer Science at VIT-AP University, faculty mentorship, and open-source contributions.
-                            </p>
-                        </div>
-
-                        <div>
-                            <!-- INJECT_EXPERIENCE -->
-                        </div>
-                    </div>
-
-                    <!-- Right: Honors & Education -->
-                    <div class="lg:col-span-5">
-                        <div class="sticky top-28 space-y-10 text-left">
-                            <!-- Education -->
-                            <div class="pt-6 border-t border-[rgba(243,239,230,0.08)]">
-                                <span class="font-mono text-xs text-[#8e8a82] uppercase block mb-1">Education</span>
-                                <h4 class="text-base text-[#f3efe6] font-medium">VIT-AP University</h4>
-                                <div class="text-xs font-mono text-[#c47847] mt-0.5 mb-2">B.Tech in Computer Science and Engineering (2024 – 2028)</div>
-                                <p class="text-xs text-[#9e9a91] font-light leading-relaxed">
-                                    Undergraduate Researcher in School of Electronics & Computer Science (ECS Department). Active researcher in Machine Learning Club (Deep Learning & Computer Vision team).
-                                </p>
-                            </div>
-
-                            <!-- Selected Recognition -->
-                            <div class="pt-6 border-t border-[rgba(243,239,230,0.08)]">
-                                <span class="font-mono text-xs text-[#8e8a82] uppercase block mb-2">Recognition</span>
-                                <h3 class="font-editorial text-2xl text-[#f3efe6] mb-4">Selected Honors</h3>
-                                <div>
-                                    <!-- INJECT_ACHIEVEMENTS -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Founder Venture: The Essentialist -->
-        <section id="venture" class="py-24 sm:py-32 border-b border-[rgba(243,239,230,0.08)]">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="border border-[rgba(243,239,230,0.08)] bg-[#14151a] p-8 sm:p-12 rounded-lg reveal-on-scroll text-left">
-                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-6">
-                        <div>
-                            <span class="font-mono text-xs text-[#8e8a82] uppercase tracking-wider block mb-1">Founder Venture</span>
-                            <h3 class="font-editorial text-3xl sm:text-4xl text-[#f3efe6]">The Essentialist</h3>
-                            <p class="text-xs font-mono text-[#c47847] mt-1">Modern Form. Timeless Principle.</p>
-                        </div>
-                        <a href="https://the-essentialist-2.creator-spring.com" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[#f3efe6] hover:text-[#c47847] underline underline-offset-4 transition-colors">
-                            View storefront ↗
-                        </a>
-                    </div>
-
-                    <p class="text-sm text-[#9e9a91] font-light leading-relaxed max-w-2xl mb-8">
-                        An independent design venture focused on creating original, minimalist apparel and merchandise. Operating a capital-efficient print-on-demand model to focus purely on creative direction, typographic quality, and visual development.
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-[rgba(243,239,230,0.08)] text-xs text-[#9e9a91] font-light">
-                        <div>
-                            <h4 class="font-mono text-xs text-[#f3efe6] mb-1 font-medium">Creative Direction</h4>
-                            <p class="leading-relaxed">Original typography, minimal graphics, and conceptual development for apparel goods.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-mono text-xs text-[#f3efe6] mb-1 font-medium">Platform Management</h4>
-                            <p class="leading-relaxed">End-to-end storefront management, catalog pricing strategies, and print-on-demand fulfillment.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-mono text-xs text-[#f3efe6] mb-1 font-medium">Direct-to-Consumer</h4>
-                            <p class="leading-relaxed">Built community audience from scratch through organic tech marketing and personal networking.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About & Capabilities Section -->
-        <section id="about" class="py-20 sm:py-28 border-b border-[rgba(243,239,230,0.08)]">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="mb-12 reveal-on-scroll text-left">
-                    <span class="font-mono text-xs text-[#8e8a82] uppercase tracking-wider block mb-1">Philosophy & Craft</span>
-                    <h2 class="font-editorial text-3xl sm:text-5xl font-normal text-[#f3efe6] tracking-tight">
-                        About & Technical Disciplines
-                    </h2>
-                </div>
-
-                <div class="reveal-on-scroll">
-                    <!-- INJECT_ABOUT -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="pt-20 sm:pt-28 pb-28 sm:pb-36">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                    <!-- Contact Narrative -->
-                    <div class="lg:col-span-5 text-left reveal-on-scroll">
-                        <span class="font-mono text-xs text-[#8e8a82] uppercase tracking-wider block mb-1">Inquiries</span>
-                        <h2 class="font-editorial text-3xl sm:text-4xl text-[#f3efe6] tracking-tight mb-4">
-                            Contact
-                        </h2>
-                        <p class="text-sm text-[#9e9a91] font-light leading-relaxed mb-8">
-                            I am always interested in discussing numerical physics, distributed systems research, and ambitious engineering projects. Feel free to send a message or reach out directly.
-                        </p>
-
-                        <div class="space-y-4 font-mono text-xs text-[#8e8a82]">
-                            <div>
-                                <span class="block text-[#9e9a91] mb-1">Direct Email</span>
-                                <button id="copy-email-btn" class="text-[#f3efe6] hover:text-[#c47847] transition-colors underline underline-offset-4">
-                                    <span id="copy-email-status">panav.p@proton.me</span>
-                                </button>
-                            </div>
-                            <div>
-                                <span class="block text-[#9e9a91] mb-1">Consulting</span>
-                                <a href="https://cal.com/panav-payappagoudar/consulting" target="_blank" rel="noopener noreferrer" class="text-[#f3efe6] hover:text-[#c47847] transition-colors underline underline-offset-4">
-                                    cal.com/panav-payappagoudar ↗
-                                </a>
-                            </div>
-                            <div>
-                                <span class="block text-[#9e9a91] mb-1">Writing</span>
-                                <a href="https://panav-payappagoudar.medium.com/" target="_blank" rel="noopener noreferrer" class="text-[#f3efe6] hover:text-[#c47847] transition-colors underline underline-offset-4">
-                                    @panav-payappagoudar ↗
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Form Card -->
-                    <div class="lg:col-span-7 reveal-on-scroll">
-                        <div class="border border-[rgba(243,239,230,0.08)] bg-[#14151a] p-8 sm:p-10 rounded-lg text-left">
-                            <form id="contact-form" class="space-y-6">
-                                <!-- Honeypot -->
-                                <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
-
-                                <div>
-                                    <label for="form-name" class="block font-mono text-xs text-[#9e9a91] mb-2">Name</label>
-                                    <input type="text" id="form-name" name="name" required class="w-full px-4 py-2.5 bg-[#0e0f12] border border-[rgba(243,239,230,0.08)] rounded text-sm text-[#f3efe6] placeholder-[#8e8a82] focus:outline-none focus:border-[#c47847] transition-colors" placeholder="Your name">
-                                </div>
-
-                                <div>
-                                    <label for="form-email" class="block font-mono text-xs text-[#9e9a91] mb-2">Email address</label>
-                                    <input type="email" id="form-email" name="email" required class="w-full px-4 py-2.5 bg-[#0e0f12] border border-[rgba(243,239,230,0.08)] rounded text-sm text-[#f3efe6] placeholder-[#8e8a82] focus:outline-none focus:border-[#c47847] transition-colors" placeholder="your.email@example.com">
-                                </div>
-
-                                <div>
-                                    <label for="form-message" class="block font-mono text-xs text-[#9e9a91] mb-2">Message</label>
-                                    <textarea id="form-message" name="message" rows="4" required class="w-full px-4 py-2.5 bg-[#0e0f12] border border-[rgba(243,239,230,0.08)] rounded text-sm text-[#f3efe6] placeholder-[#8e8a82] focus:outline-none focus:border-[#c47847] transition-colors" placeholder="Tell me about your research, project, or inquiry..."></textarea>
-                                </div>
-
-                                <!-- Consent Checkbox -->
-                                <div class="flex items-start gap-3">
-                                    <input type="checkbox" id="consent" required class="mt-1 rounded bg-[#0e0f12] border-[rgba(243,239,230,0.2)] text-[#c47847] focus:ring-0">
-                                    <label for="consent" class="text-xs text-[#9e9a91] leading-relaxed cursor-pointer">
-                                        I consent to my submitted message being collected for direct communication, as outlined in the <a href="/privacy.html" target="_blank" rel="noopener noreferrer" class="text-[#c47847] underline underline-offset-2 hover:text-[#f3efe6] transition-colors">Privacy Policy</a>.
-                                    </label>
-                                </div>
-
-                                <!-- Altcha PoW CAPTCHA Widget -->
-                                <altcha-widget challengeurl="/.netlify/functions/altcha" hidefooter hidelogo></altcha-widget>
-
-                                <!-- Accessible Form Error Alert -->
-                                <div id="form-error-alert" class="hidden p-3 rounded bg-red-950/40 border border-red-800/40 text-red-200 text-xs font-mono" role="alert" aria-live="assertive"></div>
-
-                                <button type="submit" id="submit-btn" class="w-full py-3 bg-[#1a1b22] hover:bg-[#23242e] text-[#f3efe6] font-mono text-xs uppercase tracking-wider rounded transition-colors border border-[rgba(243,239,230,0.12)]">
-                                    Send message
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-12 border-t border-[rgba(243,239,230,0.08)]">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-mono text-[#8e8a82]">
-            <div id="copyright-year">© 2024–2026 Panav Payappagoudar. All rights reserved.</div>
-            <div class="flex items-center gap-6">
-                <a href="/privacy.html" class="hover:text-[#f3efe6] transition-colors">Privacy Policy</a>
-                <a href="/terms.html" class="hover:text-[#f3efe6] transition-colors">Terms</a>
-                <a href="https://github.com/Panav-Payappagoudar" target="_blank" rel="noopener noreferrer" class="hover:text-[#f3efe6] transition-colors">GitHub ↗</a>
-                <a href="https://linkedin.com/in/panav-payappagoudar" target="_blank" rel="noopener noreferrer" class="hover:text-[#f3efe6] transition-colors">LinkedIn ↗</a>
-                <a href="#hero" class="hover:text-[#f3efe6] transition-colors">Top ↑</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Injected Case Study Modals -->
-    <!-- INJECT_CASE_STUDY_MODALS -->
-
-    <!-- Success Modal -->
-    <div id="success-modal" class="fixed inset-0 z-[100] modal-backdrop flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-success-title">
-        <div class="bg-[#14151a] border border-[rgba(243,239,230,0.12)] rounded-lg p-8 max-w-md w-full text-left shadow-2xl relative">
-            <button id="close-modal-btn" class="absolute top-4 right-4 text-[#9e9a91] hover:text-[#f3efe6] p-2" aria-label="Close modal">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            </button>
-            <h3 id="modal-success-title" class="font-medium text-base text-[#f3efe6] mb-2">Message received</h3>
-            <p class="text-xs text-[#9e9a91] font-light leading-relaxed mb-6">
-                Thank you for reaching out. Your message has been received. I will reply shortly.
-            </p>
-            <button id="close-modal-btn-2" class="w-full py-2.5 bg-[#1a1b22] hover:bg-[#23242e] text-[#f3efe6] text-xs font-mono rounded transition-colors">
-                Dismiss
-            </button>
-        </div>
+      </div>
     </div>
 
-    <!-- Application Script -->
-    <script type="module" src="/src/main.js"></script>
+    <!-- Non-blocking top progress bar -->
+    <div id="page-progress-bar" class="page-progress-bar" aria-hidden="true"></div>
+
+    <!-- Skip to main content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:px-4 focus:py-2 focus:bg-[#111111] focus:text-white focus:text-xs focus:font-sans focus:font-medium focus:rounded-[6px] focus:outline-none shadow-lg">
+      Skip to content
+    </a>
+
+    <!-- Top Navigation Bar (Home | Explore | Contact) -->
+    <nav class="nav" id="main-nav" aria-label="Main Navigation">
+      <a href="/" class="nav-brand" aria-label="Panav Payappagoudar Homepage">
+        <span class="w-2 h-2 rounded-full bg-[#111111] inline-block shrink-0" aria-hidden="true"></span>
+        <span>Panav Payappagoudar</span>
+      </a>
+
+      <!-- Three Top-Level Navigation Items: Home | Explore ▾ | Contact -->
+      <div class="nav-links" id="nav-links" role="menubar">
+        <!-- 1. Home -->
+        <a href="/" class="nav-link active" role="menuitem" aria-current="page">
+          <span>Home</span>
+        </a>
+
+        <!-- 2. Explore (Dropdown) -->
+        <div class="nav-item has-dropdown" id="nav-explore-dropdown">
+          <button type="button" class="nav-link nav-dropdown-trigger " id="explore-btn" aria-haspopup="true" aria-expanded="false" aria-controls="explore-menu" role="menuitem">
+            <span>Explore</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav-dropdown" id="explore-menu" role="menu" aria-labelledby="explore-btn">
+            <div class="nav-dropdown-content">
+              <a href="/work" class="dropdown-item " role="menuitem">
+                <span class="dropdown-title">Work</span>
+                <span class="dropdown-desc">Projects and engineering</span>
+              </a>
+              <a href="/experience" class="dropdown-item " role="menuitem">
+                <span class="dropdown-title">Experience</span>
+                <span class="dropdown-desc">Research, internships and roles</span>
+              </a>
+              <a href="/achievements" class="dropdown-item " role="menuitem">
+                <span class="dropdown-title">Achievements</span>
+                <span class="dropdown-desc">Competitions and programs</span>
+              </a>
+              <a href="/about" class="dropdown-item " role="menuitem">
+                <span class="dropdown-title">About</span>
+                <span class="dropdown-desc">Education and background</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Contact (Black CTA Button) -->
+        <a href="/contact" class="nav-cta" id="nav-contact-cta" role="menuitem">Contact</a>
+      </div>
+
+      <!-- Mobile Hamburger Toggle -->
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div id="nav-backdrop" class="fixed inset-0 bg-black/20 z-[98] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+  
+
+  <!-- INTRODUCTION ONLY HERO -->
+  <main id="main-content" class="flex-grow flex items-center pt-24 pb-16 sm:pt-36 sm:pb-28">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 text-left space-y-7 sm:space-y-10 w-full">
+      
+      <!-- Academic Context Label -->
+      <div class="space-y-0.5 text-sm sm:text-[15px] font-sans">
+        <p class="font-medium text-[#111111]">Computer Science Undergraduate</p>
+        <p class="text-neutral-500">VIT-AP University</p>
+      </div>
+
+      <!-- Introduction Heading -->
+      <div class="space-y-3.5 sm:space-y-4">
+        <h1 class="font-heading hero-display font-bold tracking-tight text-[#111111]">
+          Panav Payappagoudar
+        </h1>
+        <p class="font-heading hero-lead text-neutral-800 font-semibold tracking-tight max-w-3xl">
+          Building software across applied machine learning, distributed systems, and embedded robotics.
+        </p>
+      </div>
+
+      <!-- Concise Narrative Paragraph -->
+      <div class="body-copy text-neutral-600 font-sans font-normal max-w-2xl">
+        <p>
+          I am a Computer Science undergraduate at VIT-AP University working on applied ML pipelines, simulation engines, and decentralized tooling. Outside engineering and campus research, I explore independent design projects and write technical breakdowns.
+        </p>
+      </div>
+
+      <!-- Two Curated Action Links Only -->
+      <div class="pt-2 flex flex-wrap items-center gap-3 sm:gap-4 text-sm font-sans font-medium">
+        <a href="/work" class="px-5 py-3 min-h-[44px] rounded-[6px] bg-[#111111] text-white hover:bg-neutral-800 transition-colors inline-flex items-center gap-2 group">
+          <span>Explore My Work</span>
+          <span class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+        </a>
+        <a href="/contact" class="px-5 py-3 min-h-[44px] rounded-[6px] bg-[#FFFFFF] border border-neutral-300 text-neutral-800 hover:border-[#111111] hover:text-[#111111] transition-colors inline-flex items-center">
+          <span>Get in Touch</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  
+    <footer class="py-10 sm:py-12 border-t border-neutral-200 bg-[#FFFFFF] text-[13px] sm:text-sm font-sans text-neutral-500">
+      <div class="max-w-6xl mx-auto px-5 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 text-left">
+        <div>
+          <span>© 2024–2026 Panav Payappagoudar</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-1">
+          <a href="/privacy.html" class="hover:text-[#111111] transition-colors inline-flex items-center min-h-[44px] sm:min-h-0 sm:py-1">Privacy</a>
+          <a href="/terms.html" class="hover:text-[#111111] transition-colors inline-flex items-center min-h-[44px] sm:min-h-0 sm:py-1">Terms</a>
+          <a href="https://github.com/Panav-Payappagoudar" target="_blank" rel="noopener noreferrer" class="hover:text-[#111111] transition-colors inline-flex items-center min-h-[44px] sm:min-h-0 sm:py-1">GitHub ↗</a>
+          <a href="https://linkedin.com/in/panav-payappagoudar" target="_blank" rel="noopener noreferrer" class="hover:text-[#111111] transition-colors inline-flex items-center min-h-[44px] sm:min-h-0 sm:py-1">LinkedIn ↗</a>
+          <a href="https://panav-payappagoudar.medium.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#111111] transition-colors inline-flex items-center min-h-[44px] sm:min-h-0 sm:py-1">Medium ↗</a>
+        </div>
+      </div>
+    </footer>
+  
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

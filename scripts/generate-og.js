@@ -9,17 +9,16 @@ const __dirname = path.dirname(__filename);
 
 async function generateOGImage() {
     console.log('Generating OG Image...');
-    
-    // Fetch a premium font buffer (Roboto Bold)
-    const fontResponse = await fetch('https://raw.githubusercontent.com/googlefonts/roboto/main/src/hinted/Roboto-Bold.ttf');
-    if (!fontResponse.ok) {
-        throw new Error('Failed to fetch font: ' + fontResponse.statusText);
-    }
-    const fontBuffer = await fontResponse.arrayBuffer();
 
-    // Fetch Roboto Regular for subtitle
-    const fontRegResponse = await fetch('https://raw.githubusercontent.com/googlefonts/roboto/main/src/hinted/Roboto-Regular.ttf');
-    const fontRegBuffer = await fontRegResponse.arrayBuffer();
+    const manropeBoldPath = path.join(__dirname, '..', 'node_modules', '@fontsource', 'manrope', 'files', 'manrope-latin-700-normal.woff');
+    const interRegPath = path.join(__dirname, '..', 'node_modules', '@fontsource', 'inter', 'files', 'inter-latin-400-normal.woff');
+    const interMedPath = path.join(__dirname, '..', 'node_modules', '@fontsource', 'inter', 'files', 'inter-latin-500-normal.woff');
+
+    const [fontBoldBuffer, fontRegBuffer, fontMedBuffer] = await Promise.all([
+        fs.readFile(manropeBoldPath),
+        fs.readFile(interRegPath),
+        fs.readFile(interMedPath),
+    ]);
 
     const svg = await satori(
         {
@@ -32,11 +31,11 @@ async function generateOGImage() {
                     alignItems: 'flex-start',
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#0e0f12',
-                    fontFamily: 'Roboto',
-                    color: '#f3efe6',
+                    backgroundColor: '#F9F9F9',
+                    fontFamily: 'Inter',
+                    color: '#111111',
                     padding: '80px 90px',
-                    border: '1px solid rgba(243, 239, 230, 0.12)',
+                    border: '1px solid #E4E4E7',
                 },
                 children: [
                     {
@@ -44,15 +43,35 @@ async function generateOGImage() {
                         props: {
                             style: {
                                 display: 'flex',
-                                alignItems: 'center',
-                                gap: '12px',
-                                fontSize: 22,
-                                fontWeight: 400,
-                                color: '#c47847',
-                                letterSpacing: '0.12em',
-                                textTransform: 'uppercase',
+                                flexDirection: 'column',
+                                gap: '4px',
                             },
-                            children: 'Systems & Applied ML Researcher'
+                            children: [
+                                {
+                                    type: 'div',
+                                    props: {
+                                        style: {
+                                            display: 'flex',
+                                            fontSize: 22,
+                                            fontWeight: 500,
+                                            color: '#111111',
+                                        },
+                                        children: 'Computer Science Undergraduate'
+                                    }
+                                },
+                                {
+                                    type: 'div',
+                                    props: {
+                                        style: {
+                                            display: 'flex',
+                                            fontSize: 20,
+                                            fontWeight: 400,
+                                            color: '#71717A',
+                                        },
+                                        children: 'VIT-AP University'
+                                    }
+                                }
+                            ]
                         }
                     },
                     {
@@ -61,7 +80,7 @@ async function generateOGImage() {
                             style: {
                                 display: 'flex',
                                 flexDirection: 'column',
-                                gap: '16px',
+                                gap: '18px',
                             },
                             children: [
                                 {
@@ -69,10 +88,11 @@ async function generateOGImage() {
                                     props: {
                                         style: {
                                             display: 'flex',
-                                            fontSize: 78,
+                                            fontFamily: 'Manrope',
+                                            fontSize: 74,
                                             fontWeight: 700,
                                             letterSpacing: '-0.03em',
-                                            color: '#f3efe6',
+                                            color: '#111111',
                                             lineHeight: 1.05,
                                         },
                                         children: 'Panav Payappagoudar'
@@ -83,12 +103,12 @@ async function generateOGImage() {
                                     props: {
                                         style: {
                                             display: 'flex',
-                                            fontSize: 32,
+                                            fontSize: 30,
                                             fontWeight: 400,
-                                            color: '#9e9a91',
+                                            color: '#52525B',
                                             letterSpacing: '-0.01em',
                                         },
-                                        children: 'VIT-AP University (ECS) · Amazon ML Scholar ’26'
+                                        children: 'Applied Machine Learning · Distributed Systems · Embedded Robotics'
                                     }
                                 }
                             ]
@@ -103,7 +123,7 @@ async function generateOGImage() {
                                 alignItems: 'center',
                                 width: '100%',
                                 paddingTop: '28px',
-                                borderTop: '1px solid rgba(243, 239, 230, 0.08)',
+                                borderTop: '1px solid #E4E4E7',
                             },
                             children: [
                                 {
@@ -111,26 +131,24 @@ async function generateOGImage() {
                                     props: {
                                         style: {
                                             display: 'flex',
-                                            gap: '16px',
+                                            gap: '14px',
                                         },
                                         children: [
-                                            'Numerical Physics',
-                                            'Satellite Vision',
-                                            'Resilient Systems'
-                                        ].map(skill => ({
+                                            'Work',
+                                            'Experience',
+                                            'Achievements',
+                                            'About'
+                                        ].map(label => ({
                                             type: 'div',
                                             props: {
                                                 style: {
                                                     display: 'flex',
-                                                    fontSize: 20,
-                                                    fontWeight: 400,
-                                                    color: '#f3efe6',
-                                                    padding: '10px 22px',
-                                                    border: '1px solid rgba(243, 239, 230, 0.12)',
-                                                    borderRadius: '6px',
-                                                    backgroundColor: '#14151a',
+                                                    fontSize: 18,
+                                                    fontWeight: 500,
+                                                    color: '#52525B',
+                                                    marginRight: '18px',
                                                 },
-                                                children: skill
+                                                children: label
                                             }
                                         }))
                                     }
@@ -140,9 +158,11 @@ async function generateOGImage() {
                                     props: {
                                         style: {
                                             display: 'flex',
+                                            fontFamily: 'Manrope',
                                             fontSize: 22,
-                                            color: '#8e8a82',
-                                            letterSpacing: '0.04em',
+                                            fontWeight: 700,
+                                            color: '#111111',
+                                            letterSpacing: '-0.02em',
                                         },
                                         children: 'panav.xyz'
                                     }
@@ -158,15 +178,21 @@ async function generateOGImage() {
             height: 630,
             fonts: [
                 {
-                    name: 'Roboto',
-                    data: fontBuffer,
+                    name: 'Manrope',
+                    data: fontBoldBuffer,
                     weight: 700,
                     style: 'normal',
                 },
                 {
-                    name: 'Roboto',
+                    name: 'Inter',
                     data: fontRegBuffer,
                     weight: 400,
+                    style: 'normal',
+                },
+                {
+                    name: 'Inter',
+                    data: fontMedBuffer,
+                    weight: 500,
                     style: 'normal',
                 }
             ],
@@ -174,7 +200,7 @@ async function generateOGImage() {
     );
 
     const resvg = new Resvg(svg, {
-        background: '#000000',
+        background: '#F9F9F9',
         fitTo: {
             mode: 'width',
             value: 1200,

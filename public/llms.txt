@@ -1,132 +1,25 @@
-# Panav Payappagoudar — Software Developer & Systems Engineer
+# Panav Payappagoudar
 
-## Personal Info
-- **Name**: Panav Payappagoudar
-- **Title**: Software Developer & Systems Engineer
-- **Headline**: Software engineer, researcher, and builder working on distributed systems, numerical simulations, and applied machine learning.
-- **Institution**: VIT-AP University
+> Personal portfolio of Panav Payappagoudar — Computer Science and Engineering undergraduate at VIT-AP University (2024–2028) working on applied machine learning, computer vision, distributed systems, and embedded robotics.
+
+- **Website**: https://panav.xyz/
 - **Location**: India
-- **Email**: panav.p@proton.me
-- **About**: I am an engineer and researcher drawn to software that requires mathematical rigor, mechanical sympathy, and disciplined product craft. My work focuses on systems where deterministic reliability matters: low-level numerical algorithms for multi-body orbital simulations, automated computer vision pipelines analyzing multi-spectral satellite passes, sensor fusion firmware for autonomous robotics, and zero-trust cryptographic architectures. Currently conducting undergraduate research in the School of Electronics and Computer Science at VIT-AP University under faculty mentorship, and active in the Machine Learning Club (Deep Learning & Computer Vision team). Outside academic research, I founded The Essentialist, an independent apparel venture exploring minimalist typography, and write technical walkthroughs on Medium.
+- **Institution**: VIT-AP University
+- **Contact Email**: panav.p@proton.me
+- **Detailed Markdown Index**: https://panav.xyz/llms-full.txt
 
-## Social & Professional Links
-- **GitHub**: https://github.com/Panav-Payappagoudar
-- **LinkedIn**: https://linkedin.com/in/panav-payappagoudar
-- **Medium**: https://panav-payappagoudar.medium.com/
-- **Cal.com**: https://cal.com/panav-payappagoudar/consulting
+## Portfolio Sections
 
-## Projects & Systems (Unified Index)
-### Gravity Sandbox (2025) — Real-time collaborative N-body astrophysics simulation engine
-- **Category**: Systems & Simulation
-- **Accolade**: SimVerse ’25 Winner
-- **Description**: A collaborative astrophysics sandbox enabling distributed users to interactively simulate multi-body gravitational mechanics in real time with zero server compute. Implemented Velocity Verlet numerical integration with adaptive timestep subdivision and an ultra-low latency host-relay state delta broadcast protocol over WebSockets.
-- **Technologies**: WebGL, Three.js, Socket.io, Node.js, Physics Engine, JavaScript
-- **Repository**: https://github.com/Panav-Payappagoudar/SimVerse25
+- [Home](https://panav.xyz/): Personal introduction and research/engineering overview.
+- [Work](https://panav.xyz/work): Complete index of 12 software, ML, remote sensing, decentralized systems, and robotics projects.
+- [Experience](https://panav.xyz/experience): Fellowships, open-source contributions, internships, and technical tutoring history.
+- [Achievements](https://panav.xyz/achievements): Verified hackathon placements (including 1x Winner, 2x Runner-up, 11x Finalist record) and competitive program selections.
+- [About](https://panav.xyz/about): Education at VIT-AP University, technical skills across ML/systems/hardware, and independent ventures.
+- [Contact](https://panav.xyz/contact): Direct email, Cal.com link, and ALTCHA-protected inquiry form.
 
-### ClaimAgent (2026) — Autonomous clinical prior-authorization intelligence platform
-- **Category**: Applied AI & Automation
-- **Accolade**: Radiothon ’26 Finalist (Top 5)
-- **Description**: An agentic clinical automation platform that compresses healthcare prior-authorization processing from 90 minutes to under 3 minutes. Fuses Gemini 2.5 multimodal document extraction with deterministic medical rule engines and headless browser automation to navigate complex insurer submission portals without hallucinations.
-- **Technologies**: Gemini 2.5, Playwright, RAG, Node.js, Express, REST API
-- **Repository**: https://github.com/Panav-Payappagoudar/ClaimAgent
+## Verified Profiles
 
-### Geospatial Change Detection (2025) — Automated satellite remote sensing & spectral difference analysis
-- **Category**: Computer Vision & GIS
-- **Accolade**: ISRO Hackathon National Pipeline
-- **Description**: An automated remote sensing pipeline for monitoring land-use changes, deforestation, and infrastructure expansion across multi-temporal Sentinel-2 L2A satellite passes. Employs QA60 cloud and shadow bitmasking to eliminate false positives, computes multi-spectral indices (NDVI, NDBI) via Rasterio and GDAL, and vectorizes polygon differences into PostGIS.
-- **Technologies**: Python, FastAPI, PostGIS, Rasterio, GDAL, NumPy, Vue.js
-- **Repository**: https://github.com/Panav-Payappagoudar/ISRO-Hackathon
-
-### SecureX (2025) — Zero-trust document infrastructure with decentralized access control
-- **Category**: Systems & Security
-- **Accolade**: Microsoft Triwizardathon Top 2%
-- **Description**: A zero-trust document security system pairing client-side Web Crypto AES-GCM-256 encryption, IPFS decentralized content addressing, and Ethereum smart contracts for immutable access governance and tamper-proof audit trails.
-- **Technologies**: Solidity, Ethereum, IPFS, Web Crypto API, React, Ethers.js
-- **Repository**: https://github.com/Panav-Payappagoudar/Secure-X
-- **Live Demo**: https://final-secure-x-ix3r.vercel.app/
-
-### OmitFS (2025) — Zero-dependency semantic filesystem prototype in Rust
-- **Category**: Systems Engineering
-- **Description**: An experimental userspace filesystem written in Rust exploring intent-based and semantic file addressability rather than rigid hierarchical directory trees. Implements custom POSIX inode mappings and metadata indexing to examine alternative storage paradigms.
-- **Technologies**: Rust, Systems Programming, POSIX, Filesystem Internals
-- **Repository**: https://github.com/Panav-Payappagoudar/OmitFS
-
-### VectorGit (2025) — Semantic code search and commit history embedding layer
-- **Category**: Developer Tooling
-- **Description**: A Git metadata extension written in Rust that embeds commit diffs, tree hashes, and pull request changes into a vector space. Enables semantic natural-language search across large code repository histories without relying on exact commit message string matches.
-- **Technologies**: Rust, Vector Embeddings, Git Internals, Search Engines
-- **Repository**: https://github.com/Panav-Payappagoudar/VectorGit
-
-### Autonomous Human-Following Robot (2025) — Target-tracking mobile robotics platform with sensor fusion
-- **Category**: Robotics & Hardware
-- **Description**: Mobile robotics tracking platform developed under faculty mentorship at VIT-AP University (ECS Department). Combines Arduino microcontroller firmware, ultrasonic and infrared sensor fusion arrays, differential drive kinematics, and real-time obstacle avoidance loops.
-- **Technologies**: Arduino, Embedded C++, Sensor Fusion, Robotics Kinematics
-- **Repository**: https://github.com/Panav-Payappagoudar
-
-### Sketch-to-Face Forensics (2025) — Deep learning facial reconstruction and forensic matching
-- **Category**: Computer Vision & ML
-- **Description**: Forensic reconstruction pipeline developed at VIT-AP Machine Learning Club. Employs TensorFlow, convolutional neural networks, and generative adversarial networks (GANs) for image-to-image translation, synthesizing photorealistic faces from sparse forensic witness sketches.
-- **Technologies**: TensorFlow, OpenCV, GANs, CNNs, Python
-- **Repository**: https://github.com/Panav-Payappagoudar/Sketch-to-face-forensics/tree/main
-
-### GridShield (2025) — Distributed network security and real-time threat detection
-- **Category**: Security & Networks
-- **Description**: Real-time threat detection and network security telemetry framework built for high-throughput node clusters. Evaluates packet headers, traffic flow irregularities, and connection patterns to flag anomalous behavior across distributed microservices.
-- **Technologies**: Python, Networking, Cryptography, Distributed Systems
-- **Repository**: https://github.com/Panav-Payappagoudar/GridShield
-
-### Clarity AI (2025) — Particulate matter & air quality prediction pipeline
-- **Category**: Machine Learning
-- **Description**: Environmental analytics system forecasting atmospheric particulate matter (PM2.5 / PM10). Evaluates 31 engineered meteorological and atmospheric parameters using Random Forest and linear regression models, served through a lightweight Flask API.
-- **Technologies**: Python, Scikit-Learn, Flask, React, NumPy
-- **Repository**: https://github.com/Panav-Payappagoudar/Clarity-AI
-
-### HealthGuard AI (2025) — Mobile healthcare consultation app with offline caching
-- **Category**: Mobile Systems
-- **Description**: Cross-platform healthcare consultation mobile application built in Flutter. Implements an offline-first local medical symptom cache, AI-assisted preliminary triage, and OpenStreetMap integration for emergency hospital routing.
-- **Technologies**: Flutter, Dart, OpenStreetMap, Mobile Architecture
-- **Repository**: https://github.com/Panav-Payappagoudar/HealthGuard_AI
-
-### Distributed Booking System (2024) — Asynchronous reservation engine with queue brokers
-- **Category**: Backend Systems
-- **Description**: High-concurrency reservation architecture built in Django. Features asynchronous booking workers managed by Celery and Redis, role-based authorization, ACID transaction compliance, and automated email ticketing relays.
-- **Technologies**: Django, PostgreSQL, Redis, Celery, Python
-- **Repository**: https://github.com/Panav-Payappagoudar/Travel-Booking
-
-## Engineering & Research Experience
-### Machine Learning Researcher – Computer Vision at Machine Learning Club, VIT-AP (Aug 2025 – Present) [Academic Research]
-- Researching deep learning pipelines for image translation, forensic facial reconstruction using GANs and CNNs, and multi-spectral terrain segmentation algorithms using Sentinel-2 and LiDAR datasets.
-
-### Undergraduate Robotics Researcher at VIT-AP University – School of Electronics & Computer Science (Jul 2025 – Present) [Academic Research]
-- Developing autonomous tracking robots under faculty mentorship (Dr. Y. Narasimha Rao). Implementing embedded sensor fusion routines (ultrasonic and IR arrays), obstacle avoidance loops, and differential drive motor kinematics in embedded C++.
-
-### Open Source Contributor at GirlScript Summer of Code (GSSoC ’25 & ’26) (May 2026 – Present) [Open Source]
-- Selected contributor across consecutive cohorts for collaborative developer infrastructure, documentation, and performance regression fixes.
-
-### Founder & Creative Director at The Essentialist (Oct 2025 – Present) [Independent Venture]
-- Directing an independent print-on-demand venture translating engineering and developer aesthetics into minimalist merchandise. Architected the e-commerce storefront, supply chain workflows, and brand identity.
-
-### Technical Writer at Medium & Hashnode (Oct 2025 – Present) [Writing]
-- Publishing technical walkthroughs and engineering teardowns dissecting applied machine learning, systems architecture, and cryptographic protocols.
-
-### AI & Cloud Engineering Intern at IBM SkillsBuild (Sep 2025 – Oct 2025) [Apprenticeship]
-- Completed enterprise cloud architecture track focusing on containerized microservices and AI workload orchestration.
-
-### Conversational Data Intern at Vodafone Idea Foundation (Sep 2025 – Oct 2025) [Apprenticeship]
-- Engineered data transformation workflows integrating language models for conversational transcript analysis and automated summarization.
-
-## Education
-- **VIT-AP University**: B.Tech in Computer Science and Engineering (2024 – 2028) — Undergraduate Researcher in School of Electronics & Computer Science (ECS Department). Active researcher in Machine Learning Club (Deep Learning & Computer Vision associate).
-
-## Capabilities
-- **Systems & Distributed Software**: Rust, Python, C / C++, Node.js, POSIX / Linux, REST & WebSockets, Host-Relay Protocols (Low-level prototypes, deterministic numerical algorithms, and concurrent services.)
-- **Machine Learning & Vision**: PyTorch, TensorFlow, OpenCV, GDAL / Rasterio, Gemini API & LLMs, RAG, Scikit-Learn (Computer vision pipelines, remote sensing raster math, and generative models.)
-- **Robotics & Hardware**: Arduino UNO, Embedded C++, Sensor Fusion (IR / Ultrasonic), Differential Drive Control (Microcontroller firmware, sensor fusion arrays, and mobile tracking kinematics.)
-- **Infrastructure & Security**: PostgreSQL & PostGIS, Docker, Redis, Solidity, Web Crypto AES-GCM, IPFS (Databases, container orchestration, and cryptographic access protocols.)
-
-## Honors & Awards
-- **Amazon ML Summer Scholar ’26** (Amazon, 2026): Selected from 135,000+ national applicants (~2.2% acceptance rate) for direct mentorship from Amazon Machine Learning Scientists.
-- **SimVerse ’25 Hackathon — 1st Place Winner** (SimVerse, 2025): Engineered Gravity Sandbox: real-time collaborative N-body astrophysics simulation using Velocity Verlet numerical integration and WebGL.
-- **Microsoft Triwizardathon — Top 2%** (Microsoft, 2025): Ranked 23rd out of 1,290 competing engineering teams with SecureX: zero-trust document security infrastructure.
-- **Radiothon ’26 — Top 5 Finalist** (Radiothon, 2026): Built ClaimAgent: autonomous clinical prior-authorization intelligence with Gemini 2.5 and Playwright RPA.
-- **IIT Bombay Techfest — Double Finalist** (IIT Bombay, 2025 – 2026): Finalist across both Aarohan and AWS ImpactX engineering tracks for cloud infrastructure design.
+- [GitHub](https://github.com/Panav-Payappagoudar): Panav-Payappagoudar
+- [LinkedIn](https://linkedin.com/in/panav-payappagoudar): panav-payappagoudar
+- [Medium](https://panav-payappagoudar.medium.com/): @panav-payappagoudar
+- [Cal.com](https://cal.com/panav-payappagoudar/consulting): panav-payappagoudar

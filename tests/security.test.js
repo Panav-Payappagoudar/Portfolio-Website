@@ -6,6 +6,7 @@ import { solveChallenge, createChallenge } from 'altcha-lib';
 import { isAllowedOrigin, getValidatedHmacKey, getCorsHeaders, checkRateLimit, getClientIp } from '../netlify/functions/security.js';
 import { handler as altchaHandler } from '../netlify/functions/altcha.js';
 import { handler as submitHandler } from '../netlify/functions/submit.js';
+import { handler as apiHandler } from '../netlify/functions/api.js';
 
 test('Targeted ALTCHA Reliability & Security Investigation Test Suite', async (t) => {
   const originalEnv = { ...process.env };
@@ -341,6 +342,8 @@ test('Targeted ALTCHA Reliability & Security Investigation Test Suite', async (t
 
     // Untrusted origins
     assert.equal(isAllowedOrigin('https://attacker.netlify.app'), false);
+    assert.equal(isAllowedOrigin('https://panav-evil.netlify.app'), false);
+    assert.equal(isAllowedOrigin('https://deploy-preview-99--panav-evil.netlify.app'), false);
     assert.equal(isAllowedOrigin('https://evil-hacker.com'), false);
     assert.equal(isAllowedOrigin('https://panav.xyz.phishing.com'), false);
 
@@ -476,5 +479,62 @@ test('Targeted ALTCHA Reliability & Security Investigation Test Suite', async (t
     assert.ok(fs.existsSync(cacheFile), 'Local session key file must exist in node_modules/.cache');
     const cachedFileContent = fs.readFileSync(cacheFile, 'utf8').trim();
     assert.equal(devKey1, cachedFileContent, 'Dev key must match cached file content across processes');
+  });
+
+  // --------------------------------------------------------------------------
+  // TEST 11: Concurrent replay race protection, cross-endpoint replay, & 413 cap
+  // --------------------------------------------------------------------------
+  await t.test('11. Concurrent replay race protection, unified api.js replay cache, and 413 payload limit', async () => {
+    const key = 'test-suite-hmac-key-sufficiently-long-32-chars';
+    process.env.ALTCHA_HMAC_KEY = key;
+    delete process.env.EMAIL_USER;
+
+    // 11a. Concurrent submissions with the same valid token must permit at most ONE through verification
+    const raceCh = await createChallenge({ hmacKey: key, maxNumber: 1000, expires: new Date(Date.now() + 300000) });
+    const raceSol = await solveChallenge(raceCh.challenge, raceCh.salt, 'SHA-256', 1000).promise;
+    const raceToken = Buffer.from(JSON.stringify({
+      algorithm: raceCh.algorithm,
+      challenge: raceCh.challenge,
+      number: raceSol.number,
+      salt: raceCh.salt,
+      signature: raceCh.signature
+    })).toString('base64');
+
+    const [resA, resB] = await Promise.all([
+      submitHandler({
+        httpMethod: 'POST',
+        headers: { 'client-ip': '198.51.100.30' },
+        body: JSON.stringify({ name: 'Race Tester', email: 'race@example.com', message: 'Concurrent submission A', altcha: raceToken })
+      }),
+      submitHandler({
+        httpMethod: 'POST',
+        headers: { 'client-ip': '198.51.100.31' },
+        body: JSON.stringify({ name: 'Race Tester', email: 'race@example.com', message: 'Concurrent submission B', altcha: raceToken })
+      })
+    ]);
+
+    const statuses = [resA.statusCode, resB.statusCode].sort();
+    assert.deepEqual(statuses, [400, 503], 'Exactly one concurrent request reaches SMTP check while the duplicate fails');
+    const rejected = resA.statusCode === 400 ? resA : resB;
+    assert.equal(JSON.parse(rejected.body).code, 'REPLAY_REJECTED');
+
+    // 11b. Replaying the same token via legacy api.js router must also fail with REPLAY_REJECTED
+    const crossEndpointRes = await apiHandler({
+      httpMethod: 'POST',
+      path: '/.netlify/functions/api/submit',
+      headers: { 'client-ip': '198.51.100.32' },
+      body: JSON.stringify({ name: 'Cross Tester', email: 'cross@example.com', message: 'Cross-endpoint replay attempt', altcha: raceToken })
+    });
+    assert.equal(crossEndpointRes.statusCode, 400);
+    assert.equal(JSON.parse(crossEndpointRes.body).code, 'REPLAY_REJECTED');
+
+    // 11c. Oversized body (>20KB) fails cleanly with 413 PAYLOAD_TOO_LARGE
+    const oversizedRes = await submitHandler({
+      httpMethod: 'POST',
+      headers: { 'client-ip': '198.51.100.33' },
+      body: JSON.stringify({ name: 'Big Payload', email: 'big@example.com', message: 'x'.repeat(25000), altcha: 'token' })
+    });
+    assert.equal(oversizedRes.statusCode, 413);
+    assert.equal(JSON.parse(oversizedRes.body).code, 'PAYLOAD_TOO_LARGE');
   });
 });

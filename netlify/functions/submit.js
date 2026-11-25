@@ -8,8 +8,9 @@ import { getValidatedHmacKey, getCorsHeaders, checkRateLimit, getClientIp, logDi
 
 dotenv.config();
 
-// Bounded anti-replay token cache
+// Bounded anti-replay token cache + atomic in-flight lock
 const usedCaptchas = new Map();
+const inFlightCaptchas = new Set();
 const MAX_CACHE_ENTRIES = 1000;
 const REPLAY_TTL_MS = 10 * 60 * 1000; // 10 minutes (aligned with challenge TTL)
 
@@ -81,8 +82,12 @@ export async function handler(event) {
   const clientIp = getClientIp(event);
 
   // 1. Resource Exhaustion Defense: Restrict incoming body size (Max 20KB)
-  if (event.body && event.body.length > 20480) {
-    const correlationId = logDiagnostic('PAYLOAD_TOO_LARGE', { endpoint: 'submit', clientIp, size: event.body.length });
+  const rawBodyStr = event.isBase64Encoded && typeof event.body === 'string'
+    ? Buffer.from(event.body, 'base64').toString('utf8')
+    : (event.body || '');
+
+  if (Buffer.byteLength(rawBodyStr, 'utf8') > 20480) {
+    const correlationId = logDiagnostic('PAYLOAD_TOO_LARGE', { endpoint: 'submit', clientIp, size: Buffer.byteLength(rawBodyStr, 'utf8') });
     return {
       statusCode: 413,
       headers: corsHeaders,
@@ -117,7 +122,7 @@ export async function handler(event) {
   try {
     let body;
     try {
-      body = JSON.parse(event.body || '{}');
+      body = JSON.parse(rawBodyStr || '{}');
     } catch {
       const correlationId = logDiagnostic('INVALID_PAYLOAD', { endpoint: 'submit', clientIp, reason: 'Malformed JSON' });
       return {
@@ -212,9 +217,9 @@ export async function handler(event) {
       }
     }
 
-    // 6. Anti-Replay Check
+    // 6. Atomic Anti-Replay Check (prevents concurrent async race)
     purgeExpiredCaptchas();
-    if (usedCaptchas.has(altcha)) {
+    if (usedCaptchas.has(altcha) || inFlightCaptchas.has(altcha)) {
       const correlationId = logDiagnostic('REPLAY_REJECTED', { endpoint: 'submit', clientIp });
       return {
         statusCode: 400,
@@ -228,44 +233,48 @@ export async function handler(event) {
       };
     }
 
-    // 7. Cryptographic Proof-of-Work Verification
+    inFlightCaptchas.add(altcha);
     let isSignatureValid = false;
     try {
-      isSignatureValid = await verifySolution(altcha, hmacKey);
-    } catch (cryptoErr) {
-      const correlationId = logDiagnostic('SIGNATURE_FAILED', { endpoint: 'submit', clientIp, reason: cryptoErr.message });
-      return {
-        statusCode: 400,
-        headers: corsHeaders,
-        body: JSON.stringify({
-          success: false,
-          code: 'SIGNATURE_FAILED',
-          message: 'Security verification failed. Please try again.',
-          correlationId
-        })
-      };
-    }
+      try {
+        isSignatureValid = await verifySolution(altcha, hmacKey);
+      } catch (cryptoErr) {
+        const correlationId = logDiagnostic('SIGNATURE_FAILED', { endpoint: 'submit', clientIp, reason: cryptoErr.message });
+        return {
+          statusCode: 400,
+          headers: corsHeaders,
+          body: JSON.stringify({
+            success: false,
+            code: 'SIGNATURE_FAILED',
+            message: 'Security verification failed. Please try again.',
+            correlationId
+          })
+        };
+      }
 
-    if (!isSignatureValid) {
-      const correlationId = logDiagnostic('SIGNATURE_FAILED', { endpoint: 'submit', clientIp, reason: 'Hash or signature mismatch' });
-      return {
-        statusCode: 400,
-        headers: corsHeaders,
-        body: JSON.stringify({
-          success: false,
-          code: 'SIGNATURE_FAILED',
-          message: 'Invalid CAPTCHA solution. Please try again.',
-          correlationId
-        })
-      };
-    }
+      if (!isSignatureValid) {
+        const correlationId = logDiagnostic('SIGNATURE_FAILED', { endpoint: 'submit', clientIp, reason: 'Hash or signature mismatch' });
+        return {
+          statusCode: 400,
+          headers: corsHeaders,
+          body: JSON.stringify({
+            success: false,
+            code: 'SIGNATURE_FAILED',
+            message: 'Invalid CAPTCHA solution. Please try again.',
+            correlationId
+          })
+        };
+      }
 
-    // Record token into bounded anti-replay cache
-    if (usedCaptchas.size >= MAX_CACHE_ENTRIES) {
-      const oldestKey = usedCaptchas.keys().next().value;
-      if (oldestKey) usedCaptchas.delete(oldestKey);
+      // Record verified token into bounded anti-replay cache atomically before releasing lock
+      if (usedCaptchas.size >= MAX_CACHE_ENTRIES) {
+        const oldestKey = usedCaptchas.keys().next().value;
+        if (oldestKey) usedCaptchas.delete(oldestKey);
+      }
+      usedCaptchas.set(altcha, Date.now());
+    } finally {
+      inFlightCaptchas.delete(altcha);
     }
-    usedCaptchas.set(altcha, Date.now());
 
     // 7. Profanity Shadow-Ban
     if (isProfaneText(name) || isProfaneText(message)) {
@@ -292,15 +301,19 @@ export async function handler(event) {
       };
     }
 
-    // 9. Send Email via Transporter
-    const sanitizedHeaderName = name.replace(/[\r\n\t]/g, ' ').replace(/"/g, "'");
-    const recipientEmail = (process.env.NOTIFICATION_EMAIL || process.env.EMAIL_USER || 'panav.p@proton.me').trim();
+    // 9. Send Email via Transporter (with bounded network timeouts)
+    const sanitizedHeaderName = name.replace(/[\r\n\t"<>\\]/g, ' ').replace(/\s+/g, ' ').trim();
+    const rawRecipient = (process.env.NOTIFICATION_EMAIL || process.env.EMAIL_USER || 'panav.p@proton.me').trim();
+    const recipientEmail = validator.isEmail(rawRecipient) ? rawRecipient : process.env.EMAIL_USER.trim();
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
+      connectionTimeout: 5000,
+      greetingTimeout: 5000,
+      socketTimeout: 8000,
       auth: {
-        user: process.env.EMAIL_USER?.trim(),
-        pass: process.env.EMAIL_PASS?.replace(/\s+/g, '')
+        user: process.env.EMAIL_USER.trim(),
+        pass: process.env.EMAIL_PASS.replace(/\s+/g, '')
       }
     });
 

@@ -1,11 +1,11 @@
 {
-  "name": "Panav Payappagoudar - Portfolio",
+  "name": "Panav Payappagoudar — Portfolio",
   "short_name": "Panav",
-  "description": "Portfolio of Panav Payappagoudar, Software Developer",
+  "description": "Personal engineering portfolio of Panav Payappagoudar (VIT-AP University).",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0e0f12",
-  "theme_color": "#0e0f12",
+  "background_color": "#F9F9F9",
+  "theme_color": "#F9F9F9",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
